@@ -1,0 +1,133 @@
+@import '{}/imports/ui/stylesheets/utils.less';
+
+.notifications-number {
+  position: absolute;
+  font-size: 9px;
+  line-height: 16px;
+  padding: 0 6px;
+  font-weight: 700;
+  background: #e64c65;
+  border-radius: 100%;
+  top: 15px;
+  left: 30px;
+  -webkit-transition: all .3s linear;
+  transition: all .3s linear;
+}
+
+.profile-picture {
+  border-radius: 100%;
+  display: inline-block;
+  overflow: hidden;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;  
+  border: 2px solid #50597b;
+  width: 40px;
+  height: 40px;
+}
+
+.profile-menu li:hover .notifications-number {
+  text-decoration: none;
+  -webkit-transform: rotate(720deg);
+  transform: rotate(720deg);
+}
+
+.profile-menu {
+  float: right;
+  height: 64px;
+  padding-right: 0px;
+}
+
+.profile-menu ul li {
+  position: relative;
+  font-size: 16px;
+  display: inline-block;
+  line-height: 35px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.profile-menu li a:hover {
+  text-decoration: none;
+}
+
+.profile-menu ul li:hover {
+  background: #50597b;
+    -webkit-transition: all .3s linear;
+  transition: all .3s linear;
+}
+
+.profile-menu ul li a {
+  padding: 0 20px;
+  display: block;
+  line-height: 64px;
+  font-size: 16px;
+}
+
+.profile-menu ul li:hover > ul {
+  visibility: visible; /* shows sub-menu */
+  opacity: 1;
+  transform: translateX(0%);
+  transition-delay: 0s;
+  z-index: 100;
+}
+
+.profile-menu ul ul {
+  display: block;
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 100%;
+  right: 0px;
+  background: #1f253d;
+  padding: 0;
+  transform: translateZ(0);
+  transform: translateY(10%);
+  transition: all 0.5s ease 0s, visibility 0s linear 0.5s;
+}
+
+.profile-menu ul ul li {
+  float: none;
+  width: 160px;
+}
+
+.profile-menu ul ul li a {
+  line-height: 35px;
+  font-size: 14px;
+}
+
+.profile-menu ul ul li .icon {
+  font-size: 17px;
+  padding-right: 15px;
+  padding-left: 2px;
+}
+
+.login-bar {
+  margin-right: 15px;
+}
+
+.button {
+  display: inline-block;
+  padding: 1px 14px 1px 14px;
+  line-height: 35px;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 3px;
+  -webkit-transition: background .3s;
+}
+
+.button:hover {
+  text-decoration: none;
+}
+
+.button.sign-in {
+  text-transform: uppercase;
+  background: #5B5B88;
+  margin-top: 13px;
+  margin-right: 6px;
+  border-top: 2px solid #11a8ab;
+}
+
+.button.sign-in:hover {
+  background: #6868A0;
+}

@@ -1,0 +1,57 @@
+@import '{}/imports/ui/stylesheets/utils.less';
+
+@menu-width: 270px;
+@column: 5.55555%;
+
+// TODO mozno dat nieco sem
+body {
+	height: 100%;
+	background-image:
+	url(img/bg-clouds.png),
+	url(img/bg-shadow.png),
+	url(img/bg-grass.png);
+	background-repeat: repeat-x, repeat-x, repeat-x;
+	background-position: left top, left top, left bottom;
+	background-color: #ade9f4;
+	font-family: 'Open Sans', sans-serif;
+}
+
+#wrapper-content {
+	position: absolute;
+	height: 560px;
+	width: 1150px;
+	transition: all 200ms ease-out;
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+
+.content-default {
+	float: left;
+	width: 835px;
+	height: 560px;
+	margin-bottom: 16px;
+	background-color: white;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	padding: 20px;
+	color: black;
+}
+
+.right-container {
+	float: right;
+	width: 300px;
+	height: 560px;
+}
+
+.block {
+	margin-bottom: 15px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.blank {
+	height: 435px;
+	background: #394264;
+}
