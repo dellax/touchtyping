@@ -34,7 +34,7 @@ export default class ListPage extends React.Component {
       incorrectLetters: ['a', 'b', 'c'],
       currentWpm: 80,
       highestWpm: 120,
-      wpmList: [0, 100, 110, 105, 80, 90]
+      wpmList: [0, 100, 110, 105, 80, 90, 100, 110, 105, 80, 90, 100, 110, 105, 80, 90]
     }
 
 
