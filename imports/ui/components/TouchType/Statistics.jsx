@@ -10,26 +10,19 @@ export default class Statistics extends React.Component {
 		this.stats = props.stats;
 	}
 
-	componentDidMount() {
-		
-    
-	}
-
-	
-
 	render() {
 		return (
       <div className="tt-statistics">
+        <div className="info">
+          <h2>Štatistiky</h2>
+        </div>
         <div className="chart-wpm">
   			 <ChartWpm stats={this.stats} />
         </div>
         <div className="chart-words">
           <ChartWords stats={this.stats} />
         </div>
-        
-          
-  			
-        <div id="circle-accuracy">
+        <div className="circle-bar-accuracy">
           <AccuracyCircleBar completed={0.8} />
         </div>
       </div>
@@ -49,6 +42,8 @@ class ChartWpm extends React.Component {
   }
   
   componentDidMount() {
+    Chart.defaults.global.legend.display = false;
+
     let canvas = ReactDOM.findDOMNode(this.refs.wpmChart);
     let ctx = canvas.getContext('2d');
 
@@ -97,7 +92,10 @@ class ChartWpm extends React.Component {
   
   render() {
     return (
-      <div><canvas ref="wpmChart"/></div>
+      <div>
+        <h3>Počet slov za minútu</h3>
+        <canvas className="wpm-canvas" ref="wpmChart"/>
+      </div>
     )
   }
 }
@@ -110,6 +108,8 @@ class ChartWords extends React.Component {
   }
 
   componentDidMount() {
+    Chart.defaults.global.legend.display = false;
+
     let canvas = ReactDOM.findDOMNode(this.refs.correctIncorrectChart);
     let ctx = canvas.getContext('2d');
     let incorrectWordsCount = this.stats.incorrectWords.length;
@@ -131,7 +131,11 @@ class ChartWords extends React.Component {
               "#FF6384"
             ]
           }
-        ]
+        ],
+        options: {
+          maintainAspectRatio: false,
+          responsive: true
+        }
     };
     let correctIncorrectChart = new Chart(ctx, {
         type: 'pie',
@@ -144,6 +148,7 @@ class ChartWords extends React.Component {
   render() {
     return (
       <div>
+        <h3>Správne slová</h3>
         <canvas ref="correctIncorrectChart"/>
         <div className="chart-words-legend" ref="wordsChartLegend"></div>
       </div>
@@ -191,7 +196,12 @@ class AccuracyCircleBar extends React.Component {
 
   render() {
     return (
-      <div ref="accuracyBar"></div>
+      <div> 
+        <h3>Presnosť</h3>
+        <div className="circle-accuracy">
+          <div ref="accuracyBar"></div>
+        </div>
+      </div>
     )
   }
 }

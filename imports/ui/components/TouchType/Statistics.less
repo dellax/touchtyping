@@ -1,6 +1,6 @@
 .tt-statistics {
 	position: relative;
-	top: 20px;
+	top: 10px;
 	width: 900px;
 	font-family: 'Roboto';
   margin: 0 auto;
@@ -9,34 +9,62 @@
   	box-sizing: unset;
   }
 
+  .info {
+  	position: absolute;
+  	left: 15px;
+  }
+
+  h3 {
+  	margin: 0;
+  	margin-bottom: 15px;
+  	font-family: 'Open Sans';
+  	font-weight: lighter;
+  	font-size: 23px;
+  }
+
   .chart-wpm {
   	position: absolute;
-  	top: 330px;
-  	left: 10px;
+  	top: 280px;
+  	left: 15px;
   	width: 860px;
   	height: 200px;
   }
 
+  .wpm-canvas {
+  	width: 100% !important;
+    max-width: 860px;
+    max-height: 200px;
+    height: auto !important;
+  }
+
   .chart-words {
   	position: absolute;
-  	width: 300px;
-  	height: 300px;
+  	text-align: center;
+  	top: 30px;
+  	left: 600px;
+  	width: 210px;
+  	height: 210px;
   }
+
+  .circle-accuracy {
+		position: relative;
+		margin-top: 13px;
+	  width: 100px;
+	  height: 100px;
+
+	  .progressbar-text {
+	  	font-size: 26px;
+	  }
+	}
+
+	.circle-bar-accuracy {
+		position: absolute;
+		top: 30px;
+		left: 450px;
+
+		h3 {
+			text-align: center;
+		}
+	}
 }
 
-.graf-test {
-  width: 650px;
-  height: 300px;
-}
-
-
-#circle-accuracy {
-  margin: 20px;
-  width: 100px;
-  height: 100px;
-  position: relative;
-
-  .progressbar-text {
-  	font-size: 26px;
-  }
-}
