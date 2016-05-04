@@ -8,43 +8,11 @@ export default class Statistics extends React.Component {
 	constructor(props) {
 		super(props);
 		this.stats = props.stats;
-		this.labels = [];
-		for (let i = 0; i < this.stats.wpmList.length; i++) {
-			this.labels.push(' ');
-		}
 	}
 
 	componentDidMount() {
 		
-    let accuracyBar = ReactDOM.findDOMNode(this.refs.accuracyBar);
-    var circleAccuracyBar = new ProgressBar.Circle(accuracyBar, {
-      color: '#aaa',
-      // This has to be the same size as the maximum width to
-      // prevent clipping
-      strokeWidth: 5,
-      trailWidth: 2,
-      easing: 'easeInOut',
-      duration: 1400,
-      text: {
-        autoStyleContainer: false
-      },
-      from: { color: '#FF0000', width: 1 },
-      to: { color: '#15ff00', width: 4 },
-      // Set default step function for all animate calls
-      step: function(state, circle) {
-        circle.path.setAttribute('stroke', state.color);
-        circle.path.setAttribute('stroke-width', state.width);
-
-        var value = Math.round(circle.value() * 100);
-        if (value === 0) {
-          circle.setText('');
-        } else {
-          circle.setText(value);
-        }
-
-      }
-    });
-    circleAccuracyBar.animate(0.8);
+    
 	}
 
 	
@@ -61,7 +29,9 @@ export default class Statistics extends React.Component {
         
           
   			
-        <div id="circle-accuracy" ref="accuracyBar"></div>
+        <div id="circle-accuracy">
+          <AccuracyCircleBar completed={0.8} />
+        </div>
       </div>
 		)
 	}
@@ -132,6 +102,7 @@ class ChartWpm extends React.Component {
   }
 }
 
+
 class ChartWords extends React.Component {
   constructor(props) {
     super(props);
@@ -176,6 +147,51 @@ class ChartWords extends React.Component {
         <canvas ref="correctIncorrectChart"/>
         <div className="chart-words-legend" ref="wordsChartLegend"></div>
       </div>
+    )
+  }
+}
+
+class AccuracyCircleBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.completed = props.completed;
+  }
+
+  componentDidMount() {
+    let accuracyBar = ReactDOM.findDOMNode(this.refs.accuracyBar);
+    let circleAccuracyBar = new ProgressBar.Circle(accuracyBar, {
+      color: '#aaa',
+      // This has to be the same size as the maximum width to
+      // prevent clipping
+      strokeWidth: 5,
+      trailWidth: 2,
+      easing: 'easeInOut',
+      duration: 1400,
+      text: {
+        autoStyleContainer: false
+      },
+      from: { color: '#FF0000', width: 1 },
+      to: { color: '#15ff00', width: 4 },
+      // Set default step function for all animate calls
+      step: function(state, circle) {
+        circle.path.setAttribute('stroke', state.color);
+        circle.path.setAttribute('stroke-width', state.width);
+
+        var value = Math.round(circle.value() * 100);
+        if (value === 0) {
+          circle.setText('');
+        } else {
+          circle.setText(value);
+        }
+
+      }
+    });
+    circleAccuracyBar.animate(this.completed);
+  }
+
+  render() {
+    return (
+      <div ref="accuracyBar"></div>
     )
   }
 }
