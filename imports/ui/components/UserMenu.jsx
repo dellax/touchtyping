@@ -67,7 +67,7 @@ export default class UserMenu extends React.Component {
             <ul>
               <li><a href="#">Nastavenia</a></li>
               <li><a href="#">Môj profil</a></li>
-              <li><a href="#">Administrácia</a></li>
+              <li><Link to="/administracia">Administrácia</Link></li>
               <li><a onClick={logout}>Odhlásiť sa</a></li>
             </ul>
           </li>

@@ -1,12 +1,12 @@
 import React from 'react';
 import Message from '../components/Message.jsx';
 
-const NotFoundPage = () => (
+const NotEnoughRightsPage = () => (
   <div className="page not-found">
     <div className="content-scrollable">
-      <Message title="Stránka nenájdená"/>
+      <Message title="Nedostatocne prava"/>
     </div>
   </div>
 );
 
-export default NotFoundPage;
+export default NotEnoughRightsPage;
