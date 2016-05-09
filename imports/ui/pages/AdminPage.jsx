@@ -9,11 +9,17 @@ export default class AdminPage extends React.Component {
     
   }
 
+  componentWillReceiveProps({ loading, children }) {
+   
+  }
+
   render() {
     const {
       children,
       location,
     } = this.props;
+
+    console.log(this.props);
 
     const clonedChildren = children && React.cloneElement(children, {
       key: location.pathname,
@@ -22,14 +28,14 @@ export default class AdminPage extends React.Component {
     return (
       <div className="admin">
         <div className="content-default">
-          
+          { clonedChildren }
         </div>
         <div className="right-container">
           <div className="menu-box block">
             <h2 className="titular">ADMIN MENU</h2>
             <ul className="menu-box-menu">
               <li>
-                <Link to="/administracia/pridat-lekciu" className="menu-box-tab">
+                <Link to="/administracia/lekcie" className="menu-box-tab">
                 <span className="icon fa fa-book scnd-font-color"></span>
                   Lekcie
                 </Link>                         

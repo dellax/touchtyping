@@ -23,6 +23,7 @@ export const renderRoutes = () => (
       <Route path="prihlasenie" component={AuthPageSignIn}/>
       <Route path="registracia" component={AuthPageJoin}/>
       <Route path="administracia" component={AdminContainer}>
+        <Route path="lekcie" component={NewLectionPage}/>
         <Route path="pridat-lekciu" component={NewLectionPage}/>
       </Route>
       <Route path="nedostatocne-prava" component={NotEnoughRightsPage}/>
