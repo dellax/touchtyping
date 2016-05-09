@@ -11,6 +11,7 @@ import AuthPageSignIn from '../../ui/pages/AuthPageSignIn.jsx';
 import AuthPageJoin from '../../ui/pages/AuthPageJoin.jsx';
 import NotFoundPage from '../../ui/pages/NotFoundPage.jsx';
 import NotEnoughRightsPage from '../../ui/pages/NotEnoughRightsPage.jsx';
+import AdminContainer from '../../ui/containers/AdminContainer.jsx';
 import NewLectionPage from '../../ui/pages/NewLectionPage.jsx';
 
 export const renderRoutes = () => (
@@ -21,7 +22,7 @@ export const renderRoutes = () => (
       <Route path="rebricky" component={NotFoundPage}/>
       <Route path="prihlasenie" component={AuthPageSignIn}/>
       <Route path="registracia" component={AuthPageJoin}/>
-      <Route path="administracia" component={NewLectionPage} onEnter={requireAdminAccess}>
+      <Route path="administracia" component={AdminContainer}>
         <Route path="pridat-lekciu" component={NewLectionPage}/>
       </Route>
       <Route path="nedostatocne-prava" component={NotEnoughRightsPage}/>

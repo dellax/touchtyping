@@ -61,7 +61,7 @@ export default class App extends React.Component {
     const clonedChildren = children && React.cloneElement(children, {
       key: location.pathname,
     });
-    console.log(clonedChildren);
+
     // TODO prerobit content
     return (
       <div id="page-wrap">
