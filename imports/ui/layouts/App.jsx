@@ -67,7 +67,7 @@ export default class App extends React.Component {
       <div id="page-wrap">
 
         <div className="header">
-          <img src="img/logo.png" />
+          <img src="/img/logo.png" />
         </div>
 
         {showConnectionIssue && !connected
