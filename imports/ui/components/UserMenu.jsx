@@ -1,4 +1,5 @@
 import React from 'react';
+import { Roles } from 'meteor/alanning:roles';
 import { Link } from 'react-router';
 
 export default class UserMenu extends React.Component {
@@ -46,6 +47,35 @@ export default class UserMenu extends React.Component {
     );
   }
 
+  renderLoggedInAdmin() {
+    const { open } = this.state;
+    const { user, logout } = this.props;
+    const email = user.emails[0].address;
+    const emailLocalPart = email.substring(0, email.indexOf('@'));
+
+    return (
+      <div className="profile-menu">
+        <ul>
+          <li>
+            <a href="#1">
+              <span className="icon fa fa-envelope-o scnd-font-color"></span>
+              <span className="notifications-number">7</span>
+            </a>
+          </li>
+          <li>
+            <a href="#26">{user.username} <span className="fa fa-angle-down scnd-font-color"></span></a>
+            <ul>
+              <li><a href="#">Nastavenia</a></li>
+              <li><a href="#">Môj profil</a></li>
+              <li><a href="#">Administrácia</a></li>
+              <li><a onClick={logout}>Odhlásiť sa</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    );
+  }
+
   renderLoggedOut() {
     return (
       <div className="profile-menu">
@@ -58,9 +88,14 @@ export default class UserMenu extends React.Component {
   }
 
   render() {
-    return this.props.user
-      ? this.renderLoggedIn()
-      : this.renderLoggedOut();
+    if (this.props.user) {
+      let userId = this.props.user._id;
+      if (Roles.userIsInRole(userId, ['admin'])) {
+        return this.renderLoggedInAdmin();
+      }
+      return this.renderLoggedIn();
+    }
+    return this.renderLoggedOut();
   }
 }
 
