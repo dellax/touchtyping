@@ -4,11 +4,8 @@ import Message from '../components/Message.jsx';
 
 const NotFoundPage = () => (
   <div className="page not-found">
-    <nav>
-      <MobileMenu/>
-    </nav>
     <div className="content-scrollable">
-      <Message title="Page not found"/>
+      <Message title="Stránka nenájdená"/>
     </div>
   </div>
 );
