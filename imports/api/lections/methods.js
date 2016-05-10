@@ -23,3 +23,20 @@ export const insert = new ValidatedMethod({
     Lections.insert(lection);
   },
 });
+
+// Get list of all method names on lections
+const LECTIONS_METHODS = _.pluck([
+  insert
+], 'name');
+
+if (Meteor.isServer) {
+  // Only allow 5 lection operations per connection per second
+  DDPRateLimiter.addRule({
+    name(name) {
+      return _.contains(LECTIONS_METHODS, name);
+    },
+
+    // Rate limit per connection ID
+    connectionId() { return true; },
+  }, 5, 1000);
+}

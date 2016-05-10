@@ -20,7 +20,7 @@ class LectionsCollection extends Mongo.Collection {
   }
 }
 
-export const Lections = new TodosCollection('Lections');
+export const Lections = new LectionsCollection('Lections');
 
 // Deny all client-side updates since we will be using methods to manage this collection
 Lections.deny({

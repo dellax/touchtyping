@@ -40,12 +40,12 @@ Exercises.schema = new SimpleSchema({
   points: {
     type: Number
   },
+  order: {
+  	type: Number
+  },
   createdAt: {
     type: Date,
     denyUpdate: true,
-  },
-  order: {
-  	type: Number
   }
 });
 

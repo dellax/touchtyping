@@ -27,3 +27,20 @@ export const insert = new ValidatedMethod({
     Exercises.insert(exercise);
   },
 });
+
+// Get list of all method names on exercises
+const EXERCISES_METHODS = _.pluck([
+  insert
+], 'name');
+
+if (Meteor.isServer) {
+  // Only allow 5 exercise operations per connection per second
+  DDPRateLimiter.addRule({
+    name(name) {
+      return _.contains(EXERCISES_METHODS, name);
+    },
+
+    // Rate limit per connection ID
+    connectionId() { return true; },
+  }, 5, 1000);
+}

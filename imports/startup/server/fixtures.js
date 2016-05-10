@@ -2,6 +2,8 @@ import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
 import { Lists } from '../../api/lists/lists.js';
 import { Todos } from '../../api/todos/todos.js';
+import { Lections } from '../../api/lections/lections.js';
+import { Exercises } from '../../api/exercises/exercises.js';
 
 // if the database is empty on server start, create some sample data.
 // TODO ...
@@ -30,59 +32,60 @@ Meteor.startup(() => {
         Roles.addUsersToRoles(id, user.roles);
       }
     });
+
     const data = [
       {
-        name: 'Meteor Principles',
-        items: [
-          'Data on the Wire',
-          'One Language',
-          'Database Everywhere',
-          'Latency Compensation',
-          'Full Stack Reactivity',
-          'Embrace the Ecosystem',
-          'Simplicity Equals Productivity',
+        name: 'Lekcia 1',
+        exercises: [
+          {
+            name: 'Pismena aa bb',
+            text: 'aaaa bbbb aaaa bbbb',
+            points: 0,
+            order: 0
+          },
+          {
+            name: 'Pismena cc dd',
+            text: 'cccc dddd cccc dddd',
+            points: 0,
+            order: 1
+          }
         ],
       },
       {
-        name: 'Languages',
-        items: [
-          'Lisp',
-          'C',
-          'C++',
-          'Python',
-          'Ruby',
-          'JavaScript',
-          'Scala',
-          'Erlang',
-          '6502 Assembly',
+        name: 'Lekcia 2',
+        exercises: [
+          {
+            name: 'Pismena aa bb',
+            text: 'aaaa bbbb aaaa bbbb',
+            points: 0,
+            order: 0
+          },
+          {
+            name: 'Pismena cc dd',
+            text: 'cccc dddd cccc dddd',
+            points: 0,
+            order: 1
+          }
         ],
-      },
-      {
-        name: 'Favorite Scientists',
-        items: [
-          'Ada Lovelace',
-          'Grace Hopper',
-          'Marie Curie',
-          'Carl Friedrich Gauss',
-          'Nikola Tesla',
-          'Claude Shannon',
-        ],
-      },
+      }
     ];
 
     let timestamp = (new Date()).getTime();
 
-    data.forEach((list) => {
-      const listId = Lists.insert({
-        name: list.name,
-        incompleteCount: list.items.length,
+    data.forEach((lection) => {
+      const lectionId = Lections.insert({
+        name: lection.name,
+        createdAt: new Date(timestamp)
       });
 
-      list.items.forEach((text) => {
-        Todos.insert({
-          listId,
-          text,
-          createdAt: new Date(timestamp),
+      lection.exercises.forEach((exercise) => {
+        Exercises.insert({
+          lectionId,
+          exercise.name,
+          exercise.text,
+          exercise.points,
+          exercise.order,
+          createdAt: new Date(timestamp)
         });
 
         timestamp += 1; // ensure unique timestamp.
