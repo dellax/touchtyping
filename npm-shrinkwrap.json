@@ -1049,6 +1049,11 @@
       "from": "react-addons-pure-render-mixin@>=15.0.0 <16.0.0",
       "resolved": "https://registry.npmjs.org/react-addons-pure-render-mixin/-/react-addons-pure-render-mixin-15.0.1.tgz"
     },
+    "react-anything-sortable": {
+      "version": "1.4.4",
+      "from": "react-anything-sortable@latest",
+      "resolved": "https://registry.npmjs.org/react-anything-sortable/-/react-anything-sortable-1.4.4.tgz"
+    },
     "react-dnd": {
       "version": "2.1.4",
       "from": "react-dnd@latest",
