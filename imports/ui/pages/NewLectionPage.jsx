@@ -2,6 +2,7 @@ import React from 'react';
 import NotFoundPage from '../pages/NotFoundPage.jsx';
 import Message from '../components/Message.jsx';
 import Sortable from 'react-anything-sortable';
+import Modal from 'boron/DropModal';
 import ExerciseItem from '../components/ExerciseItem.jsx';
 
 
@@ -38,7 +39,13 @@ export default class ListPage extends React.Component {
     });
   }
 
-  
+  showModal() {
+    this.refs.modal.show();
+  }
+
+  hideModal() {
+    this.refs.modal.hide();
+  }
 
   render() {
     function renderItem(num, index) {
@@ -52,6 +59,10 @@ export default class ListPage extends React.Component {
       );
     }
 
+    let contentStyle = {
+      padding: '20px',
+      height: '500px'
+    };
 
     return (
       <div className="container">
@@ -66,6 +77,16 @@ export default class ListPage extends React.Component {
             {this.state.arr.map(renderItem, this)}
           </Sortable>
         </div>
+        <button onClick={this.showModal.bind(this)}>Open</button>
+        <Modal ref="modal" contentStyle={contentStyle}>
+          <h2>Upraviť cvičenie</h2>
+          <label for="name">Názov:</label>
+          <input type="text" name="name" ref="name" placeholder=""/>
+          <label for="name">Text:</label>
+          <textarea rows="8" cols="50"/>
+          <br/>
+          <button className="btn-primary" onClick={this.hideModal.bind(this)}>Uložiť zmeny</button>
+        </Modal>
       </div>
     );
   }
