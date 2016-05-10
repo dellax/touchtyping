@@ -9,8 +9,21 @@ import ExerciseItem from '../components/ExerciseItem.jsx';
 export default class ListPage extends React.Component {
   constructor(props) {
     super(props);
+    let exerciseData = {
+      name: 'Pismena a b c d',
+      text: 'sdkfjslf sdkfjslfj dskfjl'
+    }
+    let exerciseData2 = {
+      name: 'Pismena dsfsfsdf',
+      text: 'sdkfjslf sdkfjslfj dskfjl'
+    }
     this.state = {
-      arr: [998, 225, 13]
+      arr: [exerciseData, exerciseData2],
+      formExerciseData: {
+        name: '',
+        text: '',
+        points: 0
+      }
     };
     this._sortableKey = 0;
   }
@@ -24,8 +37,13 @@ export default class ListPage extends React.Component {
 
   handleAddElement() {
     this._sortableKey++;
+    const exerciseSampleData = {
+      name: 'Nove cvicenie',
+      text: '',
+      body: 0
+    }
     this.setState({
-      arr: this.state.arr.concat(Math.round(Math.random() * 1000))
+      arr: this.state.arr.concat(exerciseSampleData)
     });
   }
 
@@ -39,6 +57,18 @@ export default class ListPage extends React.Component {
     });
   }
 
+  handleUpdateElement(index) {
+    this._sortableKey++;
+    let data = this.state.arr.slice();
+    let clickedExerciseData = {...data[index], index};
+
+    console.log(data);
+    this.setState({
+      formExerciseData: clickedExerciseData
+    });
+    this.showModal();
+  }
+
   showModal() {
     this.refs.modal.show();
   }
@@ -47,14 +77,32 @@ export default class ListPage extends React.Component {
     this.refs.modal.hide();
   }
 
+  saveExerciseData() {
+    // TODO add validation e.g. max length for name
+    let data = this.state.arr.slice();
+    let exerciseData = this.state.formExerciseData;
+    exerciseData.name = this.refs.exerciseName.value;
+    exerciseData.text = this.refs.exerciseText.value;
+
+    let index = exerciseData.index;
+    data[index] = exerciseData; 
+    this.setState({
+      arr: data
+    })
+    this.hideModal();
+  }
+
   render() {
-    function renderItem(num, index) {
+    function renderItem(data, index) {
       return (
-        <ExerciseItem key={index} className="dynamic-item" sortData={num}>
-          {num}
+        <ExerciseItem key={index} className="dynamic-item" sortData={data}>
+          {data.name}
           <span className="delete"
             onMouseDown={this.handleRemoveElement.bind(this, index)}
           >&times;</span>
+          <span className="delete"
+            onMouseDown={this.handleUpdateElement.bind(this, index)}
+          > upravit</span>
         </ExerciseItem>
       );
     }
@@ -64,12 +112,14 @@ export default class ListPage extends React.Component {
       height: '500px'
     };
 
+    const exercise = this.state.formExerciseData;
+
     return (
       <div className="container">
         <h2>Pridať novú lekciu</h2>
         <label for="name">Názov lekcie:</label>
         <input type="text" name="name" ref="name" placeholder=""/>
-        <h5>Zoznam cviceni k lekcii</h5>
+        <h5>Zoznam cvičení k lekcii</h5>
 
         <div className="dynamic-demo">
           <button onClick={this.handleAddElement.bind(this)}>Pridať cvičenie</button>
@@ -77,15 +127,17 @@ export default class ListPage extends React.Component {
             {this.state.arr.map(renderItem, this)}
           </Sortable>
         </div>
-        <button onClick={this.showModal.bind(this)}>Open</button>
+
+        <button className="btn-primary" >Uložiť zmeny</button>
+
         <Modal ref="modal" contentStyle={contentStyle}>
           <h2>Upraviť cvičenie</h2>
-          <label for="name">Názov:</label>
-          <input type="text" name="name" ref="name" placeholder=""/>
-          <label for="name">Text:</label>
-          <textarea rows="8" cols="50"/>
+          <label for="exerciseName">Názov:</label>
+          <input type="text" name="exerciseName" ref="exerciseName" defaultValue={exercise.name}/>
+          <label for="exerciseText">Text:</label>
+          <textarea rows="8" cols="50" ref="exerciseText" defaultValue={exercise.text}/>
           <br/>
-          <button className="btn-primary" onClick={this.hideModal.bind(this)}>Uložiť zmeny</button>
+          <button className="btn-primary" onClick={this.saveExerciseData.bind(this)}>Uložiť zmeny</button>
         </Modal>
       </div>
     );
