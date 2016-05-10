@@ -128,7 +128,7 @@ export default class ListPage extends React.Component {
           </Sortable>
         </div>
 
-        <button className="btn-primary" >Uložiť zmeny</button>
+        <button className="btn-primary">Uložiť zmeny</button>
 
         <Modal ref="modal" contentStyle={contentStyle}>
           <h2>Upraviť cvičenie</h2>
