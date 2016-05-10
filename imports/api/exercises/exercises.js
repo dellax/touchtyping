@@ -30,6 +30,11 @@ Exercises.deny({
 });
 
 Exercises.schema = new SimpleSchema({
+  lectionId: {
+    type: String,
+    regEx: SimpleSchema.RegEx.Id,
+    denyUpdate: true,
+  },
   name: {
     type: String,
     max: 100,

@@ -34,12 +34,12 @@ Lections.schema = new SimpleSchema({
     type: String,
     max: 100,
   },
+  order: {
+  	type: Number
+  },
   createdAt: {
     type: Date,
     denyUpdate: true,
-  },
-  order: {
-  	type: Number
   }
 });
 

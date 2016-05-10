@@ -79,12 +79,13 @@ Meteor.startup(() => {
       });
 
       lection.exercises.forEach((exercise) => {
+        console.log(exercise);
         Exercises.insert({
           lectionId,
-          exercise.name,
-          exercise.text,
-          exercise.points,
-          exercise.order,
+          name: exercise.name,
+          text: exercise.text,
+          points: exercise.points,
+          order: exercise.order,
           createdAt: new Date(timestamp)
         });
 
