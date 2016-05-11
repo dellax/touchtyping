@@ -129,7 +129,13 @@ export default class AdminLectionPage extends React.Component {
       height: '500px'
     };
 
-    const exercise = this.state.formExerciseData;
+    const { arr: exercises, formExerciseData: exercise } = this.state;
+    
+    if (exercises.length === 0) {
+      return (
+        <div className="no-exercises">Zatial tu nie sú žiadne cvičenia.</div>
+      )
+    }
 
     return (
       <div className="dynamic-demo">

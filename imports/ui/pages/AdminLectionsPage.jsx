@@ -30,10 +30,9 @@ export default class AdminLectionsPage extends React.Component {
 
   render() {
     
-
     return (
       <div>
-        <button className="btn-primary" onClick={this.createNewLection}>Pridat novu lekciu</button>
+        <button className="btn-primary" onClick={this.createNewLection}>Pridať novú lekciu</button>
       </div>
     );
   }
