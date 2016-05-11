@@ -59,6 +59,18 @@ export const updateExercise = new ValidatedMethod({
   },
 });
 
+export const removeExercise = new ValidatedMethod({
+  name: 'exercises.removeExercise',
+  validate: new SimpleSchema({
+    exerciseId: { type: String }
+  }).validator(),
+  run({ exerciseId }) {
+
+    Exercises.remove(exerciseId);
+
+  },
+});
+
 
 
 // Get list of all method names on exercises

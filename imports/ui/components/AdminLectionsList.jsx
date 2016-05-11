@@ -4,7 +4,11 @@ import NotFoundPage from '../pages/NotFoundPage.jsx';
 import Message from '../components/Message.jsx';
 import Sortable from 'react-anything-sortable';
 import ExerciseItem from './ExerciseItem.jsx';
-import { updateExercise, updateExerciseOrder } from '../../api/exercises/methods.js';
+
+import { 
+  updateExercise, 
+  updateExerciseOrder, 
+  removeExercise } from '../../api/exercises/methods.js';
 
 export default class AdminLectionPage extends React.Component {
   constructor(props) {
@@ -38,7 +42,6 @@ export default class AdminLectionPage extends React.Component {
       let order = i;
       updateExerciseOrder.call({exerciseId, order}, (err) => {
         if (err) {
-          console.log(err);
         
           /* eslint-disable no-alert */
           alert('Could not update exercise.');
@@ -62,11 +65,20 @@ export default class AdminLectionPage extends React.Component {
 
   handleRemoveElement(index) {
     const newArr = this.state.arr.slice();
+    const exerciseId = newArr[index]._id;
     newArr.splice(index, 1);
     this._sortableKey++;
 
     this.setState({
       arr: newArr
+    });
+
+    removeExercise.call({exerciseId}, (err) => {
+      if (err) {
+      
+        /* eslint-disable no-alert */
+        alert('Could not update exercise.');
+      }
     });
   }
 
