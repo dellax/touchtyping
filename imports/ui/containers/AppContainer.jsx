@@ -7,9 +7,10 @@ import App from '../layouts/App.jsx';
 
 export default createContainer(() => {
   const lectionsHandle = Meteor.subscribe('lections.all');
+  const exercisesHandle = Meteor.subscribe('exercises.all');
   return {
     user: Meteor.user(),
-    loading: !(lectionsHandle.ready()),
+    loading: !(lectionsHandle.ready() && exercisesHandle.ready()),
     connected: Meteor.status().connected
   };
 }, App);

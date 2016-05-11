@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import NotFoundPage from '../pages/NotFoundPage.jsx';
 import Message from '../components/Message.jsx';
 import { Tabbordion, Panel } from 'react-tabbordion';
@@ -11,10 +12,7 @@ import Statistics from '../components/TouchType/Statistics.jsx';
 export default class ListPage extends React.Component {
   constructor(props) {
     super(props);
-    
   }
-
-  
 
   render() {
     let classNames = {
@@ -37,32 +35,37 @@ export default class ListPage extends React.Component {
       wpmList: [0, 100, 110, 105, 80, 90, 100, 110, 105, 80, 90, 100, 110, 105, 80, 90]
     }
 
+    const data = this.props.lectionsWithExercises;
+
+    function renderItem(data, index) {
+      return (
+        <ExerciseItem key={index} className="dynamic-item" sortData={data}>
+          {data.name}
+          <span className="delete"
+            onMouseDown={this.handleRemoveElement.bind(this, index)}
+          >&times;</span>
+          <span className="delete"
+            onMouseDown={this.handleUpdateElement.bind(this, index)}
+          > upravit</span>
+        </ExerciseItem>
+      );
+    }
 
     return (
       <div className="lections-container">
         <div className="lections-menu">
           <Tabbordion mode="toggle" className="accordion" classNames={classNames} initialIndex={0} name="tabs">
-            <Panel title={<span className="lection-name">Lekcia 1</span>}>
-              <ul>
-                <li><a href="#">Pismena as df jk</a></li>
-                <li><a href="#">Test</a></li>
-                <li><a href="#">Test</a></li>
-              </ul>
-            </Panel>
-            <Panel title={<span className="lection-name">Lekcia 2</span>}>
-              <ul>
-                <li><a href="#">Test</a></li>
-                <li><a href="#">Test</a></li>
-                <li><a href="#">Test</a></li>
-              </ul>
-            </Panel>
-            <Panel title={<span className="lection-name">Lekcia 3</span>}>
-              <ul>
-                <li><a href="#">Test</a></li>
-                <li><a href="#">Test</a></li>
-                <li><a href="#">Test</a></li>
-              </ul>
-            </Panel>
+            { data.map((lection) => {
+              return (
+                <Panel title={<span className="lection-name">{lection.name}</span>}>
+                  <ul>
+                    {lection.exercises.map((exercise) => {
+                      return <li><a href="#">{exercise.name}</a></li>;
+                    })}
+                  </ul>
+                </Panel>
+              );
+            })}
           </Tabbordion>
         </div>
         

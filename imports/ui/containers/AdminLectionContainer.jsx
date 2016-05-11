@@ -9,7 +9,6 @@ export default createContainer(({ params: { id } }) => {
   const lection = Lections.findOne(id);
   const lectionExists = !loading && !!lection;
 
-  console.log(lection.exercises().fetch());
   return {
     loading,
     lection,

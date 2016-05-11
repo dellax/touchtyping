@@ -32,3 +32,7 @@ Meteor.publishComposite('exercises.inLection', function exercisesInLection(lecti
     }],
   };
 });
+
+Meteor.publish('exercises.all', function exercisesAll() {
+  return Exercises.find();
+});
