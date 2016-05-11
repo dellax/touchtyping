@@ -8,8 +8,8 @@ export default createContainer(({ params: { id } }) => {
   const loading = !exercisesHandle.ready();
   const lection = Lections.findOne(id);
   const lectionExists = !loading && !!lection;
-  console.log(lection);
-  console.log(loading);
+
+  console.log(lection.exercises().fetch());
   return {
     loading,
     lection,

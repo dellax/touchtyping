@@ -48,6 +48,6 @@ Lections.attachSchema(Lections.schema);
 
 Lections.helpers({
   exercises() {
-    return Exercises.find({ lectionId: this._id }, { sort: { order: -1 } });
+    return Exercises.find({ lectionId: this._id }, { sort: { order: 1 } });
   }
 });

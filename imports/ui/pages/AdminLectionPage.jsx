@@ -5,6 +5,8 @@ import Sortable from 'react-anything-sortable';
 import Modal from 'boron/DropModal';
 import ExerciseItem from '../components/ExerciseItem.jsx';
 
+import { insertExercise } from '../../api/exercises/methods.js';
+
 
 export default class ListPage extends React.Component {
   constructor(props) {
@@ -22,6 +24,7 @@ export default class ListPage extends React.Component {
     this.state = {
       arr: [exerciseData, exerciseData2],
       formExerciseData: {
+        _id: '',
         name: '',
         text: '',
         points: 0
@@ -37,15 +40,30 @@ export default class ListPage extends React.Component {
     });
   }
 
-  handleAddElement() {
+  handleAddExercise() {
     this._sortableKey++;
-    const exerciseSampleData = {
+    const lectionId = this.props.lection._id;
+    const order = this.state.arr.length;
+
+
+    const exerciseId = insertExercise.call({lectionId, order}, (err) => {
+      if (err) {
+        console.log(err);
+      
+        /* eslint-disable no-alert */
+        alert('Could not create exercise.');
+      }
+    });
+    console.log(exerciseId);
+
+    const exerciseData = {
+      _id: exerciseId,
       name: 'Nove cvicenie',
       text: '',
       body: 0
     }
     this.setState({
-      arr: this.state.arr.concat(exerciseSampleData)
+      arr: this.state.arr.concat(exerciseData)
     });
   }
 
@@ -88,10 +106,12 @@ export default class ListPage extends React.Component {
     exerciseData.text = this.refs.exerciseText.value;
 
     let index = exerciseData.index;
+
     data[index] = exerciseData; 
     this.setState({
       arr: data
     })
+
     this.hideModal();
   }
 
@@ -101,10 +121,11 @@ export default class ListPage extends React.Component {
 
   render() {
     const { lection, lectionExists, loading, exercises } = this.props;
+
     console.log(this.props);
 
-    if (!lectionExists) {
-      return <NotFoundPage/>;
+    if (loading) {
+      return <div> Loading</div>;
     }
     
     function renderItem(data, index) {
@@ -136,7 +157,7 @@ export default class ListPage extends React.Component {
         <h5>Zoznam cvičení k lekcii</h5>
 
         <div className="dynamic-demo">
-          <button onClick={this.handleAddElement.bind(this)}>Pridať cvičenie</button>
+          <button onClick={this.handleAddExercise.bind(this)}>Pridať cvičenie</button>
           <Sortable key={this._sortableKey} onSort={this.handleSort.bind(this)}>
             {this.state.arr.map(renderItem, this)}
           </Sortable>

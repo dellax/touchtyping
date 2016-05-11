@@ -6,31 +6,46 @@ import { _ } from 'meteor/underscore';
 
 import { Exercises } from './exercises.js';
 
-export const insert = new ValidatedMethod({
-  name: 'exercises.insert',
+export const insertExercise = new ValidatedMethod({
+  name: 'exercises.insertExercise',
   validate: new SimpleSchema({
     lectionId: { type: String },
-    name: { type: String },
-    text: { type: String },
-    points: { type: Number }
+    order: { type: Number }
   }).validator(),
-  run({ lectionId, name, text, points }) {
+  run({ lectionId, order }) {
 
     const exercise = {
       lectionId,
-      name,
-      text,
-      points,
+      name: 'Nové cvičenie',
+      text: 'dd',
+      points: 0,
+      order,
       createdAt: new Date()
     };
 
-    Exercises.insert(exercise);
+    return Exercises.insert(exercise);
+  },
+});
+
+export const updateExerciseOrder = new ValidatedMethod({
+  name: 'exercises.updateExerciseOrder',
+  validate: new SimpleSchema({
+    exerciseId: { type: String },
+    order: { type: Number },
+  }).validator(),
+  run({ exerciseId, order }) {
+
+    Exercises.update(lectionId, {
+      $set: { order: order },
+    });
+
   },
 });
 
 // Get list of all method names on exercises
 const EXERCISES_METHODS = _.pluck([
-  insert
+  insertExercise,
+  updateExerciseOrder
 ], 'name');
 
 if (Meteor.isServer) {

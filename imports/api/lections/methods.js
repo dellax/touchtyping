@@ -24,6 +24,21 @@ export const insert = new ValidatedMethod({
   },
 });
 
+export const updateLection = new ValidatedMethod({
+  name: 'lections.updateLection',
+  validate: new SimpleSchema({
+    lectionId: { type: String },
+    name: { type: String },
+  }).validator(),
+  run({ lectionId, name }) {
+
+    Lections.update(lectionId, {
+      $set: { name: name },
+    });
+
+  },
+});
+
 // Get list of all method names on lections
 const LECTIONS_METHODS = _.pluck([
   insert
