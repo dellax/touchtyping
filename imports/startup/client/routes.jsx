@@ -14,8 +14,9 @@ import NotEnoughRightsPage from '../../ui/pages/NotEnoughRightsPage.jsx';
 
 // admin components
 import AdminContainer from '../../ui/containers/AdminContainer.jsx';
+import AdminLectionContainer from '../../ui/containers/AdminLectionContainer.jsx';
 import AdminLectionsContainer from '../../ui/containers/AdminLectionsContainer.jsx';
-import NewLectionPage from '../../ui/pages/NewLectionPage.jsx';
+import AdminLectionPage from '../../ui/pages/AdminLectionPage.jsx';
 
 export const renderRoutes = () => (
   <Router history={browserHistory}>
@@ -27,7 +28,7 @@ export const renderRoutes = () => (
       <Route path="registracia" component={AuthPageJoin}/>
       <Route path="administracia" component={AdminContainer}>
         <Route path="lekcie" component={AdminLectionsContainer}/>
-        <Route path="lekcie/upravit/:id" component={NewLectionPage}/>
+        <Route path="lekcie/upravit/:id" component={AdminLectionContainer}/>
       </Route>
       <Route path="nedostatocne-prava" component={NotEnoughRightsPage}/>
       <Route path="*" component={NotFoundPage}/>

@@ -11,8 +11,6 @@ Meteor.publishComposite('exercises.inLection', function exercisesInLection(lecti
     lectionId: { type: String },
   }).validate({ lectionId });
 
-  const userId = this.userId;
-
   return {
     find() {
       const query = {

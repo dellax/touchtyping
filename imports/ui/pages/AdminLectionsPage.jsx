@@ -24,7 +24,7 @@ export default class AdminLectionsPage extends React.Component {
         alert('Could not create lection.');
       }
     });
-    console.log(lectionId);
+    
     router.push(`/administracia/lekcie/upravit/${ lectionId }`);
   }
 

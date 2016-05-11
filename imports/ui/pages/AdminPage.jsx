@@ -19,8 +19,6 @@ export default class AdminPage extends React.Component {
       location,
     } = this.props;
 
-    console.log(this.props);
-
     const clonedChildren = children && React.cloneElement(children, {
       key: location.pathname,
     });
