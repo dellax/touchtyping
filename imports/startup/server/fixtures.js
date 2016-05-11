@@ -8,7 +8,7 @@ import { Exercises } from '../../api/exercises/exercises.js';
 // if the database is empty on server start, create some sample data.
 // TODO ...
 Meteor.startup(() => {
-  if (Lists.find().count() === 0) {
+  if (Lections.find().count() === 0) {
     var users = [
       {username: "tony123", name: "Normal", email: "normal@example.com", roles: []},
       {username: "test123", name: "Viewer", email: "view@example.com", roles: []},
@@ -36,6 +36,7 @@ Meteor.startup(() => {
     const data = [
       {
         name: 'Lekcia 1',
+        order: 0,
         exercises: [
           {
             name: 'Pismena aa bb',
@@ -53,6 +54,7 @@ Meteor.startup(() => {
       },
       {
         name: 'Lekcia 2',
+        order: 1,
         exercises: [
           {
             name: 'Pismena aa bb',
@@ -75,6 +77,7 @@ Meteor.startup(() => {
     data.forEach((lection) => {
       const lectionId = Lections.insert({
         name: lection.name,
+        order: lection.order,
         createdAt: new Date(timestamp)
       });
 

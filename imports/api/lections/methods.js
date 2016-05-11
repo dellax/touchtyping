@@ -9,18 +9,18 @@ import { Lections } from './lections.js';
 export const insert = new ValidatedMethod({
   name: 'lections.insert',
   validate: new SimpleSchema({
-    name: { type: String },
-    order: { type: Number }
+    // name: { type: String },
+    // order: { type: Number }
   }).validator(),
-  run({ name, order }) {
+  run({}) {
 
     const lection = {
-      name,
-      order,
-      createdAt: new Date()
+      name: 'Nová lekcia',
+      order: 0
     };
 
-    Lections.insert(lection);
+    // return id, so we can navigate to update lection
+    return Lections.insert(lection);
   },
 });
 

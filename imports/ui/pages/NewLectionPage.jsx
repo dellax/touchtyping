@@ -122,7 +122,7 @@ export default class ListPage extends React.Component {
     const exercise = this.state.formExerciseData;
 
     return (
-      <div className="container">
+      <div>
         <h2>Pridať novú lekciu</h2>
         <label for="lectionName">Názov lekcie:</label>
         <input type="text" name="lectionName" ref="lectionName" placeholder=""/>
