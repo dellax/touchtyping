@@ -110,7 +110,6 @@ export default class AdminLectionPage extends React.Component {
 
   render() {
     
-    
     function renderItem(data, index) {
       return (
         <ExerciseItem key={index} className="dynamic-item" sortData={data}>

@@ -59,6 +59,8 @@ export const updateExercise = new ValidatedMethod({
   },
 });
 
+
+
 // Get list of all method names on exercises
 const EXERCISES_METHODS = _.pluck([
   insertExercise

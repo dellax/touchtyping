@@ -6,7 +6,6 @@ import { Roles } from 'meteor/alanning:roles';
 // route components
 import AppContainer from '../../ui/containers/AppContainer.jsx';
 import LectionsContainer from '../../ui/containers/LectionsContainer.jsx';
-import ListContainer from '../../ui/containers/ListContainer.jsx';
 import AuthPageSignIn from '../../ui/pages/AuthPageSignIn.jsx';
 import AuthPageJoin from '../../ui/pages/AuthPageJoin.jsx';
 import NotFoundPage from '../../ui/pages/NotFoundPage.jsx';

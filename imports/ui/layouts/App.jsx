@@ -2,10 +2,8 @@ import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session'; // XXX: SESSION
-import { Lists } from '../../api/lists/lists.js';
 import { Link } from 'react-router';
 import UserMenu from '../components/UserMenu.jsx';
-import ListList from '../components/ListList.jsx';
 import ConnectionNotification from '../components/ConnectionNotification.jsx';
 import Loading from '../components/Loading.jsx';
 
