@@ -48,8 +48,6 @@ export default class App extends React.Component {
       user,
       connected,
       loading,
-      lists,
-      menuOpen,
       children,
       location,
     } = this.props;
@@ -114,8 +112,6 @@ App.propTypes = {
   user: React.PropTypes.object,      // current meteor user
   connected: React.PropTypes.bool,   // server connection status
   loading: React.PropTypes.bool,     // subscription status
-  menuOpen: React.PropTypes.bool,    // is side menu open?
-  lists: React.PropTypes.array,      // all lists visible to the current user
   children: React.PropTypes.element, // matched child route component
   location: React.PropTypes.object,  // current router location
   params: React.PropTypes.object,    // parameters of the current route
