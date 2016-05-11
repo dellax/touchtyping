@@ -11,6 +11,8 @@ import AuthPageSignIn from '../../ui/pages/AuthPageSignIn.jsx';
 import AuthPageJoin from '../../ui/pages/AuthPageJoin.jsx';
 import NotFoundPage from '../../ui/pages/NotFoundPage.jsx';
 import NotEnoughRightsPage from '../../ui/pages/NotEnoughRightsPage.jsx';
+
+// admin components
 import AdminContainer from '../../ui/containers/AdminContainer.jsx';
 import NewLectionPage from '../../ui/pages/NewLectionPage.jsx';
 
@@ -23,8 +25,9 @@ export const renderRoutes = () => (
       <Route path="prihlasenie" component={AuthPageSignIn}/>
       <Route path="registracia" component={AuthPageJoin}/>
       <Route path="administracia" component={AdminContainer}>
-        <Route path="lekcie" component={NewLectionPage}/>
-        <Route path="pridat-lekciu" component={NewLectionPage}/>
+        <Route path="lekcie" component={NewLectionPage}>
+          <Route path="upravit/:id" component={NewLectionPage}/>
+        </Route>
       </Route>
       <Route path="nedostatocne-prava" component={NotEnoughRightsPage}/>
       <Route path="*" component={NotFoundPage}/>

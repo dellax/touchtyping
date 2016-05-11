@@ -79,7 +79,6 @@ Meteor.startup(() => {
       });
 
       lection.exercises.forEach((exercise) => {
-        console.log(exercise);
         Exercises.insert({
           lectionId,
           name: exercise.name,
