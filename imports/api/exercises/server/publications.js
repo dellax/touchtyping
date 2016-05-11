@@ -14,7 +14,7 @@ Meteor.publishComposite('exercises.inLection', function exercisesInLection(lecti
   return {
     find() {
       const query = {
-        lectionId
+        _id: lectionId
       };
 
       // We need _id and name field in this query
@@ -22,7 +22,13 @@ Meteor.publishComposite('exercises.inLection', function exercisesInLection(lecti
         fields: { _id: 1, name: 1 },
       };
 
-      return Exercises.find(query);
-    }
+      return Lections.find(query);
+    },
+
+    children: [{
+      find(lection) {
+        return Exercises.find({ lectionId: lection._id });
+      },
+    }],
   };
 });

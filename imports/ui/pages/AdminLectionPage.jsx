@@ -2,15 +2,15 @@ import React from 'react';
 import NotFoundPage from '../pages/NotFoundPage.jsx';
 import Message from '../components/Message.jsx';
 import Sortable from 'react-anything-sortable';
-import Modal from 'boron/DropModal';
 import ExerciseItem from '../components/ExerciseItem.jsx';
 
 import { insertExercise } from '../../api/exercises/methods.js';
+import LectionsList from '../components/AdminLectionsList.jsx';
 
-
-export default class ListPage extends React.Component {
+export default class AdminLectionPage extends React.Component {
   constructor(props) {
     super(props);
+    const exercises = props.exercises;
     let exerciseData = {
       name: 'Pismena a b c d',
       points: 0,
@@ -22,7 +22,7 @@ export default class ListPage extends React.Component {
       text: 'sdkfjslf sdkfjslfj dskfjl'
     }
     this.state = {
-      arr: [exerciseData, exerciseData2],
+      arr: exercises,
       formExerciseData: {
         _id: '',
         name: '',
@@ -62,9 +62,7 @@ export default class ListPage extends React.Component {
       text: '',
       body: 0
     }
-    this.setState({
-      arr: this.state.arr.concat(exerciseData)
-    });
+    
   }
 
   handleRemoveElement(index) {
@@ -122,30 +120,9 @@ export default class ListPage extends React.Component {
   render() {
     const { lection, lectionExists, loading, exercises } = this.props;
 
-    console.log(this.props);
-
     if (loading) {
       return <div> Loading</div>;
     }
-    
-    function renderItem(data, index) {
-      return (
-        <ExerciseItem key={index} className="dynamic-item" sortData={data}>
-          {data.name}
-          <span className="delete"
-            onMouseDown={this.handleRemoveElement.bind(this, index)}
-          >&times;</span>
-          <span className="delete"
-            onMouseDown={this.handleUpdateElement.bind(this, index)}
-          > upravit</span>
-        </ExerciseItem>
-      );
-    }
-
-    let contentStyle = {
-      padding: '20px',
-      height: '500px'
-    };
 
     const exercise = this.state.formExerciseData;
 
@@ -156,27 +133,21 @@ export default class ListPage extends React.Component {
         <input type="text" name="lectionName" ref="lectionName"defaultValue={lection.name}/>
         <h5>Zoznam cvičení k lekcii</h5>
 
-        <div className="dynamic-demo">
-          <button onClick={this.handleAddExercise.bind(this)}>Pridať cvičenie</button>
-          <Sortable key={this._sortableKey} onSort={this.handleSort.bind(this)}>
-            {this.state.arr.map(renderItem, this)}
-          </Sortable>
-        </div>
+       
+        <button onClick={this.handleAddExercise.bind(this)}>Pridať cvičenie</button>
+        <LectionsList exercises={exercises} />
 
         <button className="btn-primary" onClick={this.saveLection.bind(this)}>Uložiť zmeny</button>
 
-        <Modal ref="modal" contentStyle={contentStyle}>
-          <h2>Upraviť cvičenie</h2>
-          <label for="exerciseName">Názov:</label>
-          <input type="text" name="exerciseName" ref="exerciseName" defaultValue={exercise.name}/>
-          <label for="exerciseText">Body:</label>
-          <input type="text" name="exercisePoints" ref="exercisePoints" defaultValue={exercise.points}/>
-          <label for="exercisePoints">Text:</label>
-          <textarea rows="8" cols="50" ref="exerciseText" defaultValue={exercise.text}/>
-          <br/>
-          <button className="btn-primary" onClick={this.saveExerciseData.bind(this)}>Uložiť zmeny</button>
-        </Modal>
+        
       </div>
     );
   }
 }
+
+AdminLectionPage.propTypes = {
+  lection: React.PropTypes.object,
+  exercises: React.PropTypes.array,
+  loading: React.PropTypes.bool,
+  lectionExists: React.PropTypes.bool,
+};

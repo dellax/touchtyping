@@ -35,8 +35,25 @@ export const updateExerciseOrder = new ValidatedMethod({
   }).validator(),
   run({ exerciseId, order }) {
 
-    Exercises.update(lectionId, {
+    Exercises.update(exerciseId, {
       $set: { order: order },
+    });
+
+  },
+});
+
+export const updateExercise = new ValidatedMethod({
+  name: 'exercises.updateExercise',
+  validate: new SimpleSchema({
+    exerciseId: { type: String },
+    name: { type: String },
+    text: { type: String },
+    points: { type: Number }
+  }).validator(),
+  run({ exerciseId, name, text, points }) {
+
+    Exercises.update(exerciseId, {
+      $set: { name, text, points}
     });
 
   },
@@ -44,8 +61,7 @@ export const updateExerciseOrder = new ValidatedMethod({
 
 // Get list of all method names on exercises
 const EXERCISES_METHODS = _.pluck([
-  insertExercise,
-  updateExerciseOrder
+  insertExercise
 ], 'name');
 
 if (Meteor.isServer) {
