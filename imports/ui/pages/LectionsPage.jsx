@@ -4,6 +4,7 @@ import NotFoundPage from '../pages/NotFoundPage.jsx';
 import Message from '../components/Message.jsx';
 import { Tabbordion, Panel } from 'react-tabbordion';
 import TouchTypeLearning from '../components/TouchType/TouchTypeLearning.jsx';
+import { Session } from 'meteor/session';
 
 // TODO zmazat po vylepseni
 import Statistics from '../components/TouchType/Statistics.jsx';
@@ -35,22 +36,14 @@ export default class ListPage extends React.Component {
       wpmList: [0, 100, 110, 105, 80, 90, 100, 110, 105, 80, 90, 100, 110, 105, 80, 90]
     }
 
+    const children = this.props.children;
     const data = this.props.lectionsWithExercises;
 
-    function renderItem(data, index) {
-      return (
-        <ExerciseItem key={index} className="dynamic-item" sortData={data}>
-          {data.name}
-          <span className="delete"
-            onMouseDown={this.handleRemoveElement.bind(this, index)}
-          >&times;</span>
-          <span className="delete"
-            onMouseDown={this.handleUpdateElement.bind(this, index)}
-          > upravit</span>
-        </ExerciseItem>
-      );
-    }
+    const clonedChildren = children && React.cloneElement(children, {
+      key: location.pathname,
+    });
 
+    Session.set('index', 1);
     return (
       <div className="lections-container">
         <div className="lections-menu">
@@ -60,7 +53,7 @@ export default class ListPage extends React.Component {
                 <Panel title={<span className="lection-name">{lection.name}</span>}>
                   <ul>
                     {lection.exercises.map((exercise) => {
-                      return <li><a href="#">{exercise.name}</a></li>;
+                      return <li><Link to={`/lekcie/id/${exercise._id}`}>{exercise.name}</Link></li>;
                     })}
                   </ul>
                 </Panel>
@@ -70,8 +63,8 @@ export default class ListPage extends React.Component {
         </div>
         
         <div className="lection-content">
-          {/*<TouchTypeLearning text={testText} /> */}
-          <Statistics stats={testStats} />
+          {/*<Statistics stats={testStats} /> */}
+          {clonedChildren}
         </div>
       </div>
     );
