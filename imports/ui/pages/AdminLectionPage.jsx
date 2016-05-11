@@ -5,6 +5,7 @@ import Sortable from 'react-anything-sortable';
 import ExerciseItem from '../components/ExerciseItem.jsx';
 
 import { insertExercise } from '../../api/exercises/methods.js';
+import { updateLection } from '../../api/lections/methods.js';
 import LectionsList from '../components/AdminLectionsList.jsx';
 
 export default class AdminLectionPage extends React.Component {
@@ -29,7 +30,18 @@ export default class AdminLectionPage extends React.Component {
   }
 
   saveLection() {
+    // TODO maybe check input
+    const lectionId = this.props.lection._id;
+    const name = this.refs.lectionName.value;
 
+    updateLection.call({lectionId, name}, (err) => {
+      if (err) {
+        console.log(err);
+      
+        /* eslint-disable no-alert */
+        alert('Could not update lection.');
+      }
+    });
   }
 
   render() {
@@ -46,13 +58,10 @@ export default class AdminLectionPage extends React.Component {
         <input type="text" name="lectionName" ref="lectionName"defaultValue={lection.name}/>
         <h5>Zoznam cvičení k lekcii</h5>
 
-       
         <button onClick={this.handleAddExercise.bind(this)}>Pridať cvičenie</button>
         <LectionsList exercises={exercises} />
 
-        <button className="btn-primary" onClick={this.saveLection.bind(this)}>Uložiť zmeny</button>
-
-        
+        <button className="btn-primary" onClick={this.saveLection.bind(this)}>Uložiť zmeny</button>   
       </div>
     );
   }
