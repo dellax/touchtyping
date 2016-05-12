@@ -11,6 +11,17 @@ export default class Statistics extends React.Component {
 	}
 
 	render() {
+    let {
+      secondsElapsed,
+      lettersTyped,
+      wordsTyped,
+      incorrectWords,
+      incorrectLetters,
+      currentWpm,
+      highestWpm,
+      wpmList
+    } = this.props.stats;
+    const accuracy = ((wordsTyped - incorrectWords.length) / wordsTyped);
 		return (
       <div className="tt-statistics">
         <div className="info">
@@ -23,7 +34,7 @@ export default class Statistics extends React.Component {
           <ChartWords stats={this.stats} />
         </div>
         <div className="circle-bar-accuracy">
-          <AccuracyCircleBar completed={0.8} />
+          <AccuracyCircleBar completed={accuracy} />
         </div>
       </div>
 		)
@@ -186,7 +197,7 @@ class AccuracyCircleBar extends React.Component {
         if (value === 0) {
           circle.setText('');
         } else {
-          circle.setText(value);
+          circle.setText(value + '%');
         }
 
       }
