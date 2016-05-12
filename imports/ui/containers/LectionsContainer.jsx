@@ -7,11 +7,12 @@ export default createContainer(() => {
   const lections = Lections.find().fetch();
   const lectionsWithExercises = [];
 
+  let index = 0;
   lections.forEach((lection) => {
-  	let name = lection.name;
-  	let id = lection._id;
+  	lection.index = index;
   	let exercises = lection.exercises().fetch();
-  	lectionsWithExercises.push({id, name, exercises});
+  	lectionsWithExercises.push({lection, exercises});
+  	index++;
   });
 
   return {

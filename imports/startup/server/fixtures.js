@@ -45,9 +45,9 @@ Meteor.startup(() => {
             order: 0
           },
           {
-            name: 'Pismena cc dd',
-            text: 'cccc dddd cccc dddd',
-            points: 0,
+            name: 'Text k lekcii',
+            text: 'What suffering will have to be endured before the workers realize that? It was from a man in Arizona.',
+            points: 100,
             order: 1
           }
         ],

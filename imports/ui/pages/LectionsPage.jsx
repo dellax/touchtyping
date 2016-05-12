@@ -15,6 +15,10 @@ export default class ListPage extends React.Component {
     super(props);
   }
 
+  setIndex(lection, e) {
+    Session.set('index', lection.index);
+  }
+
   render() {
     let classNames = {
       animator: 'accordion-animator',
@@ -43,17 +47,24 @@ export default class ListPage extends React.Component {
       key: location.pathname,
     });
 
-    Session.set('index', 1);
+    let initialIndex = Session.get('index');
+    if (typeof initialIndex === 'undefined') {
+      initialIndex = 0;
+    }
+    
     return (
       <div className="lections-container">
         <div className="lections-menu">
-          <Tabbordion mode="toggle" className="accordion" classNames={classNames} initialIndex={0} name="tabs">
-            { data.map((lection) => {
+          <Tabbordion mode="toggle" className="accordion" classNames={classNames} initialIndex={initialIndex} name="tabs">
+            { data.map((d) => {
+              const lection = d.lection;
+              const exercises = d.exercises;
+              let setIndex = this.setIndex.bind(this, lection);
               return (
                 <Panel title={<span className="lection-name">{lection.name}</span>}>
                   <ul>
-                    {lection.exercises.map((exercise) => {
-                      return <li><Link to={`/lekcie/id/${exercise._id}`}>{exercise.name}</Link></li>;
+                    {exercises.map((exercise) => {
+                      return <li><Link to={`/lekcie/id/${exercise._id}`} onClick={setIndex}>{exercise.name}</Link></li>;
                     })}
                   </ul>
                 </Panel>

@@ -14,7 +14,7 @@ export default class ListPage extends React.Component {
 
   render() {
     const exercise = this.props.exercise;
-    console.log(Session.get('index'));
+    
     return (
       <div>
         <TouchTypeLearning text={exercise.text} />
