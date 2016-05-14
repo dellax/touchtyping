@@ -64,7 +64,7 @@ export default class ListPage extends React.Component {
                 <Panel title={<span className="lection-name">{lection.name}</span>}>
                   <ul>
                     {exercises.map((exercise) => {
-                      return <li><Link to={`/lekcie/id/${exercise._id}`} onClick={setIndex}>{exercise.name}</Link></li>;
+                      return <li><Link to={`/lekcie/cvicenie/id/${exercise._id}`} onClick={setIndex}>{exercise.name}</Link></li>;
                     })}
                   </ul>
                 </Panel>

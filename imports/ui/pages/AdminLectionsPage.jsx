@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import NotFoundPage from '../pages/NotFoundPage.jsx';
 import Message from '../components/Message.jsx';
 import { insert } from '../../api/lections/methods.js';
+import LectionsList from '../components/AdminLectionsList.jsx';
 
 export default class AdminLectionsPage extends React.Component {
   constructor(props) {
@@ -29,10 +30,12 @@ export default class AdminLectionsPage extends React.Component {
   }
 
   render() {
-    
+    const { lections } = this.props;
     return (
       <div>
         <button className="btn-primary" onClick={this.createNewLection}>Pridať novú lekciu</button>
+        <h5>Zoznam lekcii</h5>
+        <LectionsList lections={lections} />
       </div>
     );
   }

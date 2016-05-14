@@ -2,11 +2,10 @@ import React from 'react';
 import NotFoundPage from '../pages/NotFoundPage.jsx';
 import Message from '../components/Message.jsx';
 import Sortable from 'react-anything-sortable';
-import ExerciseItem from '../components/ExerciseItem.jsx';
 
 import { insertExercise } from '../../api/exercises/methods.js';
 import { updateLection } from '../../api/lections/methods.js';
-import LectionsList from '../components/AdminLectionsList.jsx';
+import ExercisesList from '../components/AdminExercisesList.jsx';
 
 export default class AdminLectionPage extends React.Component {
   constructor(props) {
@@ -21,7 +20,6 @@ export default class AdminLectionPage extends React.Component {
 
     const exerciseId = insertExercise.call({lectionId, order}, (err) => {
       if (err) {
-        console.log(err);
       
         /* eslint-disable no-alert */
         alert('Could not create exercise.');
@@ -59,7 +57,7 @@ export default class AdminLectionPage extends React.Component {
         <h5>Zoznam cvičení k lekcii</h5>
 
         <button onClick={this.handleAddExercise.bind(this)}>Pridať cvičenie</button>
-        <LectionsList exercises={exercises} />
+        <ExercisesList exercises={exercises} />
 
         <button className="btn-primary" onClick={this.saveLection.bind(this)}>Uložiť zmeny</button>   
       </div>

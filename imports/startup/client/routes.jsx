@@ -22,7 +22,7 @@ export const renderRoutes = () => (
   <Router history={browserHistory}>
     <Route path="/" component={AppContainer}>
       <Route path="lekcie" component={LectionsContainer}>
-        <Route path="id/:id" component={LectionContainer}/>
+        <Route path="cvicenie/id/:id" component={LectionContainer}/>
       </Route>
       <Route path="hry" component={NotFoundPage}/>
       <Route path="rebricky" component={NotFoundPage}/>
