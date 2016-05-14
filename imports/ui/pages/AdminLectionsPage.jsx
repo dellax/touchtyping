@@ -5,6 +5,7 @@ import Message from '../components/Message.jsx';
 import { insert } from '../../api/lections/methods.js';
 import LectionsList from '../components/AdminLectionsList.jsx';
 
+
 export default class AdminLectionsPage extends React.Component {
   constructor(props) {
     super(props);

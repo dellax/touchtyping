@@ -39,6 +39,33 @@ export const updateLection = new ValidatedMethod({
   },
 });
 
+export const removeLection = new ValidatedMethod({
+  name: 'lections.removeLection',
+  validate: new SimpleSchema({
+    lectionId: { type: String }
+  }).validator(),
+  run({ lectionId }) {
+
+    Lections.remove(lectionId);
+
+  },
+});
+
+export const updateLectionOrder = new ValidatedMethod({
+  name: 'lections.updateLectionOrder',
+  validate: new SimpleSchema({
+    lectionId: { type: String },
+    order: { type: Number },
+  }).validator(),
+  run({ lectionId, order }) {
+
+    Lections.update(lectionId, {
+      $set: { order: order },
+    });
+
+  },
+});
+
 // Get list of all method names on lections
 const LECTIONS_METHODS = _.pluck([
   insert

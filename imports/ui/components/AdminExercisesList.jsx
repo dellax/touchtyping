@@ -9,6 +9,7 @@ import {
   updateExercise, 
   updateExerciseOrder, 
   removeExercise } from '../../api/exercises/methods.js';
+  
 
 export default class AdminLectionPage extends React.Component {
   constructor(props) {

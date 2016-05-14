@@ -1,13 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router';
 import NotFoundPage from '../pages/NotFoundPage.jsx';
 import Message from '../components/Message.jsx';
 import Sortable from 'react-anything-sortable';
 import SortableItem from './SortableItem.jsx';
 
 import { 
-  updateExercise, 
-  updateExerciseOrder, 
-  removeExercise } from '../../api/exercises/methods.js';
+  updateLectionOrder, 
+  removeLection } from '../../api/lections/methods.js';
+
 
 export default class AdminLectionPage extends React.Component {
   constructor(props) {
@@ -30,9 +31,9 @@ export default class AdminLectionPage extends React.Component {
     this._sortableKey++;
 
     for (let i = 0; i < sortedArray.length; i++) {
-      let exerciseId = sortedArray[i]._id;
+      let lectionId = sortedArray[i]._id;
       let order = i;
-      updateExerciseOrder.call({exerciseId, order}, (err) => {
+      updateLectionOrder.call({lectionId, order}, (err) => {
         if (err) {
         
           /* eslint-disable no-alert */
@@ -46,8 +47,9 @@ export default class AdminLectionPage extends React.Component {
   }
 
   handleRemoveElement(index) {
+    // TODO maybe add modal YES/NO
     const newArr = this.state.arr.slice();
-    const exerciseId = newArr[index]._id;
+    const lectionId = newArr[index]._id;
     newArr.splice(index, 1);
     this._sortableKey++;
 
@@ -55,18 +57,14 @@ export default class AdminLectionPage extends React.Component {
       arr: newArr
     });
 
-    removeExercise.call({exerciseId}, (err) => {
+    removeLection.call({lectionId}, (err) => {
       if (err) {
       
         /* eslint-disable no-alert */
-        alert('Could not update lection.');
+        alert('Could not remove lection.');
       }
     });
   }
-
-
-
-
 
   render() {
     
@@ -77,12 +75,10 @@ export default class AdminLectionPage extends React.Component {
           <span className="delete"
             onMouseDown={this.handleRemoveElement.bind(this, index)}
           >&times;</span>
-          <span className="delete"> upravit</span>
+          <span className="delete"><Link to={`/administracia/lekcie/upravit/${data._id}`}> upravit</Link></span>
         </SortableItem>
       );
     }
-
-
 
     const lections = this.state.arr;
     
