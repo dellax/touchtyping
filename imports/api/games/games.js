@@ -43,6 +43,9 @@ Games.schema = new SimpleSchema({
   },
   isRunning: {
     type: Boolean
+  },
+  playersCount: {
+    type: Number
   }
 });
 

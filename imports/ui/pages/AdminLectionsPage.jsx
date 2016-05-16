@@ -20,7 +20,6 @@ export default class AdminLectionsPage extends React.Component {
     const { router } = this.context;
     const lectionId = insert.call((err) => {
       if (err) {
-        console.log(err);
         router.push('/');
         /* eslint-disable no-alert */
         alert('Could not create lection.');

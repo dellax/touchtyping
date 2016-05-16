@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
-import { Games } from '../../api/games/games.js';
 import { createContainer } from 'meteor/react-meteor-data';
+import { Games } from '../../api/games/games.js';
 import GamesPage from '../pages/GamesPage.jsx';
 
 export default createContainer(() => {
@@ -9,6 +9,6 @@ export default createContainer(() => {
 
   return {
     loading,
-    games: Games.find({isRunning: false}).fetch(),
+    games: Games.find({ isRunning: false }, { sort: { playersCount: -1 } }).fetch(),
   };
 }, GamesPage);
