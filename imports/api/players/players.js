@@ -2,7 +2,7 @@ import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 
-class GamesCollection extends Mongo.Collection {
+class PlayersCollection extends Mongo.Collection {
   insert(doc, callback) {
     const ourDoc = doc;
     ourDoc.createdAt = ourDoc.createdAt || new Date();
@@ -20,30 +20,37 @@ class GamesCollection extends Mongo.Collection {
   }
 }
 
-export const Games = new GamesCollection('Games');
+export const Players = new PlayersCollection('Players');
 
 // Deny all client-side updates since we will be using methods to manage this collection
-Games.deny({
+Players.deny({
   insert() { return true; },
   update() { return true; },
   remove() { return true; },
 });
 
-Games.schema = new SimpleSchema({
-  type: {
+Players.schema = new SimpleSchema({
+  userId: {
     type: String,
-    max: 100,
+    regEx: SimpleSchema.RegEx.Id,
+    denyUpdate: true
+  },
+  name: {
+    type: String
+  },
+  skin: {
+    type: String
+  },
+  wpm: {
+    type: Number
+  },
+  completed: {
+    type: Number
   },
   createdAt: {
     type: Date,
     denyUpdate: true,
   },
-  text: {
-    type: String,
-  },
-  isRunning: {
-    type: Boolean
-  }
 });
 
-Games.attachSchema(Games.schema);
+Players.attachSchema(Players.schema);

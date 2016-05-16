@@ -18,13 +18,18 @@ import AdminLectionContainer from '../../ui/containers/AdminLectionContainer.jsx
 import AdminLectionsContainer from '../../ui/containers/AdminLectionsContainer.jsx';
 import AdminLectionPage from '../../ui/pages/AdminLectionPage.jsx';
 
+// game components
+import GamesContainer from '../../ui/containers/GamesContainer.jsx';
+
 export const renderRoutes = () => (
   <Router history={browserHistory}>
     <Route path="/" component={AppContainer}>
       <Route path="lekcie" component={LectionsContainer}>
         <Route path="cvicenie/id/:id" component={LectionContainer}/>
       </Route>
-      <Route path="hry" component={NotFoundPage}/>
+      <Route path="hry" component={GamesContainer}>
+        <Route path="zavody/id/:id" />
+      </Route>
       <Route path="rebricky" component={NotFoundPage}/>
       <Route path="prihlasenie" component={AuthPageSignIn}/>
       <Route path="registracia" component={AuthPageJoin}/>
