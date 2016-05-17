@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
+import { Session } from 'meteor/session';
 import StatsBar from './StatsBar';
 import ProgressBar from './ProgressBar';
-import KeySuggestion from './KeySuggestion';
-import Game from './Game.jsx';
-import TrafficLightCountdown from './TrafficLightCountdown.jsx';
+
+import { updatePlayer } from '../../../api/players/methods.js';
 
 export default class TouchType extends React.Component {
 	constructor(props) {
@@ -28,7 +28,7 @@ export default class TouchType extends React.Component {
 	}
 
 	componentWillReceiveProps(props) {
-		if (props.countdown === 0) this.startGame();
+		if (props.countdown === 0 && !this.timerRunning) this.startGame();
 	}
 
 	componentDidUpdate() {
@@ -81,6 +81,7 @@ export default class TouchType extends React.Component {
 			let part = input.slice(0, -1);
 			if (part === parts[i].text) {
 				parts[i].className = "correct";
+				
 			} else {
 				inputStyles = {
 					backgroundColor: '#ff3333'
@@ -94,6 +95,9 @@ export default class TouchType extends React.Component {
 			}
 			i++;
 			input = '';
+			const completed = 100 / parts.length * i;
+			console.log(completed);
+			this.updateRecordsInDb(completed);
 		} else {
 			// check if part of word is correct
 			let correctPart = parts[i].text.substr(0, input.length);
@@ -116,7 +120,34 @@ export default class TouchType extends React.Component {
 			wpmList
 		};
 		inputStyles = {};
+
 		this.setState({parts, input, inputStyles});
+	}
+
+	updateRecordsInDb(completed) {
+		let {
+			secondsElapsed,
+			lettersTyped,
+			wordsTyped,
+			incorrectWords,
+			incorrectLetters,
+			currentWpm,
+			highestWpm,
+			wpmList
+		} = this.stats;
+		let incorrectWordsCount = incorrectWords.length;
+		let correctWordsCount = wordsTyped - incorrectWordsCount;
+
+		const wpm = this.countWpm(incorrectWordsCount, correctWordsCount, this.secondsElapsed);
+		const playerId = Session.get('playerId');
+
+		updatePlayer.call({playerId, completed, wpm}, (err) => {
+      if (err) {
+        console.log(err);
+      
+        /* eslint-disable no-alert */
+      }
+    });
 	}
 
 	tick() {
@@ -178,10 +209,7 @@ export default class TouchType extends React.Component {
 
 		return (
 			<div className="tt-app">
-				<div className="countdown">
-					<TrafficLightCountdown countdown={this.props.countdown} />
-				</div>
-				<Game completed={completed} />
+				
 				<div className="tt-app-main">
 					<StatsBar stats={this.stats} />
 					<div className="tt-input-text">

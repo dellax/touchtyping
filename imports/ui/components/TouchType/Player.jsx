@@ -16,13 +16,15 @@ export default class Car extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    const distance = props.completed * 5;
+    const completed = this.props.player.completed;
+    const distance = completed * 7;
     Move(this.car)
       .x(distance)
       .end();
   }
 
   render() {
+    const player = this.props.player;
 
     return (
       <div className="player">
@@ -32,8 +34,8 @@ export default class Car extends React.Component {
           </div>
         </div>
         <div className="info"> 
-          Jozko<br/>
-          120 WPM
+          {player.name}<br/>
+          {player.wpm} WPM
 
         </div>
       </div>

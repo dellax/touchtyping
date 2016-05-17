@@ -61,5 +61,11 @@ Games.attachSchema(Games.schema);
 Games.helpers({
   players() {
     return Players.find({ gameId: this._id }, { sort: { createdAt: 1 } });
+  },
+  arePlayersReady() {
+    const allPlayersCount = Players.find({ gameId: this._id }).count();
+    const readyPlayersCount = Players.find({ gameId: this._id, ready: true }).count();
+    if (allPlayersCount === readyPlayersCount) return true;
+    return false;
   }
 });

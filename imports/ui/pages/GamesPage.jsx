@@ -1,4 +1,5 @@
 import React from 'react';
+import { Session } from 'meteor/session';
 import { Link } from 'react-router';
 import NotFoundPage from '../pages/NotFoundPage.jsx';
 import Message from '../components/Message.jsx';
@@ -38,6 +39,7 @@ export default class GamesPage extends React.Component {
           alert('Could not create player.');
         }
       });
+      Session.set('playerId', playerId);
       return router.push(`/hra/zavody/id/${gameId}`);
     } else {
       // find game... with lowest players
@@ -59,7 +61,7 @@ export default class GamesPage extends React.Component {
           alert('Could not create player.');
         }
       });
-
+      Session.set('playerId', playerId);
       // redirect to found game
       router.push(`/hra/zavody/id/${gameId}`);
     }

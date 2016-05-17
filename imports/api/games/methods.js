@@ -43,8 +43,6 @@ export const updateGame = new ValidatedMethod({
     let playersCount = game.playersCount + 1;
     let isRunning = false;
     if (playersCount === 4) isRunning = true;
-
-    Meteor.wait(4000);
     
     Games.update(gameId, {
       $set: { 

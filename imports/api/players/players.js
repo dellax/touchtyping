@@ -52,6 +52,9 @@ Players.schema = new SimpleSchema({
   completed: {
     type: Number
   },
+  ready: {
+    type: Boolean
+  },
   createdAt: {
     type: Date,
     denyUpdate: true,
