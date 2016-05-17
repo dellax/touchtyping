@@ -28,10 +28,10 @@ export const renderRoutes = () => (
       <Route path="lekcie" component={LectionsContainer}>
         <Route path="cvicenie/id/:id" component={LectionContainer}/>
       </Route>
-      <Route path="hry" component={GamesContainer}>
-        
+      <Route path="hry" component={GamesContainer}/>
+      <Route path="hra">
+        <Route path="zavody/id/:id" component={GameRacingContainer}/>
       </Route>
-      <Route path="zavody/id/:id" component={GameRacingContainer}/>
       <Route path="rebricky" component={NotFoundPage}/>
       <Route path="prihlasenie" component={AuthPageSignIn}/>
       <Route path="registracia" component={AuthPageJoin}/>

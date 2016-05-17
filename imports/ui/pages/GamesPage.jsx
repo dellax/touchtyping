@@ -38,7 +38,7 @@ export default class GamesPage extends React.Component {
           alert('Could not create player.');
         }
       });
-        console.log(playerId);
+      return router.push(`/hra/zavody/id/${gameId}`);
     } else {
       // find game... with lowest players
 
@@ -61,7 +61,7 @@ export default class GamesPage extends React.Component {
       });
 
       // redirect to found game
-      router.push(`/hry/zavody/id/${gameId}`);
+      router.push(`/hra/zavody/id/${gameId}`);
     }
   }
 
