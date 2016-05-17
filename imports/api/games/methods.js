@@ -17,7 +17,9 @@ export const createGame = new ValidatedMethod({
     const game = {
       type,
       text: 'Cvicny text je cvicny text',
+      timer: 10,
       isRunning: false,
+      hasStarted: false,
       createdAt: new Date(),
       playersCount: 1
     };
@@ -25,15 +27,6 @@ export const createGame = new ValidatedMethod({
     const user =  Meteor.user();
     const gameId = Games.insert(game);
     // TODO check if game didnt contain player
-    const player = {
-      userId: user._id,
-      gameId,
-      name: user.username,
-      skin: 0,
-      wpm: 0,
-      completed: 0,
-      createdAt: new Date()
-    };
 
     return gameId;
   },
@@ -50,13 +43,15 @@ export const updateGame = new ValidatedMethod({
     let playersCount = game.playersCount + 1;
     let isRunning = false;
     if (playersCount === 4) isRunning = true;
+
+    Meteor.wait(4000);
+    
     Games.update(gameId, {
       $set: { 
         playersCount,
         isRunning
       },
     });
-
   },
 });
 

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import Move from 'move-js';
+import Move from '../../../plugins/move.min.js';
 
 Move.select = function(selector){
   return selector;

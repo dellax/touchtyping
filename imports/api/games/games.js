@@ -42,7 +42,13 @@ Games.schema = new SimpleSchema({
   text: {
     type: String,
   },
+  timer: {
+    type: Number
+  },
   isRunning: {
+    type: Boolean
+  },
+  hasStarted: {
     type: Boolean
   },
   playersCount: {
