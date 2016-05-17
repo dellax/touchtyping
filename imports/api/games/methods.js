@@ -5,6 +5,7 @@ import { DDPRateLimiter } from 'meteor/ddp-rate-limiter';
 import { _ } from 'meteor/underscore';
 
 import { Games } from './games.js';
+import { Players } from '../players/players.js';
 
 export const createGame = new ValidatedMethod({
   name: 'games.createGame',
@@ -21,7 +22,20 @@ export const createGame = new ValidatedMethod({
       playersCount: 1
     };
 
-    return Games.insert(game);
+    const user =  Meteor.user();
+    const gameId = Games.insert(game);
+    // TODO check if game didnt contain player
+    const player = {
+      userId: user._id,
+      gameId,
+      name: user.username,
+      skin: 0,
+      wpm: 0,
+      completed: 0,
+      createdAt: new Date()
+    };
+
+    return gameId;
   },
 });
 

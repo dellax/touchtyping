@@ -20,6 +20,7 @@ import AdminLectionPage from '../../ui/pages/AdminLectionPage.jsx';
 
 // game components
 import GamesContainer from '../../ui/containers/GamesContainer.jsx';
+import GameRacingContainer from '../../ui/containers/GameRacingContainer.jsx';
 
 export const renderRoutes = () => (
   <Router history={browserHistory}>
@@ -28,8 +29,9 @@ export const renderRoutes = () => (
         <Route path="cvicenie/id/:id" component={LectionContainer}/>
       </Route>
       <Route path="hry" component={GamesContainer}>
-        <Route path="zavody/id/:id" />
+        
       </Route>
+      <Route path="zavody/id/:id" component={GameRacingContainer}/>
       <Route path="rebricky" component={NotFoundPage}/>
       <Route path="prihlasenie" component={AuthPageSignIn}/>
       <Route path="registracia" component={AuthPageJoin}/>

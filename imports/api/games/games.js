@@ -1,5 +1,6 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { Players } from '../players/players.js';
 
 
 class GamesCollection extends Mongo.Collection {
@@ -50,3 +51,9 @@ Games.schema = new SimpleSchema({
 });
 
 Games.attachSchema(Games.schema);
+
+Games.helpers({
+  players() {
+    return Players.find({ gameId: this._id }, { sort: { createdAt: 1 } });
+  }
+});

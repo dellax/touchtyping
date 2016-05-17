@@ -35,6 +35,11 @@ Players.schema = new SimpleSchema({
     regEx: SimpleSchema.RegEx.Id,
     denyUpdate: true
   },
+  gameId: {
+    type: String,
+    regEx: SimpleSchema.RegEx.Id,
+    denyUpdate: true
+  },
   name: {
     type: String
   },

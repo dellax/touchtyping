@@ -5,6 +5,7 @@ import GamesPage from '../pages/GamesPage.jsx';
 
 export default createContainer(() => {
   const gamesHandle = Meteor.subscribe('games.all');
+  //const playersHandle = Meteor.subscribe('players.all');
   const loading = !gamesHandle.ready();
 
   return {

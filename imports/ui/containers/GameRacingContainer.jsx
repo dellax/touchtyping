@@ -4,15 +4,17 @@ import { createContainer } from 'meteor/react-meteor-data';
 import GameRacingPage from '../pages/GameRacingPage.jsx';
 
 export default createContainer(({ params: { id } }) => {
-  const gamesHandle = Meteor.subscribe('games.all', id);
-  const loading = !gamesHandle.ready();
-  const lection = Lections.findOne(id);
-  const lectionExists = !loading && !!lection;
+  // subcribe to players with id of game
+  //const playersHandle = Meteor.subscribe('players.all');
+  const playersHandle = Meteor.subscribe('players.inGame', id);
+  const loading = !playersHandle.ready();
+  const game = Games.findOne(id);
+  const playerExists = !loading && !!game;
 
   return {
     loading,
-    lection,
-    lectionExists,
-    exercises: lectionExists ? lection.exercises().fetch() : [],
+    game,
+    playerExists,
+    players: playerExists ? game.players().fetch() : [],
   };
 }, GameRacingPage);
