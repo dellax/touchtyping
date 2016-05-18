@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Modal from 'boron/DropModal';
 import NotFoundPage from '../pages/NotFoundPage.jsx';
 import Message from '../components/Message.jsx';
@@ -71,28 +72,34 @@ export default class AdminModelsList extends React.Component {
     let model = data[index];
     
     model.name = this.refs.modelName.value;
-    model.image = this.refs.modelImage.value;
     model.points = this.refs.modelPoints.value;
-
-    // TODO check if model has image 
-
-
+  
     data[index] = model; 
-
 
     const modelId = model._id;
     const name = model.name;
-    const image = model.image;
+    const image = this.state.formModelData.image;
     const points = parseInt(model.points);
-    updatemodel.call({modelId, name, image, points}, (err) => {
+    updateModel.call({modelId, name, image, points}, (err) => {
       if (err) {
-      
         /* eslint-disable no-alert */
         alert('Could not update model.');
       }
     });
 
     this.hideModal();
+  }
+
+  handleFile(e) {
+    var reader = new FileReader();
+    var file = e.target.files[0];
+
+    reader.onload = ((upload) => {
+      this.state.formModelData.image = upload.target.result;
+      console.log(this.state);
+    });
+
+    reader.readAsDataURL(file);
   }
 
   render() {
@@ -118,7 +125,7 @@ export default class AdminModelsList extends React.Component {
 
     const { arr: models, formModelData: model } = this.state;
     
-    if (models.length === []) {
+    if (models.length === 0) {
       return (
         <div className="no-exercises">Zatial tu nie sú žiadne modely aut.</div>
       )
@@ -131,11 +138,11 @@ export default class AdminModelsList extends React.Component {
        
 
         <Modal ref="modal" contentStyle={modalStyle}>
-          <h2>Upraviť cvičenie</h2>
+          <h2>Upraviť model auta</h2>
           <label for="modelName">Názov:</label>
           <input type="text" name="exerciseName" ref="modelName" defaultValue={model.name}/>
           <label for="modelImage">Obrázok:</label>
-          <input type="file" name="modelImage" ref="modelImage" />
+          <input type="file" name="modelImage" ref="modelImage" onChange={this.handleFile.bind(this)}/>
           <label for="modelPoints">Body:</label>
           <input type="text" name="modelPoints" ref="modelPoints" defaultValue={model.points}/>
           <br/>
