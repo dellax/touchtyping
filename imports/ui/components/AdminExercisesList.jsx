@@ -11,7 +11,7 @@ import {
   removeExercise } from '../../api/exercises/methods.js';
   
 
-export default class AdminLectionPage extends React.Component {
+export default class AdminExercisesList extends React.Component {
   constructor(props) {
     super(props);
     

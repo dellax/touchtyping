@@ -39,6 +39,12 @@ export default class AdminPage extends React.Component {
                 </Link>                         
               </li>
               <li>
+                <Link to="/administracia/modely-aut" className="menu-box-tab">
+                <span className="icon fa fa-car scnd-font-color"></span>
+                  Modely áut
+                </Link>                         
+              </li>
+              <li>
                 <a className="menu-box-tab" href="#8"><span className="icon fa fa-user scnd-font-color"></span>Používatelia</a>                            
               </li>
               <li>

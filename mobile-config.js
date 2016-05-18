@@ -2,11 +2,11 @@
 /* eslint-disable quote-props */
 
 App.info({
-  name: 'Todos',
-  description: 'A simple todo list app built in Meteor.',
-  author: 'Percolate Studio Team',
-  email: 'us@percolatestudio.com',
-  website: 'http://percolatestudio.com',
+  name: 'Touchtyping',
+  description: 'A simple touchtyping application in Meteor.',
+  author: 'dellax',
+  email: '',
+  website: 'https://github.com/dellax',
   version: '0.0.1',
 });
 
