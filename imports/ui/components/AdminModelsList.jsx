@@ -1,10 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Modal from 'boron/DropModal';
 import NotFoundPage from '../pages/NotFoundPage.jsx';
 import Message from '../components/Message.jsx';
-import Sortable from 'react-anything-sortable';
-import SortableItem from './SortableItem.jsx';
 
 import { 
   updateModel, 

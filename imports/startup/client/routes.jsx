@@ -37,10 +37,14 @@ export const renderRoutes = () => (
       <Route path="rebricky" component={NotFoundPage}/>
       <Route path="prihlasenie" component={AuthPageSignIn}/>
       <Route path="registracia" component={AuthPageJoin}/>
-      <Route path="administracia" component={AdminContainer}>
+      <Route path="administracia" component={AdminContainer} onEnter={requireAdminAccess}>
         <Route path="lekcie" component={AdminLectionsContainer}/>
         <Route path="lekcie/upravit/:id" component={AdminLectionContainer}/>
         <Route path="modely-aut" component={AdminModelsContainer}/>
+      </Route>
+      <Route path="nastavenia/:id" onEnter={canEditSettings}>
+        <Route path="modely"/>
+        <Route path="profil"/>
       </Route>
       <Route path="nedostatocne-prava" component={NotEnoughRightsPage}/>
       <Route path="*" component={NotFoundPage}/>
@@ -49,8 +53,19 @@ export const renderRoutes = () => (
 );
 
 // check if user is admin
+function canEditSettings(nextState, replace) {
+  const userId = Meteor.userId();
+  const typedId = nextState.params.id;
+  if (userId != typedId) {
+    replace({
+      pathname: '/nedostatocne-prava'
+    })
+  }
+}
+
 function requireAdminAccess(nextState, replace) {
-  let userId = Meteor.userId();
+  console.log(nextState);
+  const userId = Meteor.userId();
   if (!Roles.userIsInRole(userId, ['admin'])) {
     replace({
       pathname: '/nedostatocne-prava'

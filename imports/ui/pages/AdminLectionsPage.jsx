@@ -33,6 +33,7 @@ export default class AdminLectionsPage extends React.Component {
     const { lections } = this.props;
     return (
       <div>
+        <h2>Lekcie</h2>
         <button className="btn-primary" onClick={this.createNewLection}>Pridať novú lekciu</button>
         <h5>Zoznam lekcii</h5>
         <LectionsList lections={lections} />
