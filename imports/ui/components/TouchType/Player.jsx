@@ -34,6 +34,13 @@ export default class Car extends React.Component {
       color: 'red'
     }
     if (player.ready) playerStyles.color = 'green';
+    let order;
+    if (player.order) {
+      order = player.order;
+      // TODO add images for 1,2,3 th place
+    } else {
+      order = 'Neskončil';
+    }
     return (
       <div className="player">
         <div className="road">
@@ -43,8 +50,8 @@ export default class Car extends React.Component {
         </div>
         <div className="info"> 
           <span style={playerStyles}>{player.name}</span><br/>
-          {player.wpm} WPM<br/>
-          Prvy
+          { player.wpm } WPM<br/>
+          { order }
 
         </div>
       </div>

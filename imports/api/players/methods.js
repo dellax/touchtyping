@@ -52,7 +52,7 @@ export const updatePlayer = new ValidatedMethod({
       const gameId = player.gameId;
       const playersInGame = Players.find({ 
         gameId, 
-        finishedDate: { $exists: true } 
+        finishedDate: { $ne: null }
       }, { sort: { finishedDate: 1 } } ).fetch();
       // set order of players with finishedDate field
       for (let i = 0; i < playersInGame.length; i++) {
@@ -97,6 +97,21 @@ export const unCheckRead = new ValidatedMethod({
     return Players.update(playerId, {
       $set: { ready: false },
     });
+  },
+});
+
+export const removePlayer = new ValidatedMethod({
+  name: 'players.removePlayer',
+  validate: new SimpleSchema({
+    gameId: { type: String }
+  }).validator(),
+  run({ gameId }) {
+    const userId = Meteor.userId();
+    const playerId = Players.findOne({userId, gameId});
+    Games.update(gameId, {
+      $inc: { playersCount: -1 }
+    });
+    return Players.remove(playerId);
   },
 });
 

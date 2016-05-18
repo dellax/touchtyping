@@ -7,7 +7,7 @@ import TrafficLightCountdown from '../components/TouchType/TrafficLightCountdown
 import TouchTypeGaming from '../components/TouchType/TouchTypeGaming.jsx';
 
 import { createGame, updateGame } from '../../api/games/methods.js';
-import { checkReady, uncheckReady } from '../../api/players/methods.js';
+import { checkReady, uncheckReady, removePlayer } from '../../api/players/methods.js';
 
 
 export default class GameRacingPage extends React.Component {
@@ -16,6 +16,24 @@ export default class GameRacingPage extends React.Component {
     this.handleClickReady = this.handleClickReady.bind(this);
     this.state = {timer: 10};
     this.started = false;
+  }
+
+  componentDidMount() {
+    this.game = this.props.game;
+    this.context.router.setRouteLeaveHook(this.props.route, this.routerWillLeave.bind(this));
+  }
+
+  routerWillLeave(nextLocation) {
+    // remove player from game 
+    const game = this.props.game;
+    const gameId = game._id;
+    removePlayer.call({gameId}, (err) => {
+      if (err) {
+      
+        /* eslint-disable no-alert */
+        alert('Could not remove player from game.');
+      }
+    });
   }
 
   componentWillReceiveProps(props) {
@@ -80,4 +98,5 @@ GameRacingPage.propTypes = {
 
 GameRacingPage.contextTypes = {
   router: React.PropTypes.object,
+  route: React.PropTypes.object
 };

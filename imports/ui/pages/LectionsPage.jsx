@@ -10,7 +10,7 @@ import { Session } from 'meteor/session';
 import Statistics from '../components/TouchType/Statistics.jsx';
 
 
-export default class ListPage extends React.Component {
+export default class LectionsPage extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -61,10 +61,14 @@ export default class ListPage extends React.Component {
               const exercises = d.exercises;
               let setIndex = this.setIndex.bind(this, lection);
               return (
-                <Panel title={<span className="lection-name">{lection.name}</span>}>
+                <Panel title={<span className="lection-name" key={lection._id} >{lection.name}</span>}>
                   <ul>
                     {exercises.map((exercise) => {
-                      return <li><Link to={`/lekcie/cvicenie/id/${exercise._id}`} onClick={setIndex}>{exercise.name}</Link></li>;
+                      return (
+                        <li key={exercise._id}>
+                          <Link to={`/lekcie/cvicenie/id/${exercise._id}`} onClick={setIndex}>{exercise.name}</Link>
+                        </li>
+                      );
                     })}
                   </ul>
                 </Panel>
@@ -82,7 +86,7 @@ export default class ListPage extends React.Component {
   }
 }
 
-ListPage.propTypes = {
+LectionsPage.propTypes = {
   list: React.PropTypes.object,
   todos: React.PropTypes.array,
   loading: React.PropTypes.bool,

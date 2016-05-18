@@ -6,7 +6,7 @@ import TouchTypeLearning from '../components/TouchType/TouchTypeLearning.jsx';
 import { Session } from 'meteor/session';
 
 
-export default class ListPage extends React.Component {
+export default class LectionPage extends React.Component {
   constructor(props) {
     super(props);
   }
