@@ -20,6 +20,9 @@ import AdminLectionPage from '../../ui/pages/AdminLectionPage.jsx';
 import AdminModelsContainer from '../../ui/containers/AdminModelsContainer.jsx';
 import AdminModelsPage from '../../ui/pages/AdminModelsPage.jsx';
 
+// settings components
+import SettingsContainer from '../../ui/containers/SettingsContainer.jsx';
+
 // game components
 import GamesContainer from '../../ui/containers/GamesContainer.jsx';
 import GameRacingContainer from '../../ui/containers/GameRacingContainer.jsx';
@@ -42,8 +45,8 @@ export const renderRoutes = () => (
         <Route path="lekcie/upravit/:id" component={AdminLectionContainer}/>
         <Route path="modely-aut" component={AdminModelsContainer}/>
       </Route>
-      <Route path="nastavenia/:id" onEnter={canEditSettings}>
-        <Route path="modely"/>
+      <Route path="nastavenia/:id" component={SettingsContainer} onEnter={canEditSettings}>
+        <Route path="modely-aut"/>
         <Route path="profil"/>
       </Route>
       <Route path="nedostatocne-prava" component={NotEnoughRightsPage}/>
