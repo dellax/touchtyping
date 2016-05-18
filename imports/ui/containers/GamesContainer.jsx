@@ -10,6 +10,6 @@ export default createContainer(() => {
 
   return {
     loading,
-    games: Games.find({ isRunning: false }, { sort: { playersCount: -1 } }).fetch(),
+    games: Games.find({ hasStarted: false, isFull: false }, { sort: { playersCount: -1 } }).fetch(),
   };
 }, GamesPage);

@@ -30,7 +30,10 @@ export default class Car extends React.Component {
 
   render() {
     const player = this.props.player;
-
+    const playerStyles = {
+      color: 'red'
+    }
+    if (player.ready) playerStyles.color = 'green';
     return (
       <div className="player">
         <div className="road">
@@ -39,8 +42,9 @@ export default class Car extends React.Component {
           </div>
         </div>
         <div className="info"> 
-          {player.name}<br/>
-          {player.wpm} WPM
+          <span style={playerStyles}>{player.name}</span><br/>
+          {player.wpm} WPM<br/>
+          Prvy
 
         </div>
       </div>

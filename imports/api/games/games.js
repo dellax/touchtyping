@@ -45,10 +45,10 @@ Games.schema = new SimpleSchema({
   timer: {
     type: Number
   },
-  isRunning: {
+  hasStarted: {
     type: Boolean
   },
-  hasStarted: {
+  isFull: {
     type: Boolean
   },
   playersCount: {

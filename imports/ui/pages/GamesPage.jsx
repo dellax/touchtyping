@@ -15,7 +15,6 @@ export default class GamesPage extends React.Component {
   constructor(props) {
     super(props);
     this.handleClickRacingGame = this.handleClickRacingGame.bind(this);
-    this.newPlayer = this.newPlayer.bind(this);
   }
 
   handleClickRacingGame() {
@@ -66,27 +65,12 @@ export default class GamesPage extends React.Component {
       router.push(`/hra/zavody/id/${gameId}`);
     }
   }
-
-  newPlayer() {
-    const { router } = this.context;
-    let gameId = "iM5Kwx7q8oWkcPHN4";
-    const playerId = insertPlayer.call({ gameId }, (err) => {
-        if (err) {
-          console.log(err);
-          router.push('/');
-          /* eslint-disable no-alert */
-          alert('Could not create player.');
-        }
-      });
-  }
   
   render() {
-    
     
     return (
       <div className="games-container">
         <span onClick={this.handleClickRacingGame}>Pripojit sa ku hre</span>
-        <span onClick={this.newPlayer}>vytvorit playera </span>
       </div>
     );
   }

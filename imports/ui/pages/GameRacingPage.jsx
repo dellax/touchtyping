@@ -10,22 +10,12 @@ import { createGame, updateGame } from '../../api/games/methods.js';
 import { checkReady, uncheckReady } from '../../api/players/methods.js';
 
 
-// TODO zmazat po vylepseni
-import Statistics from '../components/TouchType/Statistics.jsx';
-
-
 export default class GameRacingPage extends React.Component {
   constructor(props) {
     super(props);
     this.handleClickReady = this.handleClickReady.bind(this);
     this.state = {timer: 10};
     this.started = false;
-    // TODO
-    //const game = this.props.game;
-    //if (game.hasStarted) {
-      // START COUNTDOWN
-    //}
-    
   }
 
   componentWillReceiveProps(props) {
@@ -54,7 +44,6 @@ export default class GameRacingPage extends React.Component {
     const gameId = game._id;
     checkReady.call({gameId}, (err) => {
       if (err) {
-        console.log(err);
       
         /* eslint-disable no-alert */
         alert('Could not check ready.');
@@ -66,7 +55,7 @@ export default class GameRacingPage extends React.Component {
     const players = this.props.players;
     const game = this.props.game;
     const countdown = this.state.timer;
-    console.log(players);
+    
     return (
       <div className="game-container">
         <div className="countdown">
@@ -74,7 +63,7 @@ export default class GameRacingPage extends React.Component {
         </div>
         <div className="game-cars">
           {players.map((player) => {
-            return <div><Player player={player} />{player.completed}</div>
+            return <Player player={player} key={player._id}/>;
           })}
         </div>
         <TouchTypeGaming text={game.text} countdown={countdown} />

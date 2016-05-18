@@ -18,8 +18,8 @@ export const createGame = new ValidatedMethod({
       type,
       text: 'Cvicny text je cvicny text',
       timer: 10,
-      isRunning: false,
       hasStarted: false,
+      isFull: false,
       createdAt: new Date(),
       playersCount: 1
     };
@@ -41,13 +41,13 @@ export const updateGame = new ValidatedMethod({
     const game = Games.findOne(gameId);
     // add player
     let playersCount = game.playersCount + 1;
-    let isRunning = false;
-    if (playersCount === 4) isRunning = true;
+    let isFull = false;
+    if (playersCount === 4) isFull = true;
     
     Games.update(gameId, {
       $set: { 
         playersCount,
-        isRunning
+        isFull
       },
     });
   },
