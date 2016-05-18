@@ -79,8 +79,10 @@ export default class TouchType extends React.Component {
 		input = e.target.value;
 		if (input.endsWith(' ') && i < parts.length) {
 			let part = input.slice(0, -1);
+			const completed = 100 / parts.length * (this.index+1);
 			if (part === parts[i].text) {
 				parts[i].className = "correct";
+				
 				
 			} else {
 				inputStyles = {
@@ -95,8 +97,6 @@ export default class TouchType extends React.Component {
 			}
 			i++;
 			input = '';
-			const completed = 100 / parts.length * i;
-			console.log(completed);
 			this.updateRecordsInDb(completed);
 		} else {
 			// check if part of word is correct

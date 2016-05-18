@@ -66,7 +66,7 @@ export default class GameRacingPage extends React.Component {
     const players = this.props.players;
     const game = this.props.game;
     const countdown = this.state.timer;
-    
+    console.log(players);
     return (
       <div className="game-container">
         <div className="countdown">
@@ -74,7 +74,7 @@ export default class GameRacingPage extends React.Component {
         </div>
         <div className="game-cars">
           {players.map((player) => {
-            return <Player player={player} />
+            return <div><Player player={player} />{player.completed}</div>
           })}
         </div>
         <TouchTypeGaming text={game.text} countdown={countdown} />

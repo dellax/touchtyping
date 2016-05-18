@@ -15,9 +15,14 @@ export default class Car extends React.Component {
     this.car = ReactDOM.findDOMNode(this.refs.car);
   }
 
-  componentWillReceiveProps(props) {
+  componentDidUpdate() {
     const completed = this.props.player.completed;
+    this.moveCar(completed);
+  }
+
+  moveCar(completed) {
     const distance = completed * 7;
+    console.log(completed);
     Move(this.car)
       .x(distance)
       .end();
