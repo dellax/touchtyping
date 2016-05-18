@@ -3,20 +3,19 @@ import NotFoundPage from '../pages/NotFoundPage.jsx';
 import Message from '../components/Message.jsx';
 import Sortable from 'react-anything-sortable';
 
-import { insertModel } from '../../api/models/methods.js';
-import ModelsList from '../components/AdminModelsList.jsx';
+import { setDefaultModel } from '../../api/users/methods.js';
 
 export default class ModelsPage extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  handleAddModel() {
-    insertModel.call((err) => {
+  handleSetDefaultModel(modelId) {
+    setDefaultModel.call({modelId}, (err) => {
       if (err) {
-        
+
         /* eslint-disable no-alert */
-        alert('Could not create model.');
+        alert('Could not update default model.');
       }
     });
   }
@@ -24,13 +23,27 @@ export default class ModelsPage extends React.Component {
 
   render() {
     const models = this.props.models;
-    console.log(models);
+    const user = this.props.user;
+    
     return (
-      <div>
+      <div className="user-models">
         <h2>Modely áut</h2>
+        Kliknutím na model, nastavíte model ako predvolený.
         <h5>Zoznam získaných modelov</h5>
 
-        <ModelsList models={models} />
+        {models.map((model) => {
+          const style = {};
+          if (model._id === user.defaultModel) {
+            style.backgroundColor = '#e6ccff';
+          }
+          return (
+            <div className="model" onClick={this.handleSetDefaultModel.bind(this, model._id)} style={style}>
+              <img width="88" height="47" src={model.image} alt="model"/>
+              <span className="name">Názov modelu: {model.name}</span>
+              <span className="points">Potrebné body: {model.points}</span>
+            </div>
+          );
+        })}
       </div>
     );
   }

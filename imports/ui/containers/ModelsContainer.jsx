@@ -4,10 +4,12 @@ import ModelsPage from '../pages/ModelsPage.jsx';
 import { Models } from '../../api/models/models.js';
 
 export default createContainer(({ params: { id } }) => { 
-  const models = Models.find();
+ 
   const user = Meteor.user();
-  console.log(user);
+  const models = Models.find( { points: { $lte: user.points } } ).fetch();
+  
   return {
+  	user,
     models
   };
 }, ModelsPage);
