@@ -1,7 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
-import { Lists } from '../../api/lists/lists.js';
-import { Todos } from '../../api/todos/todos.js';
 import { Lections } from '../../api/lections/lections.js';
 import { Exercises } from '../../api/exercises/exercises.js';
 
