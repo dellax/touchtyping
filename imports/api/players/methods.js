@@ -24,6 +24,8 @@ export const insertPlayer = new ValidatedMethod({
       wpm: 0,
       completed: 0,
       ready: false,
+      finishedDate: null,
+      order: null,
       createdAt: new Date()
     };
 
@@ -39,10 +41,27 @@ export const updatePlayer = new ValidatedMethod({
     wpm: { type: Number }
   }).validator(),
   run({ playerId, completed, wpm }) {
-
-    return Players.update(playerId, {
-      $set: { completed, wpm }
+    let finishedDate = null;
+    if (completed === 100) finishedDate = new Date();
+    Players.update(playerId, {
+      $set: { completed, wpm , finishedDate }
     });
+    if (completed === 100) {
+      // reset players order
+      const player = Players.findOne(playerId);
+      const gameId = player.gameId;
+      const playersInGame = Players.find({ 
+        gameId, 
+        finishedDate: { $exists: true } 
+      }, { sort: { finishedDate: 1 } } ).fetch();
+      // set order of players with finishedDate field
+      for (let i = 0; i < playersInGame.length; i++) {
+        const currentPlayer = playersInGame[i];
+        Players.update(currentPlayer._id, {
+          $set: { order: i+1 }
+        });
+      }
+    }
   },
 });
 

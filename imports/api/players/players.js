@@ -55,6 +55,14 @@ Players.schema = new SimpleSchema({
   ready: {
     type: Boolean
   },
+  finishedDate: {
+    type: Date,
+    optional: true
+  },
+  order: {
+    type: Number,
+    optional: true
+  },
   createdAt: {
     type: Date,
     denyUpdate: true,
