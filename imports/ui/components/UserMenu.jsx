@@ -37,8 +37,8 @@ export default class UserMenu extends React.Component {
           <li>
             <a href="#26">{user.username} <span className="fa fa-angle-down scnd-font-color"></span></a>
             <ul>
-              <li><Link to={`/nastavenia/${user._id}`}>Nastavenia</Link></li>
               <li><a href="#">Môj profil</a></li>
+              <li><Link to={`/nastavenia/${user._id}`}>Nastavenia</Link></li>
               <li><a onClick={logout}>Odhlásiť sa</a></li>
             </ul>
           </li>
@@ -65,8 +65,8 @@ export default class UserMenu extends React.Component {
           <li>
             <a href="#26">{user.username} <span className="fa fa-angle-down scnd-font-color"></span></a>
             <ul>
-              <li><Link to={`/nastavenia/${user._id}`}>Nastavenia</Link></li>
               <li><a href="#">Môj profil</a></li>
+              <li><Link to={`/nastavenia/${user._id}`}>Nastavenia</Link></li>
               <li><Link to="/administracia">Administrácia</Link></li>
               <li><a onClick={logout}>Odhlásiť sa</a></li>
             </ul>
