@@ -34,13 +34,13 @@ export default class SettingsPage extends React.Component {
             <h2 className="titular">POUŽÍVATEĽSKÉ MENU</h2>
             <ul className="menu-box-menu">
               <li>
-                <Link to={`/administracia/${user._id}/profil`} className="menu-box-tab">
+                <Link to={`/nastavenia/${user._id}/profil`} className="menu-box-tab">
                 <span className="icon fa fa-user scnd-font-color"></span>
                   Môj profil
                 </Link>                         
               </li>
               <li>
-                <Link to={`/administracia/${user._id}/modely-aut`} className="menu-box-tab">
+                <Link to={`/nastavenia/${user._id}/modely-aut`} className="menu-box-tab">
                 <span className="icon fa fa-car scnd-font-color"></span>
                   Modely áut
                 </Link>                         

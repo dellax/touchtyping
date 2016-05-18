@@ -6,7 +6,7 @@ import Sortable from 'react-anything-sortable';
 import { insertModel } from '../../api/models/methods.js';
 import ModelsList from '../components/AdminModelsList.jsx';
 
-export default class AdminModelsPage extends React.Component {
+export default class ModelsPage extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -36,14 +36,14 @@ export default class AdminModelsPage extends React.Component {
   }
 }
 
-AdminModelsPage.contextTypes = {
+ModelsPage.contextTypes = {
   router: React.PropTypes.object,
 };
 
-AdminModelsPage.propTypes = {
+ModelsPage.propTypes = {
   models: React.PropTypes.array,
 };
 
-AdminModelsPage.defaultProps = {
+ModelsPage.defaultProps = {
   models: []
 };

@@ -1,3 +1,6 @@
+import '../../api/users/methods.js';
+import '../../api/users/server/publications.js';
+
 import '../../api/lections/methods.js';
 import '../../api/lections/server/publications.js';
 

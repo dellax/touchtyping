@@ -41,6 +41,7 @@ export default class JoinPage extends React.Component {
       username,
       email,
       password,
+      points: 0
     }, err => {
       if (err) {
         this.setState({

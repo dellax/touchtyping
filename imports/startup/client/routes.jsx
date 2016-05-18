@@ -22,6 +22,7 @@ import AdminModelsPage from '../../ui/pages/AdminModelsPage.jsx';
 
 // settings components
 import SettingsContainer from '../../ui/containers/SettingsContainer.jsx';
+import ModelsContainer from '../../ui/containers/ModelsContainer.jsx';
 
 // game components
 import GamesContainer from '../../ui/containers/GamesContainer.jsx';
@@ -46,7 +47,7 @@ export const renderRoutes = () => (
         <Route path="modely-aut" component={AdminModelsContainer}/>
       </Route>
       <Route path="nastavenia/:id" component={SettingsContainer} onEnter={canEditSettings}>
-        <Route path="modely-aut"/>
+        <Route path="modely-aut" component={ModelsContainer}/>
         <Route path="profil"/>
       </Route>
       <Route path="nedostatocne-prava" component={NotEnoughRightsPage}/>
