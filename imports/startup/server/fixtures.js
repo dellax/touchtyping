@@ -20,6 +20,7 @@ Meteor.startup(() => {
       id = Accounts.createUser({
         email: user.email,
         username: user.username,
+        points: user.points,
         password: "test",
         profile: {firstName: user.name}
       });
@@ -30,6 +31,10 @@ Meteor.startup(() => {
         Roles.addUsersToRoles(id, user.roles);
       }
     });
+
+    const models = [
+      { name: 'Model zakladny', image: '', points: 0 },
+    ];
 
     const data = [
       {
