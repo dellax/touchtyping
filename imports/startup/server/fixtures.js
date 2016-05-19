@@ -8,10 +8,10 @@ import { Exercises } from '../../api/exercises/exercises.js';
 Meteor.startup(() => {
   if (Lections.find().count() === 0) {
     var users = [
-      {username: "tony123", name: "Normal", email: "normal@example.com", roles: []},
-      {username: "test123", name: "Viewer", email: "view@example.com", roles: []},
-      {username: "herrison", name: "Manageer", email: "manage@example.com", roles: []},
-      {username: "admin", name: "Admin", email: "admin@example.com", roles: ['admin']}
+      {username: "tony123", name: "Normal", points: 0, email: "normal@example.com", roles: []},
+      {username: "test123", name: "Viewer", points: 400, email: "test@example.com", roles: []},
+      {username: "herrison", name: "Manageer", points: 666, email: "manage@example.com", roles: []},
+      {username: "admin", name: "Admin", points: 2000, email: "admin@example.com", roles: ['admin']}
     ];
 
     users.forEach((user) => {

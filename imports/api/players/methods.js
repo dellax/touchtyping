@@ -5,7 +5,9 @@ import { DDPRateLimiter } from 'meteor/ddp-rate-limiter';
 import { _ } from 'meteor/underscore';
 
 import { Players } from './players.js';
+import { defaultSkin } from './skins.js'
 import { Games } from '../games/games.js';
+import { Models } from '../models/models.js';
 
 export const insertPlayer = new ValidatedMethod({
   name: 'players.insertPlayer',
@@ -14,13 +16,18 @@ export const insertPlayer = new ValidatedMethod({
   }).validator(),
   run({ gameId }) {
     const user =  Meteor.user();
-
+    let skin = defaultSkin;
+    const modelId = user.defaultModel;
+    if (modelId) {
+      const model = Models.findOne(modelId);
+      skin = model.image;
+    }
     // TODO check if game didnt contain player
     const player = {
       userId: Meteor.userId(),
       gameId,
       name: user.username,
-      skin: 0,
+      skin,
       wpm: 0,
       completed: 0,
       ready: false,
