@@ -113,6 +113,8 @@ export const removePlayer = new ValidatedMethod({
     gameId: { type: String }
   }).validator(),
   run({ gameId }) {
+    const game = Games.findOne(gameId);
+    if (game.hasStarted) return;
     const userId = Meteor.userId();
     const playerId = Players.findOne({userId, gameId});
     Games.update(gameId, {
