@@ -29,6 +29,9 @@ export default class UserMenu extends React.Component {
       <div className="profile-menu">
         <ul>
           <li>
+            <a href="#26">{user.points} <span className="fa fa-bolt scnd-font-color"></span></a>
+          </li>
+          <li>
             <a href="#1">
               <span className="icon fa fa-envelope-o scnd-font-color"></span>
               <span className="notifications-number">7</span>
@@ -56,6 +59,9 @@ export default class UserMenu extends React.Component {
     return (
       <div className="profile-menu">
         <ul>
+          <li>
+            <a href="#26">{user.points} <span className="fa fa-bolt scnd-font-color"></span></a>
+          </li>
           <li>
             <a href="#1">
               <span className="icon fa fa-envelope-o scnd-font-color"></span>
