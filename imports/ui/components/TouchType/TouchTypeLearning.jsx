@@ -3,6 +3,7 @@ import StatsBar from './StatsBar';
 import ProgressBar from './ProgressBar';
 import KeySuggestion from './KeySuggestion';
 import Statistics from './Statistics';
+import { insertStatistic } from '../../../api/statistics/methods.js';
 
 export default class TouchType extends React.Component {
 	constructor(props) {
@@ -124,6 +125,7 @@ export default class TouchType extends React.Component {
 					typingFinished = true;
 					this.stopTimer();
 					this.keyInfo.pressedKey = '';
+					this.saveStatisticsToDB();
 				}
 				i++;
 				if (this.lastIncorrectLetterIndex != -1) {
@@ -155,6 +157,23 @@ export default class TouchType extends React.Component {
 			wpmList
 		};
 		this.setState({letterTextParts, input: this.userInput, typingFinished});
+	}
+
+	saveStatisticsToDB() {
+		const exercise = this.props.exercise;
+		const stats = Object.assign({}, this.stats);
+		stats.exerciseId = exercise._id;
+		stats.averageWpm = this.stats.currentWpm;
+		delete stats.currentWpm;
+
+		// TODO  chech if user is logged in, and show notificatin about that
+		insertStatistic.call(stats, (err) => {
+      if (err) {
+        console.log(err);
+      
+        /* eslint-disable no-alert */
+      }
+    });
 	}
 
 	tick() {
@@ -237,8 +256,7 @@ export default class TouchType extends React.Component {
 		if (this.state.typingFinished === false) {
 			return this.renderTypingApp();
 		} else {
-			// TODO add params to statistics
-			// add some effect ...
+			
 			console.log(this.stats.wpmList);
 			return <Statistics stats={this.stats} />
 		}

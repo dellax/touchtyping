@@ -40,13 +40,28 @@ Statistics.schema = new SimpleSchema({
     regEx: SimpleSchema.RegEx.Id,
     denyUpdate: true
   },
+  secondsElapsed: {
+    type: Number
+  },
   averageWpm: {
-    type: Number,
+    type: Number
+  },
+  highestWpm: {
+    type: Number
+  },
+  lettersTyped: {
+    type: Number
+  },
+  wordsTyped: {
+    type: Number
   },
   wpmList: {
-    type: [Number],
+    type: [Number]
   },
-  wrongWords: {
+  incorrectWords: {
+    type: [String]
+  },
+  incorrectLetters: {
     type: [String]
   },
   createdAt: {

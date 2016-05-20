@@ -17,7 +17,7 @@ export default class LectionPage extends React.Component {
     
     return (
       <div>
-        <TouchTypeLearning text={exercise.text} />
+        <TouchTypeLearning text={exercise.text} exercise={exercise} />
       </div>
     );
   }

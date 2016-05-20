@@ -6,22 +6,43 @@ import { _ } from 'meteor/underscore';
 
 import { Statistics } from './statistics.js';
 
-export const insert = new ValidatedMethod({
+export const insertStatistic = new ValidatedMethod({
   name: 'statistics.insert',
   validate: new SimpleSchema({
     exerciseId: { type: String },
+    secondsElapsed: { type: Number },
     averageWpm: { type: Number },
+    highestWpm: { type: Number },
+    lettersTyped: { type: Number },
+    wordsTyped: { type: Number },
     wpmList: { type: [Number] },
-    wrongWords: { type: [String] },
+    incorrectWords: { type: [String] },
+    incorrectLetters: { type: [String] },
   }).validator(),
-  run({ exerciseId, averageWpm, wpmList, wrongWords }) {
+  run({ 
+    exerciseId,
+    secondsElapsed,
+    averageWpm,
+    highestWpm,
+    lettersTyped,
+    wordsTyped,
+    wpmList,
+    incorrectWords,
+    incorrectLetters }) {
 
+    if (!this.userId) return;
+     
     const statistic = {
-      userId = this.userId,
+      userId: this.userId,
       exerciseId,
+      secondsElapsed,
       averageWpm,
+      highestWpm,
+      lettersTyped,
+      wordsTyped,
       wpmList,
-      wrongWords
+      incorrectWords,
+      incorrectLetters,
     };
 
     return Statistics.insert(statistic);
@@ -32,7 +53,7 @@ export const insert = new ValidatedMethod({
 
 // Get list of all method names on statistics
 const STATISTICS_METHODS = _.pluck([
-  insert
+  insertStatistic
 ], 'name');
 
 if (Meteor.isServer) {
