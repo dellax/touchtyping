@@ -140,10 +140,11 @@
 
 .notifications-list {
   @header-bg: #1f253d;
-  width: 300px;
+  @notifications-width: 350px;
+  width: @notifications-width;
 
   .notifications-item {
-    width: 300px;
+    width: @notifications-width;
     height: 60px;
     line-height: 60px;
     display: table;
@@ -154,7 +155,7 @@
   }
 
   .notifications-header {
-    width: 300px;
+    width: @notifications-width;
     line-height: 40px;
     height: 40px;
     text-align: center;
@@ -168,7 +169,7 @@
   }
 
   .notifications-footer {
-    width: 300px;
+    width: @notifications-width;
     line-height: 40px;
     height: 40px;
     text-align: center;
@@ -206,8 +207,18 @@
 
   .notifications-time {
     position: absolute;
-    top: 35px;
+    top: 36px;
     left: 20px;
     font-size: 12px;
+  }
+
+  .notification-circle {
+    position: absolute;
+    top: 20px;
+    left: 300px;
+    font-size: 12px;
+    line-height: 13px;
+    background-color: red;
+    padding: 2px 4px 2px 4px;
   }
 }

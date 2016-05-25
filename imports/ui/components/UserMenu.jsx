@@ -79,6 +79,7 @@ export default class UserMenu extends React.Component {
                 <div className="notifications-name">Nový model</div>
                 <div className="notifications-text">Gratulujem získal si nový model</div>
                 <div className="notifications-time">Pred 10 minutami</div>
+                <div className="notification-circle">Nová</div>
               </li>
               <li className="notifications-item">
                 <div className="notifications-name">Nový model</div>
