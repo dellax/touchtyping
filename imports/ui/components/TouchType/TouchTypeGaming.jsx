@@ -208,8 +208,7 @@ export default class TouchType extends React.Component {
 		const completed = 100 / parts.length * this.index;
 
 		return (
-			<div className="tt-app">
-				
+			<div className="tt-app">	
 				<div className="tt-app-main">
 					<StatsBar stats={this.stats} />
 					<div className="tt-input-text">
@@ -219,6 +218,7 @@ export default class TouchType extends React.Component {
 					</div>
 					<ProgressBar completed={completed} />
 					<input
+						className="input-gaming"
 						type="text"
 						ref="typingInput"
 						value={input}

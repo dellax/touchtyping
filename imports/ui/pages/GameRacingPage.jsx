@@ -6,6 +6,9 @@ import Player from '../components/TouchType/Player.jsx';
 import TrafficLightCountdown from '../components/TouchType/TrafficLightCountdown.jsx';
 import TouchTypeGaming from '../components/TouchType/TouchTypeGaming.jsx';
 
+import FlatButton from 'material-ui/FlatButton';
+import ActionDone from 'material-ui/svg-icons/action/done';
+
 import { createGame, updateGame } from '../../api/games/methods.js';
 import { checkReady, uncheckReady, removePlayer } from '../../api/players/methods.js';
 
@@ -85,7 +88,15 @@ export default class GameRacingPage extends React.Component {
           })}
         </div>
         <TouchTypeGaming text={game.text} countdown={countdown} />
-        <span onClick={this.handleClickReady}>Som pripraveny</span>
+        <div className="game-buttons">
+          <FlatButton
+            label="Som pripravený hrať"
+            labelPosition="after"
+            primary={true}
+            icon={<ActionDone />}
+            onClick={this.handleClickReady}
+          />
+        </div>
       </div>
     );
   }
