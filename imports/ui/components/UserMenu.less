@@ -137,3 +137,77 @@
 .button.sign-in:hover {
   background: #6868A0;
 }
+
+.notifications-list {
+  @header-bg: #1f253d;
+  width: 300px;
+
+  .notifications-item {
+    width: 300px;
+    height: 60px;
+    line-height: 60px;
+    display: table;
+    margin: 0;
+    padding: 0;
+    background-color: lighten(@header-bg, 10%);
+    border-bottom: 1px solid @header-bg;
+  }
+
+  .notifications-header {
+    width: 300px;
+    line-height: 40px;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+    background-color: @header-bg;
+  }
+
+  .notifications-header:hover {
+    background-color: @header-bg;
+  }
+
+  .notifications-footer {
+    width: 300px;
+    line-height: 40px;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: @header-bg;
+    font-size: 12px;
+  }
+
+  .notifications-footer:hover {
+    background-color: @header-bg;
+  }
+
+  .notifications-name, .notifications-text, .notifications-time {
+    display: inline;
+    font-size: 13px;
+    line-height: normal;
+    padding: 0;
+    margin: 0;
+    padding: 0;
+    
+  }
+
+  .notifications-name {
+    position: absolute;
+    top: 5px;
+    left: 20px;
+    font-weight: bolder;
+  }
+
+  .notifications-text {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+
+  .notifications-time {
+    position: absolute;
+    top: 35px;
+    left: 20px;
+    font-size: 12px;
+  }
+}

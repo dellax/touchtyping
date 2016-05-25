@@ -46,10 +46,7 @@ export default class AdminPage extends React.Component {
               </li>
               <li>
                 <a className="menu-box-tab" href="#8"><span className="icon fa fa-user scnd-font-color"></span>Používatelia</a>                            
-              </li>
-              <li>
-                <a className="menu-box-tab" href="#10"><span className="icon fa fa-home scnd-font-color"></span>Events</a>                            
-              </li>              
+              </li>          
             </ul>
           </div>    
         </div>
