@@ -84,6 +84,7 @@ export const checkReady = new ValidatedMethod({
       $set: { ready: true },
     });
     const game = Games.findOne(gameId);
+    if (game.playersCount < 2) return; 
     if (game.arePlayersReady()) {
       Games.update(gameId, {
         $set: { hasStarted: true },
