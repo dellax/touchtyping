@@ -103,15 +103,20 @@ export default class AdminModelsList extends React.Component {
     
     function renderItem(data, index) {
       return (
-        <div>
-          {data.name}
-          <span className="delete"
-            onMouseDown={this.handleRemoveElement.bind(this, index)}
-          >&times;</span>
-          <span className="delete"
-            onMouseDown={this.handleUpdateElement.bind(this, index)}
-          > upravit</span>
+        <div className="model">
+          <img width="88" height="47" src={data.image} alt="model"/>
+          <span className="name">Názov modelu: {data.name}</span>
+          <span className="points">Potrebné body: {data.points}</span>
+          <div className="model-buttons">
+            <span className="delete"
+              onMouseDown={this.handleRemoveElement.bind(this, index)}
+            >&times;</span>
+            <span className="delete"
+              onMouseDown={this.handleUpdateElement.bind(this, index)}
+            > upravit</span>
+          </div>
         </div>
+       
       );
     }
 
@@ -130,9 +135,9 @@ export default class AdminModelsList extends React.Component {
 
     return (
       <div className="dynamic-demo">
-        
-        {this.state.arr.map(renderItem, this)}
-       
+        <div className="admin-models">
+          {this.state.arr.map(renderItem, this)}
+        </div>
 
         <Modal ref="modal" contentStyle={modalStyle}>
           <h2>Upraviť model auta</h2>
