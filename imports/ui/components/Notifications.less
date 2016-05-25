@@ -1,0 +1,84 @@
+.notifications-list {
+  @header-bg: #1f253d;
+  @notifications-width: 350px;
+  width: @notifications-width;
+
+  .notifications-item {
+    width: @notifications-width;
+    height: 60px;
+    line-height: 60px;
+    display: table;
+    margin: 0;
+    padding: 0;
+    background-color: lighten(@header-bg, 10%);
+    border-bottom: 1px solid @header-bg;
+  }
+
+  .notifications-header {
+    width: @notifications-width;
+    line-height: 40px;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+    background-color: @header-bg;
+  }
+
+  .notifications-header:hover {
+    background-color: @header-bg;
+  }
+
+  .notifications-footer {
+    width: @notifications-width;
+    line-height: 40px;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: @header-bg;
+    font-size: 12px;
+  }
+
+  .notifications-footer:hover {
+    background-color: @header-bg;
+  }
+
+  .notifications-name, .notifications-text, .notifications-time {
+    display: inline;
+    font-size: 13px;
+    line-height: normal;
+    padding: 0;
+    margin: 0;
+    padding: 0;
+    
+  }
+
+  .notifications-name {
+    position: absolute;
+    top: 5px;
+    left: 20px;
+    font-weight: bolder;
+  }
+
+  .notifications-text {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+
+  .notifications-time {
+    position: absolute;
+    top: 36px;
+    left: 20px;
+    font-size: 12px;
+  }
+
+  .notification-circle {
+    position: absolute;
+    top: 20px;
+    left: 300px;
+    font-size: 12px;
+    line-height: 13px;
+    background-color: red;
+    padding: 2px 4px 2px 4px;
+  }
+}

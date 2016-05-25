@@ -1,6 +1,7 @@
 import React from 'react';
 import { Roles } from 'meteor/alanning:roles';
 import { Link } from 'react-router';
+import Notifications from './Notifications.jsx';
 
 export default class UserMenu extends React.Component {
   // TODO dokoncit
@@ -36,11 +37,7 @@ export default class UserMenu extends React.Component {
               <span className="icon fa fa-envelope-o scnd-font-color"></span>
               <span className="notifications-number">7</span>
             </a>
-            <ul>
-              <li><a href="#">Môj profil</a></li>
-              <li><Link to={`/nastavenia/${user._id}`}>Nastavenia</Link></li>
-              <li><a onClick={logout}>Odhlásiť sa</a></li>
-            </ul>
+            <Notifications />
           </li>
           <li>
             <a href="#26">{user.username} <span className="fa fa-angle-down scnd-font-color"></span></a>
@@ -72,28 +69,7 @@ export default class UserMenu extends React.Component {
               <span className="icon fa fa-envelope-o scnd-font-color"></span>
               <span className="notifications-number">7</span>
             </a>
-            <ul className="notifications-list">
-              <li className="notifications-header">Notifikácie</li>
-
-              <li className="notifications-item">
-                <div className="notifications-name">Nový model</div>
-                <div className="notifications-text">Gratulujem získal si nový model</div>
-                <div className="notifications-time">Pred 10 minutami</div>
-                <div className="notification-circle">Nová</div>
-              </li>
-              <li className="notifications-item">
-                <div className="notifications-name">Nový model</div>
-                <div className="notifications-text">Gratulujem získal si nový model</div>
-                <div className="notifications-time">Pred 10 minutami</div>
-              </li>
-              <li className="notifications-item">
-                <div className="notifications-name">Nový model</div>
-                <div className="notifications-text">Gratulujem získal si nový model</div>
-                <div className="notifications-time">Pred 10 minutami</div>
-              </li>
-
-              <li className="notifications-footer">Všetky videné</li>
-            </ul>
+            <Notifications />
           </li>
           <li>
             <a href="#26">{user.username} <span className="fa fa-angle-down scnd-font-color"></span></a>
