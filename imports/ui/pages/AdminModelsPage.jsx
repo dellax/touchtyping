@@ -5,6 +5,9 @@ import Sortable from 'react-anything-sortable';
 
 import { insertModel } from '../../api/models/methods.js';
 import ModelsList from '../components/AdminModelsList.jsx';
+import RaisedButton from 'material-ui/RaisedButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+
 
 export default class AdminModelsPage extends React.Component {
   constructor(props) {
@@ -24,13 +27,18 @@ export default class AdminModelsPage extends React.Component {
 
   render() {
     const models = this.props.models;
-    console.log(models);
+
     return (
       <div>
         <h2>Modely áut</h2>
+        <RaisedButton
+          label="Pridať nový model"
+          labelPosition="after"
+          primary={true}
+          icon={<ContentAdd />}
+          onClick={this.handleAddModel.bind(this)}
+        />
         <h5>Zoznam modelov</h5>
-
-        <button onClick={this.handleAddModel.bind(this)}>Pridať nový model</button>
         <ModelsList models={models} />
       </div>
     );

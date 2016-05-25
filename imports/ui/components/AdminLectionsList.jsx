@@ -4,6 +4,7 @@ import NotFoundPage from '../pages/NotFoundPage.jsx';
 import Message from '../components/Message.jsx';
 import Sortable from 'react-anything-sortable';
 import SortableItem from './SortableItem.jsx';
+import FlatButton from 'material-ui/FlatButton';
 
 import { 
   updateLectionOrder, 
@@ -72,10 +73,12 @@ export default class AdminLectionPage extends React.Component {
       return (
         <SortableItem key={index} className="dynamic-item" sortData={data}>
           {data.name}
-          <span className="delete"
-            onMouseDown={this.handleRemoveElement.bind(this, index)}
-          >&times;</span>
-          <span className="delete"><Link to={`/administracia/lekcie/upravit/${data._id}`}> upravit</Link></span>
+          <div className="dynamic-buttons">
+            <span className="delete"
+              onMouseDown={this.handleRemoveElement.bind(this, index)}
+            >&times;</span>
+            <span className="delete"><Link to={`/administracia/lekcie/upravit/${data._id}`}> upravit</Link></span>
+          </div>
         </SortableItem>
       );
     }

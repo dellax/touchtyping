@@ -10,6 +10,10 @@
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
+
+  .dynamic-buttons {
+    float: right;
+  }
 }
 
 .ui-sortable:before,
@@ -24,10 +28,10 @@
 
 .ui-sortable .ui-sortable-item {
   cursor: move;
-  padding: 5px;
+  padding: 10px;
   margin-top: 8px;
   margin-bottom: 8px;
-  border: 2px dashed;
+  border: 1px dashed;
 }
 
 .ui-sortable .ui-sortable-item.ui-sortable-dragging {
@@ -41,6 +45,6 @@
 
 .ui-sortable .ui-sortable-placeholder.visible {
   display: block;
-  border: 2px dashed grey;
+  border: 1px dashed grey;
   z-index: -1;
 }

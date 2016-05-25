@@ -2,6 +2,8 @@ import React from 'react';
 import NotFoundPage from '../pages/NotFoundPage.jsx';
 import Message from '../components/Message.jsx';
 import Sortable from 'react-anything-sortable';
+import RaisedButton from 'material-ui/RaisedButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 import { insertExercise } from '../../api/exercises/methods.js';
 import { updateLection } from '../../api/lections/methods.js';
@@ -54,12 +56,25 @@ export default class AdminLectionPage extends React.Component {
         <h2>Pridať novú lekciu</h2>
         <label for="lectionName">Názov lekcie:</label>
         <input type="text" name="lectionName" ref="lectionName"defaultValue={lection.name}/>
+        <br/>
+        <RaisedButton
+          label="Pridať cvičenie"
+          labelPosition="after"
+          primary={false}
+          icon={<ContentAdd />}
+          onClick={this.handleAddExercise.bind(this)}
+        />
         <h5>Zoznam cvičení k lekcii</h5>
 
-        <button onClick={this.handleAddExercise.bind(this)}>Pridať cvičenie</button>
         <ExercisesList exercises={exercises} />
 
-        <button className="btn-primary" onClick={this.saveLection.bind(this)}>Uložiť zmeny</button>   
+        <RaisedButton
+          label="Uložiť zmeny"
+          labelPosition="after"
+          primary={true}
+          icon={<ContentAdd />}
+          onClick={this.saveLection.bind(this)}
+        />
       </div>
     );
   }

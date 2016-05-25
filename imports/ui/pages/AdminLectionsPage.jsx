@@ -4,6 +4,8 @@ import NotFoundPage from '../pages/NotFoundPage.jsx';
 import Message from '../components/Message.jsx';
 import { insert } from '../../api/lections/methods.js';
 import LectionsList from '../components/AdminLectionsList.jsx';
+import RaisedButton from 'material-ui/RaisedButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 
 export default class AdminLectionsPage extends React.Component {
@@ -34,7 +36,13 @@ export default class AdminLectionsPage extends React.Component {
     return (
       <div>
         <h2>Lekcie</h2>
-        <button className="btn-primary" onClick={this.createNewLection}>Pridať novú lekciu</button>
+        <RaisedButton
+          label="Pridať novú lekciu"
+          labelPosition="after"
+          primary={true}
+          icon={<ContentAdd />}
+          onClick={this.createNewLection}
+        />
         <h5>Zoznam lekcii</h5>
         <LectionsList lections={lections} />
       </div>
