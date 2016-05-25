@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 
 export default class Notifications extends React.Component {
-  // TODO dokoncit
+  // TODO add moment js
+  
   constructor(props) {
     super(props);
   }
