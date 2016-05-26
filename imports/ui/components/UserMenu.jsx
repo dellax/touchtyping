@@ -22,7 +22,7 @@ export default class UserMenu extends React.Component {
 
   renderLoggedIn() {
     const { open } = this.state;
-    const { user, logout } = this.props;
+    const { user, logout, notifications } = this.props;
     const email = user.emails[0].address;
     const emailLocalPart = email.substring(0, email.indexOf('@'));
 
@@ -37,7 +37,7 @@ export default class UserMenu extends React.Component {
               <span className="icon fa fa-envelope-o scnd-font-color"></span>
               <span className="notifications-number">7</span>
             </a>
-            <Notifications />
+            <Notifications notifications={notifications} />
           </li>
           <li>
             <a href="#26">{user.username} <span className="fa fa-angle-down scnd-font-color"></span></a>
@@ -54,7 +54,7 @@ export default class UserMenu extends React.Component {
 
   renderLoggedInAdmin() {
     const { open } = this.state;
-    const { user, logout } = this.props;
+    const { user, logout, notifications } = this.props;
     const email = user.emails[0].address;
     const emailLocalPart = email.substring(0, email.indexOf('@'));
 
@@ -69,7 +69,7 @@ export default class UserMenu extends React.Component {
               <span className="icon fa fa-envelope-o scnd-font-color"></span>
               <span className="notifications-number">7</span>
             </a>
-            <Notifications />
+            <Notifications notifications={notifications} />
           </li>
           <li>
             <a href="#26">{user.username} <span className="fa fa-angle-down scnd-font-color"></span></a>

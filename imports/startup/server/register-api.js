@@ -18,3 +18,6 @@ import '../../api/exercises/server/publications.js';
 
 import '../../api/statistics/methods.js';
 import '../../api/statistics/server/publications.js';
+
+import '../../api/notifications/methods.js';
+import '../../api/notifications/server/publications.js';

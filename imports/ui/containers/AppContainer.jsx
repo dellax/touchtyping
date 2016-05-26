@@ -2,10 +2,12 @@ import { Meteor } from 'meteor/meteor';
 // XXX: Session
 import { Session } from 'meteor/session';
 import { Lections } from '../../api/lections/lections.js';
+import { Notifications } from '../../api/notifications/notifications.js';
 import { createContainer } from 'meteor/react-meteor-data';
 import App from '../layouts/App.jsx';
 
 export default createContainer(() => {
+  const notificationsPrivateHandle = Meteor.subscribe('notifications.private');
   const statisticsHandle = Meteor.subscribe('statistics.all');
 	const usersHandle = Meteor.subscribe('users.data');
 	const modelsHandle = Meteor.subscribe('models.all');
@@ -19,7 +21,10 @@ export default createContainer(() => {
       && lectionsHandle.ready() 
       && exercisesHandle.ready() 
       && usersHandle.ready() 
-      && statisticsHandle.ready()),
-    connected: Meteor.status().connected
+      && statisticsHandle.ready()
+      && notificationsPrivateHandle.ready()),
+    connected: Meteor.status().connected,
+    notifications: Notifications.find(
+      { userId: Meteor.userId() }).fetch()
   };
 }, App);

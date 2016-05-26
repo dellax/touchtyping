@@ -25,3 +25,13 @@ Meteor.publishComposite('notifications.forUser', function notificationsForUser(u
     },
   };
 });
+
+Meteor.publish('notifications.private', function notificationsPrivate() {
+  if (!this.userId) {
+    return this.ready();
+  }
+
+  return Notifications.find({
+    userId: this.userId,
+  });
+});

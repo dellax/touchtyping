@@ -7,6 +7,8 @@ import Message from '../components/Message.jsx';
 import { createGame, updateGame } from '../../api/games/methods.js';
 import { insertPlayer } from '../../api/players/methods.js';
 
+import { insertNotification } from '../../api/notifications/methods.js';
+
 // TODO zmazat po vylepseni
 import Statistics from '../components/TouchType/Statistics.jsx';
 
@@ -65,12 +67,29 @@ export default class GamesPage extends React.Component {
       router.push(`/hra/zavody/id/${gameId}`);
     }
   }
+
+  handleAddNotification() {
+    const notification = {
+      userId: 'j4nJaac7dSQsPuqe3',
+      name: 'Novy model',
+      text: 'ziskal si novy model, gratulujeme'
+    }
+    const notificationId = insertNotification.call(notification, (err) => {
+      if (err) {
+        console.log(err);
+        router.push('/');
+        /* eslint-disable no-alert */
+        alert('Could not create player.');
+      }
+    });
+  }
   
   render() {
     
     return (
       <div className="games-container">
         <span onClick={this.handleClickRacingGame}>Pripojit sa ku hre</span>
+        <span onClick={this.handleAddNotification.bind(this)}>ddd</span>
       </div>
     );
   }

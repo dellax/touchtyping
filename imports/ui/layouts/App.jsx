@@ -75,8 +75,8 @@ export default class App extends React.Component {
       loading,
       children,
       location,
+      notifications,
     } = this.props;
-
     // clone route components with keys so that they can
     // have transitions
     const clonedChildren = children && React.cloneElement(children, {
@@ -120,7 +120,7 @@ export default class App extends React.Component {
               </li>
             </ul>
 
-            <UserMenu user={user} logout={this.logout}/>
+            <UserMenu user={user} logout={this.logout} notifications={notifications} />
           </div>
 
           <div id="wrapper-content">
