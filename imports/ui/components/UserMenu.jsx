@@ -22,9 +22,12 @@ export default class UserMenu extends React.Component {
 
   renderLoggedIn() {
     const { open } = this.state;
-    const { user, logout, notifications } = this.props;
+    const { user, logout, newNotificationsCount, notifications } = this.props;
     const email = user.emails[0].address;
     const emailLocalPart = email.substring(0, email.indexOf('@'));
+
+    let notReadNotifications = null;
+    if (newNotificationsCount > 0) notReadNotifications = newNotificationsCount;
 
     return (
       <div className="profile-menu">
@@ -34,8 +37,8 @@ export default class UserMenu extends React.Component {
           </li>
           <li>
             <a href="#1">
-              <span className="icon fa fa-envelope-o scnd-font-color"></span>
-              <span className="notifications-number">7</span>
+              <span className="icon fa fa-envelope-o scnd-font-color">{notReadNotifications}</span>
+              <span className="notifications-number"></span>
             </a>
             <Notifications notifications={notifications} />
           </li>
@@ -54,9 +57,12 @@ export default class UserMenu extends React.Component {
 
   renderLoggedInAdmin() {
     const { open } = this.state;
-    const { user, logout, notifications } = this.props;
+    const { user, logout, newNotificationsCount, notifications } = this.props;
     const email = user.emails[0].address;
     const emailLocalPart = email.substring(0, email.indexOf('@'));
+
+    let notReadNotifications = null;
+    if (newNotificationsCount > 0) notReadNotifications = newNotificationsCount;
 
     return (
       <div className="profile-menu">
@@ -67,7 +73,7 @@ export default class UserMenu extends React.Component {
           <li>
             <a href="#1">
               <span className="icon fa fa-envelope-o scnd-font-color"></span>
-              <span className="notifications-number">7</span>
+              <span className="notifications-number">{notReadNotifications}</span>
             </a>
             <Notifications notifications={notifications} />
           </li>

@@ -24,7 +24,10 @@ export default createContainer(() => {
       && statisticsHandle.ready()
       && notificationsPrivateHandle.ready()),
     connected: Meteor.status().connected,
+    newNotificationsCount: Notifications.find(
+      { userId: Meteor.userId(), read: false }).count(),
     notifications: Notifications.find(
-      { userId: Meteor.userId() }).fetch()
+      { userId: Meteor.userId() },
+      { sort: { createdAt: -1}, limit: 5 }).fetch()
   };
 }, App);

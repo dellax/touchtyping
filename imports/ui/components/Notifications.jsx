@@ -2,36 +2,48 @@ import React from 'react';
 import { Link } from 'react-router';
 import 'moment/locale/sk';
 import moment from 'moment';
+import { checkRead } from '../../api/notifications/methods.js';
 
 
 moment.locale('sk');
 
-export default class Notifications extends React.Component {
-  // TODO add moment js
-  
+export default class Notifications extends React.Component {  
   constructor(props) {
     super(props);
   }
 
+  checkReadNotification(notificationId) {
+  	checkRead.call({notificationId}, (err) => {
+      if (err) {
+        /* eslint-disable no-alert */
+        alert('Could not mark as read.');
+      }
+    });
+  }
+
+  checkReadForAllNotifications() {
+  	// TODO
+  }
+
   render() {
   	const notifications = this.props.notifications;
-  	console.log(notifications);
+  	
   	return (
 	  	<ul className="notifications-list">
 	      <li className="notifications-header">Notifikácie</li>
 	      {notifications.map((notification) => {
 	      	const time = moment(notification.createdAt).fromNow();
 	      	return (
-	      		<li className="notifications-item">
+	      		<li className="notifications-item" onClick={this.checkReadNotification.bind(this, notification._id)}>
 		      		<div className="notifications-name">{notification.name}</div>
 			        <div className="notifications-text">{notification.text}</div>
 			        <div className="notifications-time">{time}</div>
-			        <div className="notification-circle">{!notification.read ? 'Nová' : null}</div>
+			      	{!notification.read ?  <div className="notification-circle">Nová</div> : null}
 		        </li>
 	      	)
 	      })}
 
-	      <li className="notifications-footer">Všetky videné</li>
+	      <li className="notifications-footer" onClick={this.checkReadForAllNotifications.bind(this)}>Všetky videné</li>
 	    </ul>
 	  )
   }

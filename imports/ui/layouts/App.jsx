@@ -75,6 +75,7 @@ export default class App extends React.Component {
       loading,
       children,
       location,
+      newNotificationsCount,
       notifications,
     } = this.props;
     // clone route components with keys so that they can
@@ -120,7 +121,12 @@ export default class App extends React.Component {
               </li>
             </ul>
 
-            <UserMenu user={user} logout={this.logout} notifications={notifications} />
+            <UserMenu 
+              user={user} 
+              logout={this.logout} 
+              newNotificationsCount={newNotificationsCount}
+              notifications={notifications} 
+            />
           </div>
 
           <div id="wrapper-content">
