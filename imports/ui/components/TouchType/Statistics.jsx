@@ -33,6 +33,9 @@ export default class Statistics extends React.Component {
         <div className="chart-words">
           <ChartWords stats={this.stats} />
         </div>
+        <div className="circle-bar-wpm">
+          <WpmCircleBar wpm={currentWpm} />
+        </div>
         <div className="circle-bar-accuracy">
           <AccuracyCircleBar completed={accuracy} />
         </div>
@@ -211,6 +214,56 @@ class AccuracyCircleBar extends React.Component {
         <h3>Presnosť</h3>
         <div className="circle-accuracy">
           <div ref="accuracyBar"></div>
+        </div>
+      </div>
+    )
+  }
+}
+
+class WpmCircleBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.wpm = props.wpm;
+  }
+
+  componentDidMount() {
+    let wpmBar = ReactDOM.findDOMNode(this.refs.wpmBar);
+    let circleWpmBar = new ProgressBar.Circle(wpmBar, {
+      color: '#aaa',
+      // This has to be the same size as the maximum width to
+      // prevent clipping
+      strokeWidth: 5,
+      trailWidth: 2,
+      easing: 'easeInOut',
+      duration: 1400,
+      text: {
+        autoStyleContainer: false
+      },
+      from: { color: '#FF0000', width: 1 },
+      to: { color: '#15ff00', width: 4 },
+      // Set default step function for all animate calls
+      step: function(state, circle) {
+        circle.path.setAttribute('stroke', state.color);
+        circle.path.setAttribute('stroke-width', state.width);
+
+        var value = Math.round(circle.value() * 140);
+        if (value === 0) {
+          circle.setText('');
+        } else {
+          circle.setText(value);
+        }
+
+      }
+    });
+    circleWpmBar.animate(this.wpm/140);
+  }
+
+  render() {
+    return (
+      <div> 
+        <h3>WPM</h3>
+        <div className="circle-accuracy">
+          <div ref="wpmBar"></div>
         </div>
       </div>
     )

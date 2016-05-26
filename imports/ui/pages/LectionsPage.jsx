@@ -78,8 +78,8 @@ export default class LectionsPage extends React.Component {
         </div>
         
         <div className="lection-content">
-          {/*<Statistics stats={testStats} /> */}
-          {clonedChildren}
+          <Statistics stats={testStats} /> 
+          {/*{clonedChildren} */}
         </div>
       </div>
     );
