@@ -1,8 +1,11 @@
 import React from 'react';
 import Chart from 'chart.js';
 import ReactDOM from 'react-dom';
+import 'moment/locale/sk';
+import moment from 'moment';
 var ProgressBar = require('progressbar.js');
 
+moment.locale('sk');
 
 export default class Statistics extends React.Component {
 	constructor(props) {
@@ -12,7 +15,7 @@ export default class Statistics extends React.Component {
 	}
 
 	render() {
-    let {
+    const {
       secondsElapsed,
       lettersTyped,
       wordsTyped,
@@ -20,14 +23,43 @@ export default class Statistics extends React.Component {
       incorrectLetters,
       averageWpm,
       highestWpm,
-      wpmList
+      wpmList,
+      createdAt
     } = this.props.stats;
+    const exercise = this.props.exercise;
     const accuracy = ((wordsTyped - incorrectWords.length) / wordsTyped);
+    const date = moment(createdAt).format('llll');
     
 		return (
       <div className="tt-statistics">
         <div className="info">
           <h2>Štatistiky</h2>
+          <table>
+            <tbody>
+              <tr>
+                <td>Názov cvičenia:</td>
+                <td>{exercise.name}</td>
+              </tr>
+              <tr>
+                <td>Dátum a čas:</td>
+                <td>{date}</td>
+              </tr>
+              <tr>
+                <td>Body za cvičenie:</td>
+                <td>{exercise.points}</td>
+              </tr>
+              <tr>
+                <td>Najlepšie WPM:</td>
+                <td>{highestWpm}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div className="incorrect-words">
+            <h3>Nesprávne slová: </h3>
+            {incorrectWords.map((word) => {
+              return <span className="incorrect-word">{word}</span>
+            })}
+          </div>
         </div>
         <div className="chart-wpm">
   			 <ChartWpm stats={this.stats} />

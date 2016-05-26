@@ -259,7 +259,7 @@ export default class TouchType extends React.Component {
 			return this.renderTypingApp();
 		} else {
 			
-			return <Statistics stats={this.stats} />
+			//return <Statistics stats={this.stats} />
 		}
 	}
 }
