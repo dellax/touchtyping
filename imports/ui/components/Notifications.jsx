@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import 'moment/locale/sk';
 import moment from 'moment';
-import { checkRead } from '../../api/notifications/methods.js';
+import { checkRead, checkAllRead } from '../../api/notifications/methods.js';
 
 
 moment.locale('sk');
@@ -22,7 +22,12 @@ export default class Notifications extends React.Component {
   }
 
   checkReadForAllNotifications() {
-  	// TODO
+  	checkAllRead.call({}, (err) => {
+  		if (err) {
+  			/* eslint-disable no-alert */
+        alert('Could not mark as read.');
+  		}
+  	});
   }
 
   render() {

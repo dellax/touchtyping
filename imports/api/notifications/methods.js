@@ -46,6 +46,25 @@ export const checkRead = new ValidatedMethod({
   },
 });
 
+export const checkAllRead = new ValidatedMethod({
+  name: 'notifications.checkAllRead',
+  validate: new SimpleSchema({
+    
+  }).validator(),
+  run({}) {
+    const notifications = Notifications.find({userId: Meteor.userId()}).fetch();
+
+    notifications.forEach((notification) => {
+      Notifications.update(notification._id, {
+        $set: { 
+          read: true,
+        },
+      });
+    });
+    
+  },
+});
+
 
 
 // Get list of all method names on notifications
