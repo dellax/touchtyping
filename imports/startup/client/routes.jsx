@@ -7,6 +7,7 @@ import { Roles } from 'meteor/alanning:roles';
 import AppContainer from '../../ui/containers/AppContainer.jsx';
 import LectionsContainer from '../../ui/containers/LectionsContainer.jsx';
 import LectionContainer from '../../ui/containers/LectionContainer.jsx';
+import StatisticsContainer from '../../ui/containers/StatisticsContainer.jsx';
 import AuthPageSignIn from '../../ui/pages/AuthPageSignIn.jsx';
 import AuthPageJoin from '../../ui/pages/AuthPageJoin.jsx';
 import NotFoundPage from '../../ui/pages/NotFoundPage.jsx';
@@ -33,6 +34,7 @@ export const renderRoutes = () => (
     <Route path="/" component={AppContainer}>
       <Route path="lekcie" component={LectionsContainer}>
         <Route path="cvicenie/id/:id" component={LectionContainer}/>
+        <Route path="statistiky/id/:id" component={StatisticsContainer}/>
       </Route>
       <Route path="hry" component={GamesContainer}/>
       <Route path="hra">

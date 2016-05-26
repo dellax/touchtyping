@@ -14,13 +14,15 @@ export default class LectionPage extends React.Component {
 
   render() {
     const exercise = this.props.exercise;
-    
+    const { router } = this.context;
     return (
       <div>
-        <TouchTypeLearning text={exercise.text} exercise={exercise} />
+        <TouchTypeLearning text={exercise.text} exercise={exercise} router={router} />
       </div>
     );
   }
 }
 
-
+LectionPage.contextTypes = {
+  router: React.PropTypes.object,
+};

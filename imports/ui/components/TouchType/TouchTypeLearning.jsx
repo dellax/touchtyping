@@ -160,6 +160,7 @@ export default class TouchType extends React.Component {
 	}
 
 	saveStatisticsToDB() {
+		const router = this.props.router;
 		const exercise = this.props.exercise;
 		const stats = Object.assign({}, this.stats);
 		stats.exerciseId = exercise._id;
@@ -167,13 +168,14 @@ export default class TouchType extends React.Component {
 		delete stats.currentWpm;
 
 		// TODO  chech if user is logged in, and show notificatin about that
-		insertStatistic.call(stats, (err) => {
+		const statisticsId = insertStatistic.call(stats, (err) => {
       if (err) {
         console.log(err);
       
         /* eslint-disable no-alert */
       }
     });
+    router.push(`/lekcie/statistiky/id/${ statisticsId }`);
 	}
 
 	tick() {

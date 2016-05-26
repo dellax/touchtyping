@@ -40,6 +40,7 @@ export default class LectionsPage extends React.Component {
       wpmList: [0, 100, 110, 105, 80, 90, 100, 110, 105, 80, 90, 100, 110, 105, 80, 90]
     }
 
+    const router = this.context.router;
     const children = this.props.children;
     const data = this.props.lectionsWithExercises;
 
@@ -78,8 +79,7 @@ export default class LectionsPage extends React.Component {
         </div>
         
         <div className="lection-content">
-          <Statistics stats={testStats} /> 
-          {/*{clonedChildren} */}
+          {clonedChildren}
         </div>
       </div>
     );
@@ -91,4 +91,8 @@ LectionsPage.propTypes = {
   todos: React.PropTypes.array,
   loading: React.PropTypes.bool,
   listExists: React.PropTypes.bool,
+};
+
+LectionsPage.contextTypes = {
+  router: React.PropTypes.object,
 };

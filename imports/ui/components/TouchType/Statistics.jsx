@@ -8,6 +8,7 @@ export default class Statistics extends React.Component {
 	constructor(props) {
 		super(props);
 		this.stats = props.stats;
+    // todo add date 
 	}
 
 	render() {
@@ -17,11 +18,12 @@ export default class Statistics extends React.Component {
       wordsTyped,
       incorrectWords,
       incorrectLetters,
-      currentWpm,
+      averageWpm,
       highestWpm,
       wpmList
     } = this.props.stats;
     const accuracy = ((wordsTyped - incorrectWords.length) / wordsTyped);
+    
 		return (
       <div className="tt-statistics">
         <div className="info">
@@ -34,7 +36,7 @@ export default class Statistics extends React.Component {
           <ChartWords stats={this.stats} />
         </div>
         <div className="circle-bar-wpm">
-          <WpmCircleBar wpm={currentWpm} />
+          <WpmCircleBar wpm={averageWpm} />
         </div>
         <div className="circle-bar-accuracy">
           <AccuracyCircleBar completed={accuracy} />
