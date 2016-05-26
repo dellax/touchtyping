@@ -166,7 +166,7 @@ export default class TouchType extends React.Component {
 		stats.exerciseId = exercise._id;
 		stats.averageWpm = this.stats.currentWpm;
 		delete stats.currentWpm;
-
+		
 		// TODO  chech if user is logged in, and show notificatin about that
 		const statisticsId = insertStatistic.call(stats, (err) => {
       if (err) {
@@ -259,7 +259,7 @@ export default class TouchType extends React.Component {
 			return this.renderTypingApp();
 		} else {
 			
-			//return <Statistics stats={this.stats} />
+			return <Statistics stats={this.stats} />
 		}
 	}
 }
