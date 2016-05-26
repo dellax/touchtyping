@@ -33,7 +33,8 @@ Statistics.schema = new SimpleSchema({
   userId: {
     type: String,
     regEx: SimpleSchema.RegEx.Id,
-    denyUpdate: true
+    denyUpdate: true,
+    optional: true
   },
   exerciseId: {
     type: String,

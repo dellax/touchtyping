@@ -30,7 +30,7 @@ export const insertStatistic = new ValidatedMethod({
     incorrectWords,
     incorrectLetters }) {
 
-    if (!this.userId) return;
+    //if (!this.userId) return;
      
     const statistic = {
       userId: this.userId,
