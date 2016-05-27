@@ -5,8 +5,8 @@
 
   .notifications-item {
     width: @notifications-width;
-    height: 60px;
-    line-height: 60px;
+    min-height: 60px;
+    
     display: table;
     margin: 0;
     padding: 0;
@@ -41,6 +41,13 @@
   .notifications-footer:hover {
     background-color: @header-bg;
   }
+  .notifications-content {
+    width: 320px;
+    margin-left: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    line-height: 13px;
+  }
 
   .notifications-name, .notifications-text, .notifications-time {
     display: inline;
@@ -53,32 +60,26 @@
   }
 
   .notifications-name {
-    position: absolute;
-    top: 5px;
-    left: 20px;
+    
     font-weight: bolder;
   }
 
   .notifications-text {
-    position: absolute;
-    top: 20px;
-    left: 20px;
+    font-size: 12px;
+    line-height: 11px;
   }
 
   .notifications-time {
-    position: absolute;
-    top: 36px;
-    left: 20px;
-    font-size: 12px;
+    display: block;
+    margin-top: 2px;
+    font-size: 11px;
   }
 
   .notification-circle {
-    position: absolute;
-    top: 20px;
-    left: 300px;
-    font-size: 12px;
-    line-height: 13px;
+    font-size: 10px;
+    line-height: 10px;
     background-color: red;
-    padding: 2px 4px 2px 4px;
+    padding: 1px 4px 1px 4px;
+    margin-right: 5px;
   }
 }
