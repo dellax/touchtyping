@@ -22,7 +22,7 @@ import AdminLectionsContainer from '../../ui/containers/AdminLectionsContainer.j
 import AdminLectionPage from '../../ui/pages/AdminLectionPage.jsx';
 import AdminModelsContainer from '../../ui/containers/AdminModelsContainer.jsx';
 import AdminModelsPage from '../../ui/pages/AdminModelsPage.jsx';
-import AdminTextsPage from '../../ui/pages/AdminTextsPage.jsx';
+import AdminTextsContainer from '../../ui/containers/AdminTextsContainer.jsx';
 
 // settings components
 import SettingsContainer from '../../ui/containers/SettingsContainer.jsx';
@@ -50,7 +50,7 @@ export const renderRoutes = () => (
       <Route path="administracia" component={AdminContainer} onEnter={requireAdminAccess}>
         <Route path="lekcie" component={AdminLectionsContainer}/>
         <Route path="lekcie/upravit/:id" component={AdminLectionContainer}/>
-        <Route path="texty-k-hram" component={AdminTextsPage}/>
+        <Route path="texty-k-hram" component={AdminTextsContainer}/>
         <Route path="modely-aut" component={AdminModelsContainer}/>
       </Route>
       <Route path="nastavenia/:id" component={SettingsContainer} onEnter={canEditSettings}>

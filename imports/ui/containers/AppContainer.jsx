@@ -7,6 +7,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 import App from '../layouts/App.jsx';
 
 export default createContainer(() => {
+  const textsHandle = Meteor.subscribe('texts.all');
   const notificationsPrivateHandle = Meteor.subscribe('notifications.private');
   const statisticsHandle = Meteor.subscribe('statistics.all');
 	const usersHandle = Meteor.subscribe('users.data');
@@ -22,7 +23,8 @@ export default createContainer(() => {
       && exercisesHandle.ready() 
       && usersHandle.ready() 
       && statisticsHandle.ready()
-      && notificationsPrivateHandle.ready()),
+      && notificationsPrivateHandle.ready()
+      && textsHandle.ready()),
     connected: Meteor.status().connected,
     newNotificationsCount: Notifications.find(
       { userId: Meteor.userId(), read: false }).count(),

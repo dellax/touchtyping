@@ -9,14 +9,13 @@ import { Texts } from './texts.js';
 export const insertText = new ValidatedMethod({
   name: 'texts.insertText',
   validate: new SimpleSchema({
-    name: { type: String },
-    text: { type: String }
+    
   }).validator(),
-  run({ name, text }) {
+  run({  }) {
 
     const textEntry = {
-      name,
-      text,
+      name: 'Novy text',
+      text: 'Tu pridaj text',
       createdAt: new Date()
     };
 
