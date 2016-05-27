@@ -27,19 +27,6 @@ export default class LectionsPage extends React.Component {
       title: 'accordion-title'
     }
 
-    let testText = `What suffering will have to be endured before the workers realize that? It was from a man in Arizona. What suffering will have to be endured.`.replace(/(\n)+/g, '');
-
-    let testStats = {
-      secondsElapsed: 50,
-      lettersTyped: 150,
-      wordsTyped: 30,
-      incorrectWords: ['test', 'amater', 'touch', 'typer'],
-      incorrectLetters: ['a', 'b', 'c'],
-      currentWpm: 80,
-      highestWpm: 120,
-      wpmList: [0, 100, 110, 105, 80, 90, 100, 110, 105, 80, 90, 100, 110, 105, 80, 90]
-    }
-
     const router = this.context.router;
     const children = this.props.children;
     const data = this.props.lectionsWithExercises;
