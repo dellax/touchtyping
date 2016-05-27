@@ -7,6 +7,8 @@ import moment from 'moment';
 
 import { Games } from './games.js';
 import { Players } from '../players/players.js';
+import { Texts } from '../texts/texts.js';
+
 
 export const createGame = new ValidatedMethod({
   name: 'games.createGame',
@@ -14,10 +16,11 @@ export const createGame = new ValidatedMethod({
     type: { type: String }
   }).validator(),
   run({ type }) {
+    const text = _.sample(Texts.find().fetch());
 
     const game = {
       type,
-      text: 'Cvicny text je cvicny text',
+      text: text.text,
       timer: 10,
       hasStarted: false,
       isFull: false,
