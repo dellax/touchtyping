@@ -26,7 +26,6 @@ const HomePage = ({ content, link }) => (
         <li className="mailbox"><p className="icon"><span className="fa fa-envelope"></span></p><p className="number">1238</p></li>
       </ul>
       <div className="blank block">
-        
       </div>
   	</div>
   </div>

@@ -13,6 +13,7 @@ import AuthPageJoin from '../../ui/pages/AuthPageJoin.jsx';
 import NotFoundPage from '../../ui/pages/NotFoundPage.jsx';
 import NotEnoughRightsPage from '../../ui/pages/NotEnoughRightsPage.jsx';
 import HomePage from '../../ui/pages/HomePage.jsx';
+import RankingsPage from '../../ui/pages/RankingsPage.jsx';
 
 // admin components
 import AdminContainer from '../../ui/containers/AdminContainer.jsx';
@@ -42,7 +43,7 @@ export const renderRoutes = () => (
       <Route path="hra">
         <Route path="zavody/id/:id" component={GameRacingContainer}/>
       </Route>
-      <Route path="rebricky" component={NotFoundPage}/>
+      <Route path="rebricky" component={RankingsPage}/>
       <Route path="prihlasenie" component={AuthPageSignIn}/>
       <Route path="registracia" component={AuthPageJoin}/>
       <Route path="administracia" component={AdminContainer} onEnter={requireAdminAccess}>
