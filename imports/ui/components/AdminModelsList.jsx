@@ -11,7 +11,6 @@ import {
 export default class AdminModelsList extends React.Component {
   constructor(props) {
     super(props);
-    
     this.state = {
       arr: props.models,
       formModelData: {
@@ -21,7 +20,6 @@ export default class AdminModelsList extends React.Component {
         points: 0
       }
     };
-    this._sortableKey = 0;
   }
 
   componentWillReceiveProps(props) {
@@ -37,7 +35,6 @@ export default class AdminModelsList extends React.Component {
     this.clickedModelIndex = index;
     let clickedModelData = {...data[index]};
     this.setState({formModelData: clickedModelData});
-    
     this.showModal();
   }
 
@@ -46,7 +43,6 @@ export default class AdminModelsList extends React.Component {
     const modelId = models[index]._id;
     removeModel.call({modelId}, (err) => {
       if (err) {
-        console.log(err);
         /* eslint-disable no-alert */
         alert('Could not remove model.');
       }
@@ -77,6 +73,7 @@ export default class AdminModelsList extends React.Component {
     const name = model.name;
     const image = this.state.formModelData.image;
     const points = parseInt(model.points);
+
     updateModel.call({modelId, name, image, points}, (err) => {
       if (err) {
         /* eslint-disable no-alert */
@@ -93,7 +90,6 @@ export default class AdminModelsList extends React.Component {
 
     reader.onload = ((upload) => {
       this.state.formModelData.image = upload.target.result;
-      console.log(this.state);
     });
 
     reader.readAsDataURL(file);
@@ -103,7 +99,7 @@ export default class AdminModelsList extends React.Component {
     
     function renderItem(data, index) {
       return (
-        <div className="model">
+        <div key={data._id} className="model">
           <img width="88" height="47" src={data.image} alt="model"/>
           <span className="name">Názov modelu: {data.name}</span>
           <span className="points">Potrebné body: {data.points}</span>

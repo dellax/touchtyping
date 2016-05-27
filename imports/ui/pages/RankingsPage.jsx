@@ -5,12 +5,10 @@ import Message from '../components/Message.jsx';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
 
-
 export default class RankingsPages extends React.Component {
   constructor(props) {
     super(props);
   }
-
 
   render() {
     const rankings = this.props.rankings;
@@ -41,7 +39,7 @@ export default class RankingsPages extends React.Component {
                 if (user._id === currentUser._id) selected = true;
 
                 return (
-                  <TableRow selected={selected}>
+                  <TableRow key={user._id} selected={selected}>
                     <TableRowColumn>{rank}</TableRowColumn>
                     <TableRowColumn>{user.username}</TableRowColumn>
                     <TableRowColumn>{user.points}</TableRowColumn>

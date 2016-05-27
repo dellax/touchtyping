@@ -75,7 +75,6 @@ function canEditSettings(nextState, replace) {
 }
 
 function requireAdminAccess(nextState, replace) {
-  console.log(nextState);
   const userId = Meteor.userId();
   if (!Roles.userIsInRole(userId, ['admin'])) {
     replace({

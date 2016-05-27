@@ -11,7 +11,6 @@ export default class LectionPage extends React.Component {
     super(props);
   }
 
-
   render() {
     const exercise = this.props.exercise;
     const { router } = this.context;

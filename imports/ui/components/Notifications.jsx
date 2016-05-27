@@ -39,7 +39,11 @@ export default class Notifications extends React.Component {
 	      {notifications.map((notification) => {
 	      	const time = moment(notification.createdAt).fromNow();
 	      	return (
-	      		<li className="notifications-item" onClick={this.checkReadNotification.bind(this, notification._id)}>
+	      		<li
+              key={notification._id}
+              className="notifications-item" 
+              onClick={this.checkReadNotification.bind(this, notification._id)}
+            >
               <div className="notifications-content">
   		      		{!notification.read ?  <span className="notification-circle">Nová</span> : null}<span className="notifications-name">{notification.name}</span><br/>
   			        <span className="notifications-text">{notification.text}</span><br/>
