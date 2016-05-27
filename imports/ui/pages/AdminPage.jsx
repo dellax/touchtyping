@@ -36,6 +36,12 @@ export default class AdminPage extends React.Component {
                 <Link to="/administracia/lekcie" className="menu-box-tab">
                 <span className="icon fa fa-book scnd-font-color"></span>
                   Lekcie
+                </Link>
+              </li>
+              <li>
+                <Link to="/administracia/texty-k-hram" className="menu-box-tab">
+                <span className="icon fa fa-file-text-o scnd-font-color"></span>
+                  Texty k hrám
                 </Link>                         
               </li>
               <li>

@@ -21,3 +21,6 @@ import '../../api/statistics/server/publications.js';
 
 import '../../api/notifications/methods.js';
 import '../../api/notifications/server/publications.js';
+
+import '../../api/texts/methods.js';
+import '../../api/texts/server/publications.js';

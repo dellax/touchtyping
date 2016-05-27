@@ -39,7 +39,7 @@ export default class RankingsPages extends React.Component {
                 rank++;
                 let selected = false;
                 if (user._id === currentUser._id) selected = true;
-                
+
                 return (
                   <TableRow selected={selected}>
                     <TableRowColumn>{rank}</TableRowColumn>
