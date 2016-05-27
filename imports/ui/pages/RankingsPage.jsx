@@ -13,7 +13,10 @@ export default class RankingsPages extends React.Component {
 
 
   render() {
-
+    const rankings = this.props.rankings;
+    const currentUser = this.props.user;
+    let rank = 0;
+    
     return (
       <div>
         <div className="content-default home-page">
@@ -32,46 +35,19 @@ export default class RankingsPages extends React.Component {
             <TableBody
               displayRowCheckbox={false}
             >
-              <TableRow>
-                <TableRowColumn>1</TableRowColumn>
-                <TableRowColumn>John Smith</TableRowColumn>
-                <TableRowColumn>Employed</TableRowColumn>
-              </TableRow>
-              <TableRow>
-                <TableRowColumn>2</TableRowColumn>
-                <TableRowColumn>Randal White</TableRowColumn>
-                <TableRowColumn>Unemployed</TableRowColumn>
-              </TableRow>
-              <TableRow>
-                <TableRowColumn>3</TableRowColumn>
-                <TableRowColumn>Stephanie Sanders</TableRowColumn>
-                <TableRowColumn>Employed</TableRowColumn>
-              </TableRow>
-              <TableRow>
-                <TableRowColumn>4</TableRowColumn>
-                <TableRowColumn>Steve Brown</TableRowColumn>
-                <TableRowColumn>Employed</TableRowColumn>
-              </TableRow>
-              <TableRow>
-                <TableRowColumn>4</TableRowColumn>
-                <TableRowColumn>Steve Brown</TableRowColumn>
-                <TableRowColumn>Employed</TableRowColumn>
-              </TableRow>
-              <TableRow>
-                <TableRowColumn>4</TableRowColumn>
-                <TableRowColumn>Steve Brown</TableRowColumn>
-                <TableRowColumn>Employed</TableRowColumn>
-              </TableRow>
-              <TableRow>
-                <TableRowColumn>4</TableRowColumn>
-                <TableRowColumn>Steve Brown</TableRowColumn>
-                <TableRowColumn>Employed</TableRowColumn>
-              </TableRow>
-              <TableRow>
-                <TableRowColumn>4</TableRowColumn>
-                <TableRowColumn>Steve Brown</TableRowColumn>
-                <TableRowColumn>Employed</TableRowColumn>
-              </TableRow>
+              {rankings.map((user) => {
+                rank++;
+                let selected = false;
+                if (user._id === currentUser._id) selected = true;
+                
+                return (
+                  <TableRow selected={selected}>
+                    <TableRowColumn>{rank}</TableRowColumn>
+                    <TableRowColumn>{user.username}</TableRowColumn>
+                    <TableRowColumn>{user.points}</TableRowColumn>
+                  </TableRow>
+                )
+              })}
             </TableBody>
           </Table>
         </div>
