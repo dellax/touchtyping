@@ -39,8 +39,10 @@ Games.schema = new SimpleSchema({
     type: Date,
     denyUpdate: true,
   },
-  text: {
+  textId: {
     type: String,
+    regEx: SimpleSchema.RegEx.Id,
+    denyUpdate: true,
   },
   timer: {
     type: Number

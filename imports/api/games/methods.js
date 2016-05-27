@@ -20,7 +20,7 @@ export const createGame = new ValidatedMethod({
 
     const game = {
       type,
-      text: text.text,
+      textId: text._id,
       timer: 10,
       hasStarted: false,
       isFull: false,

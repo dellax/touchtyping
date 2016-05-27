@@ -19,10 +19,10 @@ export default class GameRacingPage extends React.Component {
     this.handleClickReady = this.handleClickReady.bind(this);
     this.state = {timer: 10};
     this.started = false;
+    this.game = props.game;
   }
 
-  componentDidMount() {
-    this.game = this.props.game;
+  componentDidMount(props) {
     this.context.router.setRouteLeaveHook(this.props.route, this.routerWillLeave.bind(this));
   }
 
@@ -40,6 +40,7 @@ export default class GameRacingPage extends React.Component {
   }
 
   componentWillReceiveProps(props) {
+    this.game = props.game;
     const hasStarted = props.game.hasStarted;
     if (hasStarted && !this.started) {
       this.started = true;
@@ -74,9 +75,13 @@ export default class GameRacingPage extends React.Component {
   
   render() {
     const players = this.props.players;
-    const game = this.props.game;
     const countdown = this.state.timer;
-    
+    const game = this.props.game;
+    const text = this.props.text;
+    const id = this.props.id;
+
+    console.log(text);
+
     return (
       <div className="game-container">
         <div className="countdown">
@@ -87,7 +92,7 @@ export default class GameRacingPage extends React.Component {
             return <Player player={player} key={player._id}/>;
           })}
         </div>
-        <TouchTypeGaming text={game.text} countdown={countdown} />
+        <TouchTypeGaming key={text._id} text={text.text} countdown={countdown} />
         <div className="game-buttons">
           <FlatButton
             label="Som pripravený hrať"
