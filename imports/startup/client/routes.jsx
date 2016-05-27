@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { Roles } from 'meteor/alanning:roles';
 
 // route components
@@ -12,6 +12,7 @@ import AuthPageSignIn from '../../ui/pages/AuthPageSignIn.jsx';
 import AuthPageJoin from '../../ui/pages/AuthPageJoin.jsx';
 import NotFoundPage from '../../ui/pages/NotFoundPage.jsx';
 import NotEnoughRightsPage from '../../ui/pages/NotEnoughRightsPage.jsx';
+import HomePage from '../../ui/pages/HomePage.jsx';
 
 // admin components
 import AdminContainer from '../../ui/containers/AdminContainer.jsx';
@@ -32,6 +33,7 @@ import GameRacingContainer from '../../ui/containers/GameRacingContainer.jsx';
 export const renderRoutes = () => (
   <Router history={browserHistory}>
     <Route path="/" component={AppContainer}>
+      <IndexRoute component={HomePage} />
       <Route path="lekcie" component={LectionsContainer}>
         <Route path="cvicenie/id/:id" component={LectionContainer}/>
         <Route path="statistiky/id/:id" component={StatisticsContainer}/>

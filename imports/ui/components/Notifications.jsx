@@ -43,11 +43,8 @@ export default class Notifications extends React.Component {
               <div className="notifications-content">
   		      		{!notification.read ?  <span className="notification-circle">Nová</span> : null}<span className="notifications-name">{notification.name}</span><br/>
   			        <span className="notifications-text">{notification.text}</span><br/>
-                   
                 <span className="notifications-time"><span className="fa fa-clock-o"></span> {time}</span>
-                
 			        </div>
-			      	
 		        </li>
 	      	)
 	      })}
