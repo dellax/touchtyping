@@ -14,13 +14,13 @@ export const insertText = new ValidatedMethod({
   }).validator(),
   run({ name, text }) {
 
-    const text = {
+    const textEntry = {
       name,
       text,
       createdAt: new Date()
     };
 
-    return Texts.insert(text);
+    return Texts.insert(textEntry);
   },
 });
 
