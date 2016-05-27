@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { Games } from '../../api/games/games.js';
+import { Notifications } from '../../api/notifications/notifications.js';
 import moment from 'moment';
 
 Accounts.onCreateUser((options, user) => {
@@ -8,6 +9,13 @@ Accounts.onCreateUser((options, user) => {
   user.points = 0;
   if (options.defaultModel) user.defaultModel = options.defaultModel;
   if (options.points) user.points = options.points;
+  const notification = {
+    userId: user._id,
+    name: 'Ďakujeme za registráciu',
+    text: 'Teraz môžeš začať získavať body plnením lekcií, alebo hraním hier.',
+    read: false
+  }
+  Notifications.insert(notification);
   return user;
 });
 
