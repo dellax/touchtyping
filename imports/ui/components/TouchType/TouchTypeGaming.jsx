@@ -80,6 +80,7 @@ export default class TouchType extends React.Component {
 		if (input.endsWith(' ') && i < parts.length) {
 			let part = input.slice(0, -1);
 			const completed = 100 / parts.length * (this.index+1);
+
 			if (part === parts[i].text) {
 				parts[i].className = "correct";
 				
@@ -141,6 +142,7 @@ export default class TouchType extends React.Component {
 		const wpm = this.countWpm(incorrectWordsCount, correctWordsCount, this.secondsElapsed);
 		const playerId = Session.get('playerId');
 
+		completed = Math.ceil(completed);
 		updatePlayer.call({playerId, completed, wpm}, (err) => {
       if (err) {
         console.log(err);

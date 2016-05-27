@@ -3,6 +3,7 @@ import { Roles } from 'meteor/alanning:roles';
 import { Lections } from '../../api/lections/lections.js';
 import { Exercises } from '../../api/exercises/exercises.js';
 import { Models } from '../../api/models/models.js';
+import { Texts } from '../../api/texts/texts.js';
 import { def0, def1, def2, def3, dodge, jeep, lambo, police } from './car-models.js';
 
 // if the database is empty on server start, create some sample data.
@@ -112,6 +113,23 @@ Meteor.startup(() => {
         name: model.name,
         image: model.image,
         points: model.points,
+        createdAt: new Date(timestamp)
+      });
+
+      timestamp += 1;
+    });
+
+    const textsData = [
+      { name: 'Text 1', text: 'Contrary to the feminist cant, there are many things we can learn from men\'s perspective about life and personal identity. To refuse to learn anything that could prove beneficial to yourself is a working definition of stupid.' },
+      { name: 'Text 2', text: 'With forty-six Chinese, fourteen Japanese, eighteen Mesican, and only two Thai restaurants, Atlanta was a city still characterized by "all-American" food.' },
+      { name: 'Text 3', text: 'In the capital of the Sunbelt South, the quiet revolution of immigration and food continues to upset and redefine the meanings of local, regional, and global identity.' },
+      { name: 'Text 4', text: 'Typing competitions provided another test of the Qwerty keyboard. These competitions are somewhat underplayed in the conventional history. They involved many different machines, with various manufacturers claiming to hold the speed record.' },
+    ];
+
+    textsData.forEach((text) => {
+      Texts.insert({
+        name: text.name,
+        text: text.text,
         createdAt: new Date(timestamp)
       });
 
