@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import NotFoundPage from '../pages/NotFoundPage.jsx';
 import Message from '../components/Message.jsx';
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
 
 
@@ -16,19 +17,63 @@ export default class RankingsPages extends React.Component {
     return (
       <div>
         <div className="content-default home-page">
-          <h2>Vitajte na stránke strojopis online</h2>
-          <p>Táto stránka je zameraná na učenie strojopisu pre deti základných škôl.<br/>
-            Možnosti tejto stránky sú v skratke zhrnuté nižšie.
-          </p>
-          <ul>
-            <li>Autentifikácia používateľa</li>
-            <li>Režim učenia strojopisu</li>
-            <li>Zobrazovanie a ukladanie štatistík</li>
-            <li>Online hry pre viacerých hráčov</li>
-            <li>Rebríčky</li>
-            <li>Bodovací systém</li>
-            <li>Možnosť vybrať si jeden z modelov automobilov</li>
-          </ul>
+          <h2>Rebríčky najlepších</h2>
+          <Table>
+            <TableHeader
+              adjustForCheckbox={false}
+              displaySelectAll={false}
+            >
+              <TableRow>
+                <TableHeaderColumn>Umiestnenie</TableHeaderColumn>
+                <TableHeaderColumn>Meno</TableHeaderColumn>
+                <TableHeaderColumn>Body</TableHeaderColumn>
+              </TableRow>
+            </TableHeader>
+            <TableBody
+              displayRowCheckbox={false}
+            >
+              <TableRow>
+                <TableRowColumn>1</TableRowColumn>
+                <TableRowColumn>John Smith</TableRowColumn>
+                <TableRowColumn>Employed</TableRowColumn>
+              </TableRow>
+              <TableRow>
+                <TableRowColumn>2</TableRowColumn>
+                <TableRowColumn>Randal White</TableRowColumn>
+                <TableRowColumn>Unemployed</TableRowColumn>
+              </TableRow>
+              <TableRow>
+                <TableRowColumn>3</TableRowColumn>
+                <TableRowColumn>Stephanie Sanders</TableRowColumn>
+                <TableRowColumn>Employed</TableRowColumn>
+              </TableRow>
+              <TableRow>
+                <TableRowColumn>4</TableRowColumn>
+                <TableRowColumn>Steve Brown</TableRowColumn>
+                <TableRowColumn>Employed</TableRowColumn>
+              </TableRow>
+              <TableRow>
+                <TableRowColumn>4</TableRowColumn>
+                <TableRowColumn>Steve Brown</TableRowColumn>
+                <TableRowColumn>Employed</TableRowColumn>
+              </TableRow>
+              <TableRow>
+                <TableRowColumn>4</TableRowColumn>
+                <TableRowColumn>Steve Brown</TableRowColumn>
+                <TableRowColumn>Employed</TableRowColumn>
+              </TableRow>
+              <TableRow>
+                <TableRowColumn>4</TableRowColumn>
+                <TableRowColumn>Steve Brown</TableRowColumn>
+                <TableRowColumn>Employed</TableRowColumn>
+              </TableRow>
+              <TableRow>
+                <TableRowColumn>4</TableRowColumn>
+                <TableRowColumn>Steve Brown</TableRowColumn>
+                <TableRowColumn>Employed</TableRowColumn>
+              </TableRow>
+            </TableBody>
+          </Table>
         </div>
         <div className="right-container">
           <ul className="social horizontal-list block">
