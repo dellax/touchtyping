@@ -46,6 +46,9 @@ Players.schema = new SimpleSchema({
   skin: {
     type: String
   },
+  points: {
+    type: Number
+  },
   wpm: {
     type: Number
   },

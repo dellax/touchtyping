@@ -28,6 +28,7 @@ export const insertPlayer = new ValidatedMethod({
       gameId,
       name: user.username,
       skin,
+      points: user.pointsGames,
       wpm: 0,
       completed: 0,
       ready: false,

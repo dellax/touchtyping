@@ -53,50 +53,51 @@ function getElapsedTimeInSeconds(gameCreatedDate, playerFinishedDate) {
 
 function getPointsForPlayersToAdd(players, gameCreatedDate) {
   if (players.length === 0) return [];
-  
-  let averagePoints;
-  let sumPoints = 0;
-  let bestTime = getElapsedTimeInSeconds(gameCreatedDate, players[0].finishedDate);
 
-  if (bestTime === null) {
+  if (players[0].finishedDate === null) {
     // if noone finished game
     const res = players.map((player) => {
       return {_id: player.userId, pointsToAdd: -30};
     });
     return res;
   }
-
+  
+  let averagePoints;
+  let sumPoints = 0;
+  let bestTime = getElapsedTimeInSeconds(gameCreatedDate, players[0].finishedDate);
+  
   players.forEach((player) => {
-    sumPoints += player.pointsGames;
+    sumPoints += player.points;
   });
 
   averagePoints = Math.round(sumPoints / players.length);
 
   let bonus = 30;
-
   const res = players.map((player) => {
     if (player.finishedDate === null) return {_id: player.userId, pointsToAdd: -30};
 
     let pointsToAdd = 0;  
     const playerTime = getElapsedTimeInSeconds(gameCreatedDate, player.finishedDate);
-
-    if (bonus >= 0) { 
-      pointsToAdd = averagePoints+bonus - player.pointsGames;
+    ;
+    pointsToAdd = averagePoints+bonus - player.points;
+    if (bonus >= 10) { 
       bonus -= 10;
     }
+
     if (pointsToAdd < 0) {
       pointsToAdd = Math.round(pointsToAdd * (1 - bestTime / playerTime));
     } else {
       pointsToAdd = Math.round(pointsToAdd * (bestTime / playerTime));
     }
+
     return { _id: player.userId, pointsToAdd };
   });
-
+  
   return res;
 }
 
 Meteor.startup(() => {
-  const gameAge = 5; // set gameAge in minutes, after which game will be checked
+  const gameAge = 2; // set gameAge in minutes, after which game will be checked
   const checkInterval = 1000;
   Meteor.setInterval(() => {
     const now = moment().subtract(gameAge, 'minutes').toDate();
@@ -109,9 +110,10 @@ Meteor.startup(() => {
     games.forEach((game) => {
       const players = game.playersByTime().fetch();
       const pointsToAdd = getPointsForPlayersToAdd(players, game.createdAt);
-
+      //return;
       pointsToAdd.forEach((user) => {
         // add points for user and notify
+        
         Meteor.users.update(user._id, {
           $inc: { pointsGames: user.pointsToAdd }
         });
@@ -122,7 +124,7 @@ Meteor.startup(() => {
           notification = {
             userId: user._id,
             name: 'Získal si nové body',
-            text: `Za odohranú hru si získal ${user.pointsToAdd} bodov.`,
+            text: `Za odohranú hru si získal ${user.pointsToAdd} bodov. Gratulujeme.`,
             read: false
           }
         } else {
