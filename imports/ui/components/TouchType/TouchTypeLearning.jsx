@@ -4,7 +4,7 @@ import ProgressBar from './ProgressBar';
 import KeySuggestion from './KeySuggestion';
 import Statistics from './Statistics';
 import { insertStatistic } from '../../../api/statistics/methods.js';
-import { addPoints } from '../../../api/users/methods.js';
+import { addPointsLections } from '../../../api/users/methods.js';
 
 export default class TouchType extends React.Component {
 	constructor(props) {
@@ -177,8 +177,8 @@ export default class TouchType extends React.Component {
       }
     });
 
-    const points = exercise.points;
-    addPoints.call({ points }, (err) => {
+    const pointsLections = exercise.points;
+    addPointsLections.call({ pointsLections }, (err) => {
     	if (err) {
     		console.log(err);
     	}

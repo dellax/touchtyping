@@ -6,9 +6,12 @@ import moment from 'moment';
 
 Accounts.onCreateUser((options, user) => {
   user.defaultModel = null;
-  user.points = 0;
+  user.pointsLections = 0;
+  user.pointsGames = 1000;
+  user.pointsLastGame = 0;
   if (options.defaultModel) user.defaultModel = options.defaultModel;
-  if (options.points) user.points = options.points;
+  if (options.pointsLections) user.pointsLections = options.pointsLections;
+  if (options.pointsGames) user.pointsGames = options.pointsGames;
   const notification = {
     userId: user._id,
     name: 'Ďakujeme za registráciu',

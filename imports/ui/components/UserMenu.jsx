@@ -29,11 +29,23 @@ export default class UserMenu extends React.Component {
     let notReadNotifications = null;
     if (newNotificationsCount > 0) notReadNotifications = newNotificationsCount;
 
+    let pointsIcon;
+    if (user.pointsLastGame > 0) {
+      pointsIcon = <span className="fa fa-caret-up" style={{color: '#59F525'}}></span>;
+    } else if (user.pointsLastGame < 0) {
+      pointsIcon = <span className="fa fa-caret-down" style={{color: '#F55925'}}></span>;
+    } else {
+      pointsIcon = <span className="fa fa-minus" style={{color: '#25C1F5'}}></span>;
+    }
+
     return (
       <div className="profile-menu">
         <ul>
           <li>
-            <a href="#26">{user.points} <span className="fa fa-bolt scnd-font-color"></span></a>
+            <a href="#26">{user.pointsLections} <span className="fa fa-bolt scnd-font-color"></span></a>
+          </li>
+          <li>
+            <a href="#26">{user.pointsGames} {pointsIcon}<span className="fa fa-caret-down scnd-font-color"></span></a>
           </li>
           <li>
             <a href="#">
@@ -64,11 +76,23 @@ export default class UserMenu extends React.Component {
     let notReadNotifications = null;
     if (newNotificationsCount > 0) notReadNotifications = newNotificationsCount;
 
+    let pointsIcon;
+    if (user.pointsLastGame > 0) {
+      pointsIcon = <span className="fa fa-caret-up" style={{color: '#59F525'}}></span>;
+    } else if (user.pointsLastGame < 0) {
+      pointsIcon = <span className="fa fa-caret-down" style={{color: '#F55925'}}></span>;
+    } else {
+      pointsIcon = <span className="fa fa-minus" style={{color: '#25C1F5'}}></span>;
+    }
+
     return (
       <div className="profile-menu">
         <ul>
           <li>
-            <a href="#26">{user.points} <span className="fa fa-bolt scnd-font-color"></span></a>
+            <a href="#">{user.pointsLections} <span className="fa fa-bolt scnd-font-color"></span></a>
+          </li>
+          <li>
+            <a href="#">{user.pointsGames} {pointsIcon}</a>
           </li>
           <li>
             <a href="#">

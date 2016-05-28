@@ -11,10 +11,10 @@ import { def0, def1, def2, def3, dodge, jeep, lambo, police } from './car-models
 Meteor.startup(() => {
   if (Lections.find().count() === 0) {
     var users = [
-      {username: "tony123", name: "Normal", points: 0, email: "normal@example.com", roles: []},
-      {username: "test123", name: "Viewer", points: 400, email: "test@example.com", roles: []},
-      {username: "herrison", name: "Manageer", points: 666, email: "manage@example.com", roles: []},
-      {username: "admin", name: "Admin", points: 2000, email: "admin@example.com", roles: ['admin']}
+      {username: "tony123", name: "Normal", pointsLections: 0, pointsGames: 1000, email: "normal@example.com", roles: []},
+      {username: "test123", name: "Viewer", pointsLections: 400, pointsGames: 1000, email: "test@example.com", roles: []},
+      {username: "herrison", name: "Manageer", pointsLections: 666, pointsGames: 1000, email: "manage@example.com", roles: []},
+      {username: "admin", name: "Admin", pointsLections: 2000, pointsGames: 3321, email: "admin@example.com", roles: ['admin']}
     ];
 
     users.forEach((user) => {
@@ -23,7 +23,8 @@ Meteor.startup(() => {
       id = Accounts.createUser({
         email: user.email,
         username: user.username,
-        points: user.points,
+        pointsLections: user.pointsLections,
+        pointsGames: user.pointsGames,
         password: "test",
         profile: {firstName: user.name}
       });

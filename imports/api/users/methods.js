@@ -18,25 +18,65 @@ export const setDefaultModel = new ValidatedMethod({
   }
 });
 
-export const addPoints = new ValidatedMethod({
-  name: 'users.addPoints',
+export const addPointsLection = new ValidatedMethod({
+  name: 'users.addPointsLection',
   validate: new SimpleSchema({
-    points: { type: Number }
+    pointsLection: { type: Number }
   }).validator(),
-  run({ points }) {
+  run({ pointsLection }) {
     // add points first  
     Meteor.users.update(this.userId, {
-      $inc: { points }
+      $inc: { pointsLection }
     });
     // then notify user
     const notification = {
       userId: this.userId,
       name: 'Získal si body',
       read: false,
-      text: `Gratulujeme, za splnenie lekcie si získal ${points} bodov`
+      text: `Gratulujeme, za splnenie lekcie si získal ${pointsLection} bodov`
     }
     Notifications.insert(notification);
   }
 });
 
+export const addPointsLections = new ValidatedMethod({
+  name: 'users.addPointsLections',
+  validate: new SimpleSchema({
+    pointsLections: { type: Number }
+  }).validator(),
+  run({ pointsLections }) {
+    // add points first  
+    Meteor.users.update(this.userId, {
+      $inc: { pointsLections }
+    });
+    // then notify user
+    const notification = {
+      userId: this.userId,
+      name: 'Získal si body',
+      read: false,
+      text: `Gratulujeme, za splnenie cvičenia si získal ${pointsLections} bodov`
+    }
+    Notifications.insert(notification);
+  }
+});
 
+export const addPointsGames = new ValidatedMethod({
+  name: 'users.addPointsGames',
+  validate: new SimpleSchema({
+    pointsGames: { type: Number }
+  }).validator(),
+  run({ pointsLection }) {
+    // add points first  
+    Meteor.users.update(this.userId, {
+      $inc: { pointsGames }
+    });
+    // then notify user
+    const notification = {
+      userId: this.userId,
+      name: 'Získal si body',
+      read: false,
+      text: `Gratulujeme, za splnenie lekcie si získal ${pointsGames} bodov`
+    }
+    Notifications.insert(notification);
+  }
+});
