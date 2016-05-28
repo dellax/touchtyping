@@ -115,7 +115,7 @@ Meteor.startup(() => {
         // add points for user and notify
         
         Meteor.users.update(user._id, {
-          $inc: { pointsGames: user.pointsToAdd }
+          $inc: { pointsGames: user.pointsToAdd, }, $set: { pointsLastGame: user.pointsToAdd }
         });
 
         // notify user about that
