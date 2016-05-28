@@ -25,21 +25,40 @@ Accounts.onCreateUser((options, user) => {
 
 // check if games started, every second
 Meteor.startup(() => {
-    Meteor.setInterval(() => {
-    	const games = Games.find({ 
-    		hasStarted: false,
-    		playersCount: { $gte: 2 }
-    	}).fetch();
-    	let now = moment()
-	    games.forEach((game) => {
-	      let gameCreatedAt = moment(game.createdAt);
-	      if (now.diff(gameCreatedAt, 'seconds') >= 10) {
-	        Games.update(game._id, {
-	          $set: { 
-	            hasStarted: true
-	          },
-	        });
-	      }
-	    });
-    }, 1000);
+  const gameAge = 10; // set gameAge in seconds, after which game will be checked
+  const checkInterval = 1000;
+  Meteor.setInterval(() => {
+    const now = moment().subtract(gameAge, 'seconds').toDate();
+
+  	const games = Games.find({ 
+  		hasStarted: false,
+  		playersCount: { $gte: 2 },
+      createdAt: { $lte: now }
+  	}).fetch();
+
+    games.forEach((game) => { 
+      Games.update(game._id, {
+        $set: { 
+          hasStarted: true
+        },
+      }); 
+    });
+  }, checkInterval);
+});
+
+Meteor.startup(() => {
+  const gameAge = 1; // set gameAge in minutes, after which game will be checked
+  const checkInterval = 1000;
+  Meteor.setInterval(() => {
+    const now = moment().subtract(gameAge, 'minutes').toDate();
+    const games = Games.find({ 
+      hasStarted: true,
+      createdAt: { $lte: now }
+    }).fetch();
+    
+    // each game older then gameAge ...
+    games.forEach((game) => {
+      //console.log(game._id);
+    });
+  }, checkInterval);
 });

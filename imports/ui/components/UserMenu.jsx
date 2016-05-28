@@ -45,7 +45,7 @@ export default class UserMenu extends React.Component {
             <a href="#26">{user.pointsLections} <span className="fa fa-bolt scnd-font-color"></span></a>
           </li>
           <li>
-            <a href="#26">{user.pointsGames} {pointsIcon}<span className="fa fa-caret-down scnd-font-color"></span></a>
+            <a href="#26">{user.pointsGames} {pointsIcon}</a>
           </li>
           <li>
             <a href="#">
