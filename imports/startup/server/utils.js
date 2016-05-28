@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { Games } from '../../api/games/games.js';
+import { Players } from '../../api/players/players.js';
 import { Notifications } from '../../api/notifications/notifications.js';
 import moment from 'moment';
 
@@ -46,8 +47,56 @@ Meteor.startup(() => {
   }, checkInterval);
 });
 
+function getElapsedTimeInSeconds(gameCreatedDate, playerFinishedDate) {
+  return Math.abs(moment(playerFinishedDate).diff(gameCreatedDate, 'seconds'));
+}
+
+function getPointsForPlayersToAdd(players, gameCreatedDate) {
+  if (players.length === 0) return [];
+  
+  let averagePoints;
+  let sumPoints = 0;
+  let bestTime = getElapsedTimeInSeconds(gameCreatedDate, players[0].finishedDate);
+
+  if (bestTime === null) {
+    // if noone finished game
+    const res = players.map((player) => {
+      return {_id: player.userId, pointsToAdd: -30};
+    });
+    return res;
+  }
+
+  players.forEach((player) => {
+    sumPoints += player.pointsGames;
+  });
+
+  averagePoints = Math.round(sumPoints / players.length);
+
+  let bonus = 30;
+
+  const res = players.map((player) => {
+    if (player.finishedDate === null) return {_id: player.userId, pointsToAdd: -30};
+
+    let pointsToAdd = 0;  
+    const playerTime = getElapsedTimeInSeconds(gameCreatedDate, player.finishedDate);
+
+    if (bonus >= 0) { 
+      pointsToAdd = averagePoints+bonus - player.pointsGames;
+      bonus -= 10;
+    }
+    if (pointsToAdd < 0) {
+      pointsToAdd = Math.round(pointsToAdd * (1 - bestTime / playerTime));
+    } else {
+      pointsToAdd = Math.round(pointsToAdd * (bestTime / playerTime));
+    }
+    return { _id: player.userId, pointsToAdd };
+  });
+
+  return res;
+}
+
 Meteor.startup(() => {
-  const gameAge = 1; // set gameAge in minutes, after which game will be checked
+  const gameAge = 5; // set gameAge in minutes, after which game will be checked
   const checkInterval = 1000;
   Meteor.setInterval(() => {
     const now = moment().subtract(gameAge, 'minutes').toDate();
@@ -58,7 +107,42 @@ Meteor.startup(() => {
     
     // each game older then gameAge ...
     games.forEach((game) => {
-      //console.log(game._id);
+      const players = game.playersByTime().fetch();
+      const pointsToAdd = getPointsForPlayersToAdd(players, game.createdAt);
+
+      pointsToAdd.forEach((user) => {
+        // add points for user and notify
+        Meteor.users.update(user._id, {
+          $inc: { pointsGames: user.pointsToAdd }
+        });
+
+        // notify user about that
+        let notification = {};
+        if (user.pointsToAdd >= 0) {
+          notification = {
+            userId: user._id,
+            name: 'Získal si nové body',
+            text: `Za odohranú hru si získal ${user.pointsToAdd} bodov.`,
+            read: false
+          }
+        } else {
+          notification = {
+            userId: user._id,
+            name: 'Prišiel si o body',
+            text: `Za odohranú hru si bohužial prišiel o ${user.pointsToAdd} bodov.`,
+            read: false
+          }
+        }
+        
+        Notifications.insert(notification);
+      })
+
+      // remove players and game...
+      players.forEach((player) => {
+        Players.remove(player._id);
+      });
+
+      Games.remove(game._id);
     });
   }, checkInterval);
 });

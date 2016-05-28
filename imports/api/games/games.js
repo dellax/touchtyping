@@ -64,6 +64,9 @@ Games.helpers({
   players() {
     return Players.find({ gameId: this._id }, { sort: { createdAt: 1 } });
   },
+  playersByTime() {
+    return Players.find({ gameId: this._id }, { sort: { finishedDate: -1 } });
+  },
   arePlayersReady() {
     const allPlayersCount = Players.find({ gameId: this._id }).count();
     const readyPlayersCount = Players.find({ gameId: this._id, ready: true }).count();
