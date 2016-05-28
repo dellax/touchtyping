@@ -80,8 +80,6 @@ export default class GameRacingPage extends React.Component {
     const text = this.props.text;
     const id = this.props.id;
 
-    console.log(text);
-
     return (
       <div className="game-container">
         <div className="countdown">
