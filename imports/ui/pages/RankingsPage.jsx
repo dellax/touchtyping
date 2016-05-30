@@ -38,11 +38,20 @@ export default class RankingsPages extends React.Component {
                 let selected = false;
                 if (user._id === currentUser._id) selected = true;
 
+                let pointsIcon;
+                if (user.pointsLastGame > 0) {
+                  pointsIcon = <span className="fa fa-caret-up" style={{color: '#59F525'}}></span>;
+                } else if (user.pointsLastGame < 0) {
+                  pointsIcon = <span className="fa fa-caret-down" style={{color: '#F55925'}}></span>;
+                } else {
+                  pointsIcon = <span className="fa fa-minus" style={{color: '#25C1F5'}}></span>;
+                }
+
                 return (
                   <TableRow key={user._id} selected={selected}>
                     <TableRowColumn>{rank}</TableRowColumn>
                     <TableRowColumn>{user.username}</TableRowColumn>
-                    <TableRowColumn>{user.pointsGames}</TableRowColumn>
+                    <TableRowColumn>{user.pointsGames} {pointsIcon}</TableRowColumn>
                   </TableRow>
                 )
               })}
