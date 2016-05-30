@@ -42,7 +42,7 @@ export default class RankingsPages extends React.Component {
                   <TableRow key={user._id} selected={selected}>
                     <TableRowColumn>{rank}</TableRowColumn>
                     <TableRowColumn>{user.username}</TableRowColumn>
-                    <TableRowColumn>{user.points}</TableRowColumn>
+                    <TableRowColumn>{user.pointsGames}</TableRowColumn>
                   </TableRow>
                 )
               })}

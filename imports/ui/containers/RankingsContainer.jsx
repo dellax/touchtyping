@@ -4,7 +4,7 @@ import RankingsPage from '../pages/RankingsPage.jsx';
 
 export default createContainer(() => { 
 	const user = Meteor.user();
-  const rankings = Meteor.users.find({}, { sort: { points: -1 }, limit: 8 }).fetch();
+  const rankings = Meteor.users.find({}, { sort: { pointsGames: -1 }, limit: 8 }).fetch();
   
   return {
   	user,
