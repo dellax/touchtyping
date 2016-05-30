@@ -15,6 +15,7 @@ import NotFoundPage from '../../ui/pages/NotFoundPage.jsx';
 import NotEnoughRightsPage from '../../ui/pages/NotEnoughRightsPage.jsx';
 import HomePage from '../../ui/pages/HomePage.jsx';
 import RankingsContainer from '../../ui/containers/RankingsContainer.jsx';
+import StatisticsPageContainer from '../../ui/containers/StatisticsPageContainer.jsx';
 
 // admin components
 import AdminContainer from '../../ui/containers/AdminContainer.jsx';
@@ -58,6 +59,7 @@ export const renderRoutes = () => (
       <Route path="nastavenia/:id" component={SettingsContainer} onEnter={canEditSettings}>
         <Route path="modely-aut" component={ModelsContainer}/>
         <Route path="profil"/>
+        <Route path="statistiky" component={StatisticsPageContainer}/>
       </Route>
       <Route path="nedostatocne-prava" component={NotEnoughRightsPage}/>
       <Route path="*" component={NotFoundPage}/>

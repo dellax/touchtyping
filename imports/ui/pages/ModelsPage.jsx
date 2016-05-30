@@ -22,16 +22,17 @@ export default class ModelsPage extends React.Component {
   
 
   render() {
-    const models = this.props.models;
+    const modelsOwned = this.props.modelsOwned;
+    const modelsNotOwned = this.props.modelsNotOwned;
     const user = this.props.user;
     
     return (
       <div className="user-models">
         <h2>Modely áut</h2>
-        Kliknutím na model, nastavíte model ako predvolený.
+        Kliknutím na model nastavíš model ako predvolený.
         <h5>Zoznam získaných modelov</h5>
         <div className="models-list">
-          {models.map((model) => {
+          {modelsOwned.map((model) => {
             const style = {};
             if (model._id === user.defaultModel) {
               style.backgroundColor = '#e6ccff';
@@ -39,7 +40,23 @@ export default class ModelsPage extends React.Component {
             return (
               <div className="model" onClick={this.handleSetDefaultModel.bind(this, model._id)} style={style}>
                 <img width="88" height="47" src={model.image} alt="model"/>
-                <span className="name">Názov modelu: {model.name}</span>
+                <span className="name">{model.name}</span>
+                <span className="points">Potrebné body: {model.points}</span>
+              </div>
+            );
+          })}
+        </div>
+        <h5>Zoznam modelov ktoré môžeš ešte získať</h5>
+        <div className="models-list">
+          {modelsNotOwned.map((model) => {
+            const style = {};
+            if (model._id === user.defaultModel) {
+              style.backgroundColor = '#e6ccff';
+            }
+            return (
+              <div className="model" style={style}>
+                <img width="88" height="47" src={model.image} alt="model"/>
+                <span className="name">{model.name}</span>
                 <span className="points">Potrebné body: {model.points}</span>
               </div>
             );

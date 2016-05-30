@@ -6,10 +6,12 @@ import { Models } from '../../api/models/models.js';
 export default createContainer(({ params: { id } }) => { 
  
   const user = Meteor.user();
-  const models = Models.find( { points: { $lte: user.pointsGames } } ).fetch();
+  const modelsOwned = Models.find( { points: { $lte: user.pointsGames } } ).fetch();
+  const modelsNotOwned = Models.find( { points: { $gt: user.pointsGames } } ).fetch();
   
   return {
   	user,
-    models
+    modelsOwned,
+    modelsNotOwned
   };
 }, ModelsPage);

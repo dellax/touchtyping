@@ -23,7 +23,7 @@ export default class SettingsPage extends React.Component {
     const clonedChildren = children && React.cloneElement(children, {
       key: location.pathname,
     });
-
+    console.log(this.props);
     return (
       <div className="admin">
         <div className="content-default">
@@ -35,18 +35,21 @@ export default class SettingsPage extends React.Component {
             <ul className="menu-box-menu">
               <li>
                 <Link to={`/nastavenia/${user._id}/profil`} className="menu-box-tab">
-                <span className="icon fa fa-user scnd-font-color"></span>
+                  <span className="icon fa fa-user scnd-font-color"></span>
                   Môj profil
                 </Link>                         
               </li>
               <li>
                 <Link to={`/nastavenia/${user._id}/modely-aut`} className="menu-box-tab">
-                <span className="icon fa fa-car scnd-font-color"></span>
+                  <span className="icon fa fa-car scnd-font-color"></span>
                   Modely áut
                 </Link>                         
               </li>
               <li>
-                <a className="menu-box-tab" href="#8"><span className="icon fa fa-bar-chart scnd-font-color"></span>Štatistiky</a>                            
+                <Link to={`/nastavenia/${user._id}/statistiky`} className="menu-box-tab">
+                  <span className="icon fa fa-bar-chart scnd-font-color"></span>
+                  Štatistiky
+                </Link>                          
               </li>
               <li>
                 <a className="menu-box-tab" href="#10"><span className="icon fa fa-envelope-o scnd-font-color"></span>Notifikácie</a>                            

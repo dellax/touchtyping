@@ -1,14 +1,11 @@
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
+import { Statistics } from '../../api/statistics/statistics.js';
 import SettingsPage from '../pages/SettingsPage.jsx';
 
 export default createContainer(() => {
-  // TODO
-  //const todosHandle = Meteor.subscribe('todos.inList', id);
-  //const loading = !todosHandle.ready();
-  //const list = Lists.findOne(id);
-  //const listExists = !loading && !!list;
+  const user = Meteor.user();
   return {
-  	user: Meteor.user(),
+  	user,
   };
 }, SettingsPage);
