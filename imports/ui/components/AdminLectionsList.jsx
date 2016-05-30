@@ -77,7 +77,7 @@ export default class AdminLectionPage extends React.Component {
             <span className="delete"
               onMouseDown={this.handleRemoveElement.bind(this, index)}
             >&times;</span>
-            <span className="delete"><Link to={`/administracia/lekcie/upravit/${data._id}`}> upravit</Link></span>
+            <span className="delete"><Link to={`/administracia/lekcie/upravit/${data._id}`}> Upraviť</Link></span>
           </div>
         </SortableItem>
       );

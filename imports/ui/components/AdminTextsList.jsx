@@ -88,15 +88,15 @@ export default class AdminTextsList extends React.Component {
     
     function renderItem(data, index) {
       return (
-        <div className="model" key={data._id}>
+        <div className="text" key={data._id}>
           <span className="name">Názov: {data.name}</span>
-          <div className="model-buttons">
+          <div className="text-buttons">
             <span className="delete"
               onMouseDown={this.handleRemoveElement.bind(this, index)}
             >&times;</span>
             <span className="delete"
               onMouseDown={this.handleUpdateElement.bind(this, index)}
-            > upravit</span>
+            > Upraviť</span>
           </div>
         </div>
        
@@ -105,7 +105,7 @@ export default class AdminTextsList extends React.Component {
 
     let modalStyle = {
       padding: '20px',
-      height: '500px'
+      height: '450px'
     };
 
     const { arr: texts, formTextData: text } = this.state;
@@ -118,7 +118,7 @@ export default class AdminTextsList extends React.Component {
 
     return (
       <div className="dynamic-demo">
-        <div className="admin-models">
+        <div className="admin-texts">
           {this.state.arr.map(renderItem, this)}
         </div>
 
@@ -127,7 +127,7 @@ export default class AdminTextsList extends React.Component {
           <label for="textName">Názov:</label>
           <input type="text" name="textName" ref="textName" defaultValue={text.name}/>
           <label for="textText">Text:</label>
-          <input type="text" name="textText" ref="textText" defaultValue={text.text}/>
+          <textarea rows="8" cols="50" type="text" name="textText" ref="textText" defaultValue={text.text}/>
           <br/>
           <button className="btn-primary" onClick={this.saveTextData.bind(this)}>Uložiť zmeny</button>
         </Modal>

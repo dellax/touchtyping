@@ -127,12 +127,14 @@ export default class AdminExercisesList extends React.Component {
       return (
         <SortableItem key={index} className="dynamic-item" sortData={data}>
           {data.name}
-          <span className="delete"
-            onMouseDown={this.handleRemoveElement.bind(this, index)}
-          >&times;</span>
-          <span className="delete"
-            onMouseDown={this.handleUpdateElement.bind(this, index)}
-          > upravit</span>
+          <div className="exercise-buttons" style={{float: 'right'}}>
+            <span className="delete"
+              onMouseDown={this.handleRemoveElement.bind(this, index)}
+            >&times;</span>
+            <span className="delete"
+              onMouseDown={this.handleUpdateElement.bind(this, index)}
+            > Upraviť</span>
+          </div>
         </SortableItem>
       );
     }

@@ -46,7 +46,7 @@ export default class StatisticsPage extends React.Component {
       <div>
         <div className="statistics-page">
           <h2>Štatistiky</h2>
-          <p>Po kliknuťí na niektorú zo štatistík sa zobrazí detailnejší nahľad.</p>
+          <p>Po kliknutí na niektorú zo štatistík sa zobrazí detailnejší nahľad.</p>
           
           <table id="hor-minimalist-a">
             <thead>

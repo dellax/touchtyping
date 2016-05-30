@@ -109,7 +109,7 @@ export default class AdminModelsList extends React.Component {
             >&times;</span>
             <span className="delete"
               onMouseDown={this.handleUpdateElement.bind(this, index)}
-            > upravit</span>
+            > Upraviť</span>
           </div>
         </div>
        
