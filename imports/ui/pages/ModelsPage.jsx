@@ -30,20 +30,21 @@ export default class ModelsPage extends React.Component {
         <h2>Modely áut</h2>
         Kliknutím na model, nastavíte model ako predvolený.
         <h5>Zoznam získaných modelov</h5>
-
-        {models.map((model) => {
-          const style = {};
-          if (model._id === user.defaultModel) {
-            style.backgroundColor = '#e6ccff';
-          }
-          return (
-            <div className="model" onClick={this.handleSetDefaultModel.bind(this, model._id)} style={style}>
-              <img width="88" height="47" src={model.image} alt="model"/>
-              <span className="name">Názov modelu: {model.name}</span>
-              <span className="points">Potrebné body: {model.points}</span>
-            </div>
-          );
-        })}
+        <div className="models-list">
+          {models.map((model) => {
+            const style = {};
+            if (model._id === user.defaultModel) {
+              style.backgroundColor = '#e6ccff';
+            }
+            return (
+              <div className="model" onClick={this.handleSetDefaultModel.bind(this, model._id)} style={style}>
+                <img width="88" height="47" src={model.image} alt="model"/>
+                <span className="name">Názov modelu: {model.name}</span>
+                <span className="points">Potrebné body: {model.points}</span>
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
   }

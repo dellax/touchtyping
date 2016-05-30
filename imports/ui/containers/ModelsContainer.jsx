@@ -6,7 +6,7 @@ import { Models } from '../../api/models/models.js';
 export default createContainer(({ params: { id } }) => { 
  
   const user = Meteor.user();
-  const models = Models.find( { points: { $lte: user.points } } ).fetch();
+  const models = Models.find( { points: { $lte: user.pointsGames } } ).fetch();
   
   return {
   	user,
