@@ -5,6 +5,7 @@ import { Roles } from 'meteor/alanning:roles';
 
 // route components
 import AppContainer from '../../ui/containers/AppContainer.jsx';
+import LectionsIndexPage from '../../ui/pages/LectionsIndexPage.jsx';
 import LectionsContainer from '../../ui/containers/LectionsContainer.jsx';
 import LectionContainer from '../../ui/containers/LectionContainer.jsx';
 import StatisticsContainer from '../../ui/containers/StatisticsContainer.jsx';
@@ -37,6 +38,7 @@ export const renderRoutes = () => (
     <Route path="/" component={AppContainer}>
       <IndexRoute component={HomePage} />
       <Route path="lekcie" component={LectionsContainer}>
+        <IndexRoute component={LectionsIndexPage} />
         <Route path="cvicenie/id/:id" component={LectionContainer}/>
         <Route path="statistiky/id/:id" component={StatisticsContainer}/>
       </Route>
