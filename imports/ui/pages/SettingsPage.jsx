@@ -52,7 +52,10 @@ export default class SettingsPage extends React.Component {
                 </Link>                          
               </li>
               <li>
-                <a className="menu-box-tab" href="#10"><span className="icon fa fa-envelope-o scnd-font-color"></span>Notifikácie</a>                            
+                <Link to={`/nastavenia/${user._id}/notifikacie`} className="menu-box-tab">
+                  <span className="icon fa fa-envelope-o scnd-font-color"></span>
+                  Notifikácie
+                </Link>                     
               </li>              
             </ul>
           </div>    

@@ -36,7 +36,7 @@ export default class RankingsPages extends React.Component {
               {rankings.map((user) => {
                 rank++;
                 let selected = false;
-                if (user._id === currentUser._id) selected = true;
+                if (currentUser && user._id === currentUser._id) selected = true;
 
                 let pointsIcon;
                 if (user.pointsLastGame > 0) {
