@@ -88,8 +88,10 @@ export default class GamesPage extends React.Component {
     
     return (
       <div className="games-container">
-        <span onClick={this.handleClickRacingGame}>Pripojit sa ku hre</span>
-        <span onClick={this.handleAddNotification.bind(this)}>ddd</span>
+        <div className="game" onClick={this.handleClickRacingGame}>
+          <img src="img/game-racing.jpg" width="300" height="200" /><br/>
+          <span>Pripojiť sa do hry</span>
+        </div>
       </div>
     );
   }
